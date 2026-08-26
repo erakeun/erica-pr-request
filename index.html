@@ -64,9 +64,6 @@
     .type input{position:absolute;opacity:0;pointer-events:none}
     .type span{display:grid;place-items:center;text-align:center;min-height:51px;padding:9px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:13px;font-weight:800;transition:.15s}
     .type input:checked + span{background:var(--brand);border-color:var(--brand);color:#fff}
-    .conditional{margin-top:16px;padding:18px;border-radius:15px;background:#f8fbfd;border:1px dashed #b9cddd;display:none}
-    .conditional.active{display:block}
-    .conditional h3{margin:0 0 13px;font-size:16px;color:var(--brand-strong)}
     .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .rank-grid{display:grid;gap:10px}
     .rank-row{display:grid;grid-template-columns:66px 1fr;gap:10px;align-items:center}
@@ -111,6 +108,38 @@
     .done-mark{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#e8f7ef;color:var(--success);font-size:27px;font-weight:900;margin:0 auto 14px}
     .modal-btn{margin-top:18px;border:0;background:var(--brand);color:#fff;border-radius:11px;padding:11px 16px;font-weight:900}
     footer{padding:0 0 48px;color:#89949d;text-align:center;font-size:12px}
+
+    /* v1.4: 필수항목 중심 접기 UI */
+    .optional-pill{display:inline-flex;align-items:center;margin-left:8px;padding:3px 7px;border-radius:999px;background:#eef3f7;color:#73808b;font-size:10px;font-weight:800;vertical-align:middle}
+    details.section{padding:0;overflow:hidden}
+    details.section > summary{list-style:none;cursor:pointer;padding:24px 26px;display:flex;align-items:flex-start;gap:14px;position:relative;user-select:none}
+    details.section > summary::-webkit-details-marker{display:none}
+    details.section > summary::after{content:"＋";flex:0 0 auto;width:30px;height:30px;border-radius:10px;background:#f0f5f8;color:var(--brand);display:grid;place-items:center;font-size:21px;font-weight:800;line-height:1;transition:.18s}
+    details.section[open] > summary::after{content:"−"}
+    details.section > .section-content{padding:0 26px 26px}
+    .section-summary-copy{flex:1}
+    .section-summary-copy h2{margin:1px 0 4px}
+    .section-summary-copy .desc{margin:0}
+    .inline-details{grid-column:1/-1;border:1px solid var(--line);border-radius:13px;background:#f9fbfd;overflow:hidden}
+    .inline-details > summary{list-style:none;cursor:pointer;padding:13px 15px;font-size:13px;font-weight:800;color:#445665;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .inline-details > summary::-webkit-details-marker{display:none}
+    .inline-details > summary::after{content:"＋";color:var(--brand);font-size:18px;font-weight:900}
+    .inline-details[open] > summary::after{content:"−"}
+    .inline-details-body{padding:2px 15px 15px;display:grid;gap:12px}
+    .conditional{margin-top:16px;padding:0;border-radius:15px;background:#f8fbfd;border:1px dashed #b9cddd;display:none;overflow:hidden}
+    .conditional.active{display:block}
+    .conditional > summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:14px;font-weight:900;color:var(--brand-strong);display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .conditional > summary::-webkit-details-marker{display:none}
+    .conditional > summary::after{content:"＋";font-size:19px;color:var(--brand)}
+    .conditional[open] > summary::after{content:"−"}
+    .conditional .conditional-body{padding:0 16px 16px}
+    .photo-mode{margin-top:14px;border:1px solid var(--line);background:#f8fbfd;border-radius:13px;padding:14px}
+    .photo-mode-title{font-size:13px;font-weight:900;margin-bottom:8px}
+    .photo-mode-options{display:flex;gap:9px;flex-wrap:wrap}
+    .photo-mode-option{flex:1;min-width:210px;display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;background:#fff;padding:11px 12px;font-size:12px;color:#51606c}
+    .photo-mode-option strong{display:block;color:#263542;font-size:13px;margin-bottom:2px}
+    .photo-mode-note{font-size:11px;color:#7d8993;margin-top:8px}
+
     @media(max-width:720px){
       .wrap{width:min(100% - 22px,980px)}
       .hero{padding-top:34px}.hero p{font-size:15px}
@@ -128,7 +157,7 @@
     <div class="wrap">
       <div class="eyebrow">ERICA 대외협력팀 · 보도자료 접수</div>
       <h1>보도자료 기초자료 제출</h1>
-      <p>기사 문장으로 완성해서 보내지 않아도 됩니다. 확인 가능한 사실과 주요 수치, 관계자 발언, 사진만 입력해 주세요. 접수된 내용을 바탕으로 홍보 담당자가 보도자료 또는 블로그 기사로 재구성합니다.</p>
+      <p>기사 문장으로 완성해서 보내지 않아도 됩니다. 먼저 필수 내용만 작성하고, 필요한 추가 항목은 펼쳐서 입력해 주세요. 접수된 내용을 바탕으로 홍보 담당자가 보도자료 또는 블로그 기사로 재구성합니다.</p>
       <div class="notice"><strong>작성 팁</strong><span>정확하지 않거나 아직 확정되지 않은 내용은 비워두거나 ‘확인 필요 / 검토 중’이라고 적어주세요. ‘국내 최초·세계 최초·유일·최고’ 같은 표현은 확인 가능한 근거가 필요합니다.</span></div>
     </div>
   </header>
@@ -160,42 +189,42 @@
         </div>
         <label class="field" style="margin-top:12px"><span class="label">기타 유형 <span class="hint">필요한 경우만</span></span><input type="text" name="typeOther" placeholder="예: 동문, 기부, 지역협력 등"></label>
 
-        <div class="conditional" id="research"><h3>연구성과 추가 항목</h3><div class="mini-grid">
+        <details class="conditional" id="research"><summary>연구성과 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
           <label class="field"><span class="label">기존 연구의 한계</span><textarea name="researchLimit" placeholder="기존에는 무엇이 어려웠는지"></textarea></label>
           <label class="field"><span class="label">이번 연구의 핵심 방법</span><textarea name="researchMethod" placeholder="무엇을 새롭게 적용했는지"></textarea></label>
           <label class="field"><span class="label">주요 실험·분석 결과</span><textarea name="researchResult" placeholder="수치가 있으면 함께 작성"></textarea></label>
           <label class="field"><span class="label">논문·학술지 / 저자 정보</span><textarea name="researchPaper" placeholder="논문명, 학술지, 제1저자, 교신저자 등"></textarea></label>
           <label class="field"><span class="label">연구지원기관</span><input type="text" name="researchSupport"></label>
           <label class="field"><span class="label">활용 가능 분야</span><input type="text" name="researchUse"></label>
-        </div></div>
+        </div></div></details>
 
-        <div class="conditional" id="business"><h3>정부사업·사업성과 추가 항목</h3><div class="mini-grid">
+        <details class="conditional" id="business"><summary>정부사업·사업성과 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
           <label class="field"><span class="label">정확한 사업명 / 주관 부처·기관</span><textarea name="businessName"></textarea></label>
           <label class="field"><span class="label">사업기간 / 총사업비 / ERICA 지원액</span><textarea name="businessScale" placeholder="컨소시엄 전체 금액과 ERICA 지원액을 구분해 주세요"></textarea></label>
           <label class="field"><span class="label">ERICA의 역할·주요 수행내용</span><textarea name="businessRole"></textarea></label>
           <label class="field"><span class="label">현재까지 완료한 내용</span><textarea name="businessDone"></textarea></label>
-        </div></div>
+        </div></div></details>
 
-        <div class="conditional" id="agreement"><h3>협약·산학협력 추가 항목</h3><div class="mini-grid">
+        <details class="conditional" id="agreement"><summary>협약·산학협력 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
           <label class="field"><span class="label">협약 상대기관 / 협약일</span><textarea name="agreementParty"></textarea></label>
           <label class="field"><span class="label">협약 목적</span><textarea name="agreementPurpose"></textarea></label>
           <label class="field"><span class="label">구체적인 협력사항</span><textarea name="agreementDetails" placeholder="공동연구, 인재양성, 현장실습, 기술교류 등"></textarea></label>
           <label class="field"><span class="label">협약 후 바로 추진할 내용</span><textarea name="agreementNext"></textarea></label>
-        </div></div>
+        </div></div></details>
 
-        <div class="conditional" id="award"><h3>수상·선정 추가 항목</h3><div class="mini-grid">
+        <details class="conditional" id="award"><summary>수상·선정 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
           <label class="field"><span class="label">정확한 상·사업명 / 주관·선정기관</span><textarea name="awardName"></textarea></label>
           <label class="field"><span class="label">선정일·수상일 / 선정 규모</span><textarea name="awardDate"></textarea></label>
           <label class="field"><span class="label">평가·선정 사유</span><textarea name="awardReason"></textarea></label>
           <label class="field"><span class="label">주요 결과·관련 수치</span><textarea name="awardResult"></textarea></label>
-        </div></div>
+        </div></div></details>
 
-        <div class="conditional" id="education"><h3>국제협력·교육 프로그램 추가 항목</h3><div class="mini-grid">
+        <details class="conditional" id="education"><summary>국제협력·교육 프로그램 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
           <label class="field"><span class="label">대상 국가·기관·교육대상</span><textarea name="eduTarget"></textarea></label>
           <label class="field"><span class="label">프로그램 목적 / 운영기간</span><textarea name="eduPurpose"></textarea></label>
           <label class="field"><span class="label">참가·교육 인원 / 주요 내용</span><textarea name="eduScale"></textarea></label>
           <label class="field"><span class="label">현재 성과 / 향후 일정</span><textarea name="eduResult"></textarea></label>
-        </div></div>
+        </div></div></details>
       </section>
 
       <section class="section">
@@ -205,8 +234,13 @@
           <label class="field"><span class="label">일시</span><input type="text" name="when" placeholder="예: 2026년 8월 26일 / 2026.03~2028.02"></label>
           <label class="field"><span class="label">장소</span><input type="text" name="where" placeholder="해당하는 경우만"></label>
           <label class="field span2"><span class="label required">주관·참여</span><textarea name="who" required placeholder="주관 부서·학과·연구팀·교수·학생·참여기관·주요 인물 등"></textarea></label>
-          <label class="field span2"><span class="label">주요 수행 내용</span><textarea name="what" placeholder="행사 프로그램, 연구 내용, 사업 내용, 교육 내용 등"></textarea></label>
-          <label class="field span2"><span class="label">추진 배경·목적</span><textarea name="why" placeholder="기존 문제, 사업 목적, 이 일을 추진하게 된 이유 등"></textarea></label>
+          <details class="inline-details">
+            <summary>추가 기본정보 <span class="optional-pill">선택사항</span></summary>
+            <div class="inline-details-body">
+              <label class="field"><span class="label">주요 수행 내용</span><textarea name="what" placeholder="행사 프로그램, 연구 내용, 사업 내용, 교육 내용 등"></textarea></label>
+              <label class="field"><span class="label">추진 배경·목적</span><textarea name="why" placeholder="기존 문제, 사업 목적, 이 일을 추진하게 된 이유 등"></textarea></label>
+            </div>
+          </details>
         </div>
       </section>
 
@@ -217,34 +251,44 @@
           <label class="field span2"><span class="label">가장 중요한 결과</span><textarea name="mainResult" placeholder="가능하면 숫자로 적어주세요. 예: 14개 팀 최종 선발 / 교원 1,280명 연수"></textarea></label>
           <div class="span2 rank-grid">
             <div class="rank-row"><div class="rank-badge">1순위</div><input type="text" name="priority1" placeholder="가장 강조할 내용"></div>
-            <div class="rank-row"><div class="rank-badge">2순위</div><input type="text" name="priority2"></div>
-            <div class="rank-row"><div class="rank-badge">3순위</div><input type="text" name="priority3"></div>
           </div>
+          <details class="inline-details">
+            <summary>강조 포인트 2·3순위 추가 <span class="optional-pill">선택사항</span></summary>
+            <div class="inline-details-body rank-grid">
+              <div class="rank-row"><div class="rank-badge">2순위</div><input type="text" name="priority2"></div>
+              <div class="rank-row"><div class="rank-badge">3순위</div><input type="text" name="priority3"></div>
+            </div>
+          </details>
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-head"><div class="num">5</div><div><h2>뉴스 가치·수치·근거</h2><p class="desc">“그래서 왜 기사로 낼 만한가?”를 판단할 수 있게 적어주세요.</p></div></div>
+      <details class="section optional-section">
+        <summary><div class="num">5</div><div class="section-summary-copy"><h2>뉴스 가치·수치·근거 <span class="optional-pill">선택사항</span></h2><p class="desc">“그래서 왜 기사로 낼 만한가?”를 판단할 수 있게 적어주세요.</p></div></summary>
+        <div class="section-content">
         <div class="grid">
           <label class="field span2"><span class="label">기존과 다른 점 / 왜 중요한가</span><textarea name="difference" placeholder="기존의 한계와 이번에 달라진 점, 외부에 알려야 하는 이유"></textarea></label>
           <label class="field span2"><span class="label">특별한 이유</span><textarea name="special" placeholder="최초, 유일, 최대, 1위, 성능 향상, 외부기관 인정 등이 있으면 작성"></textarea></label>
           <label class="field span2"><span class="label">기사에 활용할 수 있는 주요 수치</span><textarea name="numbers" placeholder="참여 인원, 사업비, 사업기간, 선정 규모, 연구 성능, 특허·기술이전 등. 수치가 무엇을 의미하는지도 함께 적어주세요."></textarea></label>
           <label class="field span2"><span class="label">근거·출처</span><textarea name="sources" placeholder="공식 공문, 정부·기관 발표, 논문, 사업 공고, 공식 홈페이지 URL 등"></textarea></label>
         </div>
-      </section>
+        </div>
+      </details>
 
-      <section class="section">
-        <div class="section-head"><div class="num">6</div><div><h2>관계자 발언·향후 계획</h2><p class="desc">실제 발언과 보도자료용 초안을 구분해 주세요.</p></div></div>
+      <details class="section optional-section">
+        <summary><div class="num">6</div><div class="section-summary-copy"><h2>관계자 발언·향후 계획 <span class="optional-pill">선택사항</span></h2><p class="desc">실제 발언과 보도자료용 초안을 구분해 주세요.</p></div></summary>
+        <div class="section-content">
         <div class="grid">
           <label class="field"><span class="label">성명 / 소속·직위</span><input type="text" name="quotePerson" placeholder="예: ○○○ 한양대학교 ERICA ○○학과 교수"></label>
           <label class="field"><span class="label">발언 성격</span><select name="quoteType"><option value="">선택 안 함</option><option>실제 행사·인터뷰에서 한 발언</option><option>보도자료용으로 작성·승인한 문안</option><option>초안 작성 요청</option></select></label>
           <label class="field span2"><span class="label">발언 내용</span><textarea name="quote" placeholder="실제 발언 또는 승인된 문안을 적어주세요. 실제 발언이 없으면 발언 성격에서 ‘초안 작성 요청’을 선택해 주세요."></textarea></label>
           <label class="field span2"><span class="label">향후 계획</span><textarea name="future" placeholder="확정된 일정·후속 연구·추가 교육·사업 확대 계획 등을 적어주세요. 미확정이면 상태를 표시해 주세요."></textarea></label>
         </div>
-      </section>
+        </div>
+      </details>
 
-      <section class="section">
-        <div class="section-head"><div class="num">7</div><div><h2>보도자료용 사진</h2><p class="desc">원본 사진을 첨부해 주세요. 사진은 서버나 Drive에 보관하지 않고 접수 메일에 바로 첨부됩니다.</p></div></div>
+      <details class="section optional-section">
+        <summary><div class="num">7</div><div class="section-summary-copy"><h2>보도자료용 사진 <span class="optional-pill">선택사항</span></h2><p class="desc">사진이 있으면 첨부해 주세요. 큰 사진은 빠른 전송 모드에서 자동 최적화할 수 있습니다.</p></div></summary>
+        <div class="section-content">
         <div class="upload-box" id="uploadBox">
           <input type="file" id="photoInput" accept="image/jpeg,image/png,.jpg,.jpeg,.png" multiple hidden>
           <button type="button" class="upload-button" id="pickPhotos">사진 선택</button>
@@ -252,8 +296,17 @@
           <div class="upload-limit">JPG · JPEG · PNG / 1장당 최대 5MB / 최대 5장</div>
           <div class="file-list" id="fileList"></div>
         </div>
-        <div class="warning">메일 첨부 용량 제한 때문에 사진은 최대 5장까지 받을 수 있지만, <strong>사진 전체 합계는 18MB 이하</strong>로 제한해 두었습니다. DOCX 첨부까지 포함해 메일 발송 실패를 줄이기 위한 안전 여유입니다.</div>
-      </section>
+        <div class="photo-mode">
+          <div class="photo-mode-title">사진 전송 방식</div>
+          <div class="photo-mode-options">
+            <label class="photo-mode-option"><input type="radio" name="photoMode" value="optimized" checked><span><strong>빠른 전송 · 권장</strong>큰 사진만 긴 변 최대 3200px 수준으로 자동 최적화해 전송 시간을 줄입니다.</span></label>
+            <label class="photo-mode-option"><input type="radio" name="photoMode" value="original"><span><strong>원본 그대로</strong>화질 변경 없이 원본을 보냅니다. 여러 장이면 전송 시간이 길어질 수 있습니다.</span></label>
+          </div>
+          <div class="photo-mode-note">※ 자동 최적화는 선택한 원본을 저장하지 않고 브라우저에서 전송용 사본만 만들어 사용합니다.</div>
+        </div>
+        <div class="warning">JPG · JPEG · PNG / 1장당 최대 5MB / 최대 5장. <strong>최종 전송 파일 합계는 18MB 이하</strong>여야 합니다. 빠른 전송 모드를 사용하면 큰 사진의 전송 용량이 자동으로 줄어듭니다.</div>
+        </div>
+      </details>
 
       <section class="section">
         <div class="section-head"><div class="num">8</div><div><h2>내용 확인 담당자</h2><p class="desc">작성 중 사실관계나 수치를 확인할 수 있는 담당자 정보를 적어주세요.</p></div></div>
@@ -265,8 +318,9 @@
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-head"><div class="num">9</div><div><h2>추가 메모·주의사항</h2><p class="desc">보도 시점이나 공개 주의사항이 있으면 꼭 적어주세요.</p></div></div>
+      <details class="section optional-section">
+        <summary><div class="num">9</div><div class="section-summary-copy"><h2>추가 메모·주의사항 <span class="optional-pill">선택사항</span></h2><p class="desc">보도 시점이나 공개 주의사항이 있는 경우만 작성해 주세요.</p></div></summary>
+        <div class="section-content">
         <div class="grid">
           <label class="field"><span class="label">보도 희망 시점</span><input type="text" name="desiredDate" placeholder="예: 8월 30일 이후 / 행사 종료 후 / 별도 제한 없음"></label>
           <label class="field"><span class="label">참고 링크</span><input type="text" name="links" placeholder="기존 기사, 기관 홈페이지, 논문·공고 URL 등"></label>
@@ -274,7 +328,8 @@
           <label class="field span2"><span class="label">공개 주의 정보</span><textarea name="caution" placeholder="외부 공개 전 확인이 필요하거나 공개하면 안 되는 정보"></textarea></label>
           <label class="field span2"><span class="label">기타 메모</span><textarea name="memo" placeholder="용어 표기, 기관 요청사항, 기타 참고사항"></textarea></label>
         </div>
-      </section>
+        </div>
+      </details>
 
       <section class="section">
         <div class="section-head"><div class="num">10</div><div><h2>제출 전 확인</h2><p class="desc">아래 항목을 확인한 뒤 제출해 주세요.</p></div></div>
@@ -310,10 +365,11 @@
   <footer>Hanyang University ERICA · External Relations</footer>
 
   <div class="toast" id="toast"></div>
-  <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진 용량에 따라 수 초 정도 걸릴 수 있습니다. 창을 닫지 말아주세요.</p></div></div>
+  <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진이 있으면 먼저 전송용 파일을 준비한 뒤 메일로 보냅니다. 창을 닫지 말아주세요.</p></div></div>
   <iframe name="submitFrame" id="submitFrame" hidden></iframe>
 
 <script>
+  // v1.4 · 필수항목 중심 접기 UI + 사진 빠른 전송 모드
   // ==========================
   // 1) Apps Script 웹앱 /exec URL
   // 2) Cloudflare Turnstile Site Key (공개키이므로 index.html에 있어도 됨)
@@ -435,7 +491,7 @@
 
   document.querySelectorAll('input[name="types"]').forEach(cb => cb.addEventListener('change', renderConditionals));
   function renderConditionals(){
-    document.querySelectorAll('.conditional').forEach(x => x.classList.remove('active'));
+    document.querySelectorAll('.conditional').forEach(x => { x.classList.remove('active'); x.open = false; });
     document.querySelectorAll('input[name="types"]:checked').forEach(cb => {
       if(cb.dataset.target) document.getElementById(cb.dataset.target)?.classList.add('active');
     });
@@ -456,8 +512,6 @@
       if(selectedPhotos.length >= MAX_FILES){ showToast('사진은 최대 5장까지 첨부할 수 있어.', 'error'); break; }
       if(!/^image\/(jpeg|png)$/.test(file.type || '')){ showToast(`${file.name}: JPG/JPEG/PNG 파일만 첨부할 수 있어.`, 'error'); continue; }
       if(file.size <= 0 || file.size > MAX_FILE_BYTES){ showToast(`${file.name}: 1장당 최대 5MB야.`, 'error'); continue; }
-      const nextTotal = selectedPhotos.reduce((sum,x)=>sum+x.file.size,0) + file.size;
-      if(nextTotal > MAX_TOTAL_BYTES){ showToast('사진 전체 합계는 18MB를 넘길 수 없어.', 'error'); continue; }
       if(selectedPhotos.some(x => x.file.name === file.name && x.file.size === file.size)) continue;
 
       let signatureOk = false;
@@ -522,19 +576,81 @@
     return obj;
   }
 
-  function fileToPayload(item){
+  async function optimizeImageFile(file){
+    if(file.size <= 1.8 * 1024 * 1024) return file;
+    let bitmap;
+    try{ bitmap = await createImageBitmap(file); }
+    catch(err){ bitmap = await loadImageElement(file); }
+
+    const width = bitmap.width || bitmap.naturalWidth;
+    const height = bitmap.height || bitmap.naturalHeight;
+    const maxSide = 3200;
+    const scale = Math.min(1, maxSide / Math.max(width, height));
+    const targetW = Math.max(1, Math.round(width * scale));
+    const targetH = Math.max(1, Math.round(height * scale));
+    const canvas = document.createElement('canvas');
+    canvas.width = targetW; canvas.height = targetH;
+    const ctx = canvas.getContext('2d', {alpha:file.type === 'image/png'});
+    ctx.drawImage(bitmap, 0, 0, targetW, targetH);
+    if(bitmap.close) bitmap.close();
+
+    let blob;
+    if(file.type === 'image/jpeg'){
+      for(const quality of [0.90, 0.86, 0.82]){
+        blob = await canvasToBlob(canvas, 'image/jpeg', quality);
+        if(blob && blob.size <= 3.2 * 1024 * 1024) break;
+      }
+    }else{
+      blob = await canvasToBlob(canvas, 'image/png');
+    }
+    if(!blob || blob.size >= file.size) return file;
+    return new File([blob], file.name, {type:file.type, lastModified:file.lastModified});
+  }
+
+  function canvasToBlob(canvas, type, quality){
+    return new Promise(resolve => canvas.toBlob(resolve, type, quality));
+  }
+
+  function loadImageElement(file){
+    return new Promise((resolve,reject)=>{
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('image decode failed')); };
+      img.src = url;
+    });
+  }
+
+  function fileToPayload(item, preparedFile){
+    const file = preparedFile || item.file;
     return new Promise((resolve,reject)=>{
       const r = new FileReader();
       r.onload = () => resolve({
-        name: item.file.name,
-        type: item.file.type,
-        size: item.file.size,
+        name: file.name,
+        type: file.type,
+        size: file.size,
         caption: item.caption || '',
         base64: String(r.result).split(',')[1]
       });
       r.onerror = reject;
-      r.readAsDataURL(item.file);
+      r.readAsDataURL(file);
     });
+  }
+
+  async function preparePhotosForSubmit(){
+    if(!selectedPhotos.length) return [];
+    const mode = form.elements.photoMode?.value || 'optimized';
+    const prepared = [];
+    for(let i=0;i<selectedPhotos.length;i++){
+      const item = selectedPhotos[i];
+      modal.innerHTML = `<div class="spinner"></div><h3>사진을 준비하고 있어요</h3><p>${i+1}/${selectedPhotos.length} · ${escapeHtml(item.file.name)}</p>`;
+      const file = mode === 'original' ? item.file : await optimizeImageFile(item.file);
+      prepared.push({item, file});
+    }
+    const total = prepared.reduce((sum,x)=>sum+x.file.size,0);
+    if(total > MAX_TOTAL_BYTES) throw new Error('PHOTO_TOTAL_TOO_LARGE');
+    modal.innerHTML = `<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>DOCX와 사진을 담당자 메일로 보내는 중입니다.</p>`;
+    return Promise.all(prepared.map(x => fileToPayload(x.item, x.file)));
   }
 
   function validateForm(){
@@ -578,7 +694,7 @@
 
     setSubmitting(true); overlay.classList.add('show');
     try{
-      const photos = await Promise.all(selectedPhotos.map(fileToPayload));
+      const photos = await preparePhotosForSubmit();
       const payload = {
         ...formObject(),
         photos,
@@ -589,7 +705,7 @@
       postToAppsScript(payload);
     }catch(err){
       setSubmitting(false); overlay.classList.remove('show');
-      showToast('사진을 읽는 중 오류가 발생했어.', 'error');
+      showToast(err && err.message === 'PHOTO_TOTAL_TOO_LARGE' ? '최종 사진 용량이 18MB를 넘었어. 빠른 전송 모드를 사용하거나 사진 수를 줄여줘.' : '사진을 준비하는 중 오류가 발생했어.', 'error');
     }
   });
 
@@ -619,7 +735,9 @@
       modal.innerHTML = `<div class="done-mark">✓</div><h3>접수가 완료됐어</h3><p>${escapeHtml(data.message || '담당자 메일로 자료를 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;
       document.getElementById('doneBtn').onclick = () => {
         overlay.classList.remove('show');
-        form.reset(); selectedPhotos=[]; renderFiles(); renderConditionals(); updateProgress(); location.hash='';
+        form.reset(); selectedPhotos=[]; renderFiles(); renderConditionals();
+        document.querySelectorAll('details.optional-section, details.inline-details, details.conditional').forEach(d => d.open = false);
+        updateProgress(); location.hash='';
         resetTurnstile();
       };
     }else{
