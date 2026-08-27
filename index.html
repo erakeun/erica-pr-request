@@ -303,7 +303,7 @@
               id="photoUploaderFrame"
               class="uploader-frame"
               title="보도자료 사진 업로더"
-              src="https://script.google.com/macros/s/AKfycbw_k2xT--loMBrhgXyH5lnuD7SOnsPVmUAK8gL0Co4oPP63uq6NXLyQE_HmPJeYJLs/exec?mode=uploader&v=21"
+              src="about:blank"
               loading="lazy"
               referrerpolicy="strict-origin-when-cross-origin"
             ></iframe>
@@ -368,7 +368,7 @@
       <div class="privacy">※ 입력 내용은 사이트에 저장하지 않습니다. 사진은 전송을 위해 Google Drive 임시폴더에 보관되며, 메일 발송 성공 후 자동으로 휴지통으로 이동합니다.</div>
     </form>
   </main>
-  <footer>Hanyang University ERICA · External Relations · v2.1</footer>
+  <footer>Hanyang University ERICA · External Relations · v2.2</footer>
 
   <div class="toast" id="toast"></div>
   <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 Drive에 준비되어 있어요. DOCX를 만들고 메일 첨부를 준비합니다.</p></div></div>
@@ -380,13 +380,11 @@
 
   const FORM_STARTED_AT = Date.now();
   const CLIENT_ID = getOrCreateClientId();
+  const UPLOADER_CHANNEL = 'pr_uploader_v22_'+makeId('ch');
+  let UPLOAD_KEY = makeId('upl');
 
   let uploaderPhotos = [];
-  let uploadSession = null;
   let uploadBusy = false;
-  let uploaderReady = false;
-  let uploaderOrigin = '';
-  let uploadSessionPromise = null;
   let turnstileToken = '';
   let turnstileWidgetId = null;
   let isSubmitting = false;
@@ -504,65 +502,15 @@
 
   function escapeHtml(str=''){ return String(str).replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':'&quot;'}[m])); }
 
-  function sendToUploader(message){
-    try{
-      if(photoUploaderFrame && photoUploaderFrame.contentWindow) photoUploaderFrame.contentWindow.postMessage(message, uploaderOrigin || '*');
-    }catch(err){}
-  }
-
-  async function ensureUploadSession(){
-    if(uploadSession) return uploadSession;
-    if(uploadSessionPromise) return uploadSessionPromise;
-
-    uploadSessionPromise=(async()=>{
-      const token=await waitForTurnstileToken();
-      setSecurityStatus('사진 업로드 공간을 준비하고 있어...', '');
-      const res=await postApi({ action:'createUploadSession', turnstileToken:token, clientId:CLIENT_ID, website:'' },35000);
-      if(!res.ok) throw new Error(res.message||'사진 업로드 공간을 만들지 못했어.');
-      uploadSession=res.data;
-      resetTurnstile();
-      setSecurityStatus('사진 업로드용 보안 확인 완료 · 최종 제출용 확인을 갱신 중...', 'ok');
-      sendToUploader({
-        type:'pr-uploader-session',
-        sessionId:uploadSession.sessionId,
-        sessionToken:uploadSession.sessionToken,
-        clientId:CLIENT_ID
-      });
-      return uploadSession;
-    })();
-
-    try{
-      return await uploadSessionPromise;
-    }finally{
-      uploadSessionPromise=null;
-    }
+  function loadUploader(){
+    photoUploaderFrame.src = WEB_APP_URL + '?mode=uploader&v=22&uploadKey=' + encodeURIComponent(UPLOAD_KEY) + '&channel=' + encodeURIComponent(UPLOADER_CHANNEL);
   }
 
   window.addEventListener('message', e=>{
-    if(!photoUploaderFrame || e.source !== photoUploaderFrame.contentWindow) return;
     const data=e.data || {};
+    if(data.channel !== UPLOADER_CHANNEL) return;
 
-    if(data.type==='pr-uploader-ready'){
-      uploaderReady=true;
-      uploaderOrigin=e.origin;
-      if(uploadSession){
-        sendToUploader({
-          type:'pr-uploader-session',
-          sessionId:uploadSession.sessionId,
-          sessionToken:uploadSession.sessionToken,
-          clientId:CLIENT_ID
-        });
-      }
-      return;
-    }
-
-    if(data.type==='pr-uploader-need-session'){
-      void ensureUploadSession().catch(err=>{
-        showToast(String(err&&err.message?err.message:err),'error');
-        sendToUploader({type:'pr-uploader-session-error',message:String(err&&err.message?err.message:err)});
-      });
-      return;
-    }
+    if(data.type==='pr-uploader-ready') return;
 
     if(data.type==='pr-uploader-state'){
       uploaderPhotos=Array.isArray(data.photos)?data.photos:[];
@@ -616,13 +564,13 @@
     setSubmitting(true); overlay.classList.add('show');
     modal.innerHTML='<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p>';
     try{
-      const payload={ ...formObject(), action:'submit', photos:uploaderPhotos.map(x=>({ fileId:x.fileId, name:x.name, type:x.type, size:x.size, caption:x.caption||'' })), sessionId:uploadSession?.sessionId||'', sessionToken:uploadSession?.sessionToken||'', turnstileToken, clientId:CLIENT_ID, formStartedAt:FORM_STARTED_AT, website:'' };
+      const payload={ ...formObject(), action:'submit', uploadKey:UPLOAD_KEY, turnstileToken, clientId:CLIENT_ID, formStartedAt:FORM_STARTED_AT, website:'' };
       const res=await postApi(payload,90000);
       turnstileToken=''; syncSubmitButton();
       if(!res.ok) throw new Error(res.message||'전송에 실패했어.');
       modal.innerHTML=`<div class="done-mark">✓</div><h3>접수가 완료됐어</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;
       document.getElementById('doneBtn').onclick=()=>{
-        overlay.classList.remove('show'); form.reset(); uploaderPhotos=[]; uploadSession=null; uploadBusy=false; sendToUploader({type:'pr-uploader-reset'}); renderConditionals();
+        overlay.classList.remove('show'); form.reset(); uploaderPhotos=[]; uploadBusy=false; UPLOAD_KEY=makeId('upl'); loadUploader(); renderConditionals();
         document.querySelectorAll('details.optional-section,details.inline-details,details.conditional').forEach(d=>d.open=false);
         updateProgress(); resetTurnstile(); location.hash='';
       };
@@ -658,6 +606,7 @@
     }
   },10000);
 
+  loadUploader();
   syncSubmitButton();
 </script>
 
