@@ -60,7 +60,7 @@
     .assembly{position:sticky;top:68px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 48px rgba(18,58,88,.11);overflow:hidden;max-height:calc(100vh - 88px);overflow-y:auto}
     .assembly-head{padding:18px 18px 15px;background:linear-gradient(145deg,#0a5b9d,#083f6d);color:#fff}.assembly-kicker{font-size:11px;color:#cce4f5;font-weight:750}.assembly-title{font-size:20px;font-weight:900;margin:3px 0 2px;letter-spacing:-.02em}.assembly-sub{font-size:11px;color:#d7e9f5}
     .assembly-body{padding:15px}.meter-list{display:grid;gap:8px}.meter-row{display:grid;grid-template-columns:64px 1fr 38px;gap:8px;align-items:center;font-size:11px}.meter-name{font-weight:850;color:#425463}.meter-track{height:7px;background:#edf2f5;border-radius:999px;overflow:hidden}.meter-fill{height:100%;width:0;background:#8dbad9;transition:.2s}.meter-row.active .meter-fill{background:var(--brand)}.meter-pct{text-align:right;color:#7d8992;font-weight:800}
-    .ascii-wrap{margin-bottom:14px;border:1px solid #dfe7ed;background:#f8fafc;border-radius:14px;padding:12px}.ascii-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.ascii-head strong{font-size:11px;color:#3f5362}.ascii-state{font-size:9px;font-weight:850;color:#7c8a95;background:#eef2f5;border-radius:999px;padding:4px 7px}.ascii-paper{margin:0;overflow:hidden;white-space:pre;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;font-size:10px;line-height:1.18;letter-spacing:0;color:#263744;text-align:center}.ascii-caption{margin-top:7px;font-size:9px;color:#81909b;text-align:center;font-weight:750}
+    .ascii-wrap{margin-bottom:14px;border:1px solid #dfe7ed;background:#f8fafc;border-radius:14px;padding:12px}.ascii-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.ascii-head strong{font-size:11px;color:#3f5362}.ascii-state{font-size:9px;font-weight:850;color:#7c8a95;background:#eef2f5;border-radius:999px;padding:4px 7px}.ascii-paper{margin:0;border:1px solid #8796a2;background:#fff;color:#263744;padding:10px 11px;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;min-height:178px;overflow:hidden}.fake-kicker{font-size:7px;letter-spacing:.12em;color:#6d7b86;font-weight:900;border-bottom:1px solid #b8c2c9;padding-bottom:4px;margin-bottom:5px}.fake-headline{font-family:inherit;font-size:11px;line-height:1.25;font-weight:950;letter-spacing:-.03em;margin:0 0 3px}.fake-deck{font-size:7px;line-height:1.35;color:#687783;font-weight:750;margin-bottom:7px}.fake-body{display:grid;grid-template-columns:1fr 1fr;gap:8px}.fake-col{font-size:6.6px;line-height:1.52;color:#394955;text-align:justify;word-break:keep-all}.fake-col p{margin:0 0 5px}.fake-quote{font-size:7px;line-height:1.45;font-weight:850;border-left:2px solid #8ca2b3;padding-left:6px;margin:5px 0}.fake-fact{font-size:6.5px;line-height:1.45;background:#f1f5f7;border:1px solid #dce4e9;padding:5px 6px;margin:5px 0;font-weight:750}.fake-photo{border:1px solid #9aa9b4;height:34px;display:grid;place-items:center;font-size:6px;color:#71808b;margin:5px 0 3px;background:repeating-linear-gradient(135deg,#f7f9fa,#f7f9fa 5px,#eef2f4 5px,#eef2f4 10px)}.fake-caption{font-size:5.8px;line-height:1.35;color:#7c8993}.fake-placeholder{font-size:7px;color:#9aa6ae;display:grid;place-items:center;min-height:150px;text-align:center;line-height:1.6}.ascii-caption{margin-top:7px;font-size:9px;color:#81909b;text-align:center;font-weight:750}@media(max-width:1080px){.fake-headline{font-size:10px}.fake-body{grid-template-columns:1fr}.fake-col{font-size:7px}}
     .term-extra{display:none;margin-top:13px}.term-extra.active{display:grid}
     .assembly-section{border-top:1px solid #edf1f4;margin-top:14px;padding-top:13px}.assembly-section h3{font-size:12px;margin:0 0 8px;color:#334656}.material-chips{display:flex;flex-wrap:wrap;gap:6px}.material-chip{font-size:10px;background:#eef6fb;color:#245d83;padding:5px 7px;border-radius:999px;font-weight:800}.empty-chip{color:#8a969f;background:#f1f4f6}
     .skeleton{display:grid;gap:6px}.skeleton-row{border-radius:9px;padding:8px 9px;background:#f7f9fb;border:1px solid #edf1f4;transition:.15s}.skeleton-row.active{border-color:#82b7df;background:#eff8fe}.skeleton-label{font-size:9px;color:#81909b;font-weight:900;text-transform:uppercase}.skeleton-value{font-size:11px;color:#344653;margin-top:2px;word-break:break-word}.skeleton-value.missing{color:#9aa5ad}
@@ -293,9 +293,9 @@
       <div class="assembly-head"><button type="button" class="assembly-close" id="assemblyClose">×</button><div class="assembly-kicker">AI 없이 실시간으로 조립됩니다</div><div class="assembly-title">📰 기사 조립 현황</div><div class="assembly-sub" id="assemblyStageSub">아직 빈 종이예요. 기본 사실부터 넣어주세요.</div></div>
       <div class="assembly-body">
         <div class="ascii-wrap" aria-label="기사 조립 ASCII 신문">
-          <div class="ascii-head"><strong>신문 지면 조립</strong><span class="ascii-state" id="asciiState">빈 원고</span></div>
-          <pre class="ascii-paper" id="asciiPaper" aria-live="polite"></pre>
-          <div class="ascii-caption">입력한 실제 내용은 표시하지 않고, 기사 재료가 모일수록 지면 모양만 완성됩니다.</div>
+          <div class="ascii-head"><strong>오늘의 아무말 신문</strong><span class="ascii-state" id="asciiState">빈 원고</span></div>
+          <div class="ascii-paper" id="asciiPaper" aria-live="polite"></div>
+          <div class="ascii-caption">실제 입력내용과는 무관한 가짜기사입니다. 폼을 채울수록 쓸데없이 완성됩니다.</div>
         </div>
         <div class="meter-list">
           <div class="meter-row" data-meter="lead"><span class="meter-name">첫 문단</span><div class="meter-track"><div class="meter-fill" id="meterLead"></div></div><span class="meter-pct" id="pctLead">0%</span></div>
@@ -319,7 +319,7 @@
   </div></main>
 
   <button type="button" class="mobile-assembly-btn" id="mobileAssemblyBtn">📰 기사 뼈대 보기</button>
-  <footer>Hanyang University ERICA · External Relations · v3.1</footer>
+  <footer>Hanyang University ERICA · External Relations · v3.2</footer>
   <div class="toast" id="toast"></div>
   <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p></div></div>
 
@@ -393,31 +393,125 @@
   function setMeter(name,pct){document.getElementById('meter'+name[0].toUpperCase()+name.slice(1)).style.width=pct+'%';document.getElementById('pct'+name[0].toUpperCase()+name.slice(1)).textContent=pct+'%'}
   function nonEmptySpecific(){return ['researchLimit','researchMethod','researchResult','researchPaper','businessName','businessScale','businessRole','businessDone','agreementParty','agreementPurpose','agreementDetails','agreementNext','awardName','awardDate','awardReason','awardResult','eduTarget','eduPurpose','eduScale','eduResult','term1','termDesc1','term2','termDesc2','term3','termDesc3'].some(n=>val(n))}
 
-  function renderAsciiPaper(lead,body,evidence,quote,close,photo){
-    const inner=28;
-    const line=s=>`│ ${String(s||'').slice(0,inner).padEnd(inner,' ')} │`;
-    const top='┌'+'─'.repeat(inner+2)+'┐', bottom='└'+'─'.repeat(inner+2)+'┘';
-    const rows=[top];
-    rows.push(line(lead>=40?'████████████████████████':''));
-    rows.push(line(lead>=80?'████████████████':''));
-    rows.push(line(lead>=80?'────────────────────────':''));
-    if(photo>0){
-      rows.push(line(body>=25?'▒▒▒▒▒▒▒   ───────────────':'▒▒▒▒▒▒▒'));
-      rows.push(line(body>=50?'▒▒▒▒▒▒▒   ───────────────':'▒▒▒▒▒▒▒'));
-      rows.push(line(body>=75?'▒▒▒▒▒▒▒   ───────────────':'▒▒▒▒▒▒▒'));
-    }else{
-      rows.push(line(body>=25?'───────  ───────────────':''));
-      rows.push(line(body>=50?'───────  ───────────────':''));
-      rows.push(line(body>=75?'───────  ───────────────':''));
+  const FAKE_NEWS_POOL=[
+    {
+      kicker:'오늘의 직장인 동향',
+      headline:'직장인, 오늘도 퇴근 희망…“집에 가고 싶다”',
+      deck:'오전부터 일관된 귀가 의사 밝혀…실제 퇴근 시각은 여전히 미정',
+      lead:'직장인들이 오늘도 퇴근을 희망하고 있는 것으로 나타났다. 구체적인 이유는 복잡하지 않았다. 대체로 집에 가고 싶기 때문인 것으로 확인됐다.',
+      body1:'관계자들에 따르면 이러한 현상은 출근 직후부터 관찰되며 점심시간 이후에도 뚜렷한 개선이 없는 것으로 전해졌다. 일부는 컴퓨터를 켜는 순간부터 퇴근 계획을 검토한 것으로 알려졌다.',
+      body2:'전문가들은 오후 3시를 전후해 집중력이 급격히 저하되는 현상에 주목하고 있다. 특히 금요일에는 오전부터 마음이 퇴근하는 사례가 반복적으로 보고되고 있다.',
+      fact:'자체 조사 결과 상당수가 퇴근을 희망했다. 정확한 비율은 아무도 조사하지 않아 확인되지 않았다.',
+      quote:'한 관계자는 “출근한 지 얼마 되지 않았지만 이미 충분히 일한 기분”이라며 “일단 집에 가서 생각해보고 싶다”고 말했다.',
+      close:'관계자들은 남은 업무를 적당히 마친 뒤 실제 퇴근을 추진할 계획이다.',
+      photo:'[사진] 퇴근 시간을 바라보는 직장인의 상상도'
+    },
+    {
+      kicker:'점심특보',
+      headline:'점심 메뉴 결정 난항…“아무거나” 제안만 7차례',
+      deck:'메뉴 선택 권한 서로 양보하며 협상 장기화…결국 전날 먹은 메뉴 유력',
+      lead:'점심시간을 앞둔 직장인들이 메뉴 선정에 어려움을 겪고 있다. 참석자 전원이 “아무거나 괜찮다”고 밝혔으나 실제로는 아무거나 괜찮지 않은 상황이 이어졌다.',
+      body1:'한 구성원이 국밥을 제안하자 전날 먹었다는 의견이 나왔고, 파스타는 너무 멀며, 김치찌개는 옷에 냄새가 밴다는 이유로 보류됐다. 샐러드는 처음부터 논의 대상에 포함되지 않았다.',
+      body2:'협의는 메뉴를 고르는 것보다 각 메뉴를 제외하는 데 더 많은 시간을 사용했다. 점심시간의 상당 부분이 이미 소진됐다는 관측도 나온다.',
+      fact:'후보 메뉴 8개 중 7개가 다양한 사유로 탈락했다. 남은 1개 역시 모두가 적극적으로 원한 것은 아니다.',
+      quote:'한 관계자는 “진짜 아무거나 먹자고 했는데 왜 이렇게 됐는지 모르겠다”고 밝혔다.',
+      close:'참석자들은 배가 더 고파질 경우 가장 가까운 식당으로 이동하는 방안을 검토할 예정이다.',
+      photo:'[사진] 메뉴판 앞에서 결정을 내리지 못하는 구성원들의 상상도'
+    },
+    {
+      kicker:'회의속보',
+      headline:'30분 회의, 74분째 진행 중…종료 시점 안갯속',
+      deck:'“마지막으로 하나만 더” 발언 이후 안건 3개 추가…참석자들 물병만 바라봐',
+      lead:'30분으로 예정됐던 회의가 예상을 뛰어넘는 지속성을 보이고 있다. 시작 당시 간단한 공유로 알려졌으나 현재까지 종료 조짐은 관찰되지 않았다.',
+      body1:'회의 중 “이 부분만 정리하고 끝내자”는 발언이 수차례 나왔지만 매번 새로운 논점이 등장했다. 일부 참석자는 노트북 화면을 바라보며 깊은 사색에 빠진 것으로 전해졌다.',
+      body2:'회의가 길어지면서 당초 회의 이후 처리하기로 했던 업무들이 그대로 쌓이고 있다. 참석자 사이에서는 회의 때문에 회의에서 논의한 일을 못 하는 역설이 제기됐다.',
+      fact:'예정시간 대비 회의시간은 이미 두 배를 넘어섰다. 회의 종료 예측 모델은 정확도를 상실했다.',
+      quote:'한 참석자는 “아까부터 마지막이라고 들은 것 같다”며 “제가 잘못 기억하는 것일 수도 있다”고 말했다.',
+      close:'주최 측은 추가 의견이 없을 경우 회의를 종료할 계획이나, 추가 의견 발생 가능성은 여전히 남아 있다.',
+      photo:'[사진] 마지막 안건이라고 믿고 있는 참석자의 상상도'
+    },
+    {
+      kicker:'주간사회',
+      headline:'월요일, 이번 주에도 어김없이 찾아와…직장인 사회 술렁',
+      deck:'지난주 금요일 이후 약 3일 만에 재등장…다음 주에도 반복 가능성',
+      lead:'월요일이 이번 주에도 다시 찾아왔다. 직장인들은 충분히 예상된 상황이었음에도 일정 수준의 충격을 받은 것으로 알려졌다.',
+      body1:'일부 구성원은 출근길부터 금요일까지 남은 시간을 계산했고, 다른 구성원은 달력을 확인한 뒤 현실을 재확인했다. 주말이 체감상 지나치게 짧았다는 증언도 이어졌다.',
+      body2:'전문가들은 월요일 현상이 매주 반복되고 있음에도 적응이 쉽지 않은 이유에 대해 추가 연구가 필요하다고 설명했다.',
+      fact:'현재까지 확인된 바로는 월요일 이후 화요일이 이어질 가능성이 매우 높다.',
+      quote:'한 관계자는 “분명 어제는 일요일이었는데 상황이 급격히 바뀌었다”고 밝혔다.',
+      close:'직장인들은 일단 이번 주를 버틴 뒤 금요일을 맞이하는 것을 중장기 목표로 설정했다.',
+      photo:'[사진] 달력의 월요일을 발견한 직장인의 상상도'
+    },
+    {
+      kicker:'카페인경제',
+      headline:'커피 2잔째 투입…업무능률 개선 여부는 여전히 불투명',
+      deck:'정신은 깨어났으나 일하고 싶은 마음까지 깨어난 것은 아닌 것으로 분석',
+      lead:'업무 집중력 향상을 목적으로 커피가 추가 투입됐다. 관계자들은 각성 효과는 일부 확인됐으나 업무 의욕과의 직접적인 연관성은 아직 찾지 못했다.',
+      body1:'첫 번째 커피는 오전 중 소진됐으며 두 번째 커피는 점심 직후 도입됐다. 이후 키보드 입력 속도가 소폭 증가했으나 대부분 메신저 대화였다는 분석도 있다.',
+      body2:'카페인 공급이 지속되더라도 해야 할 일이 줄어드는 것은 아니라는 점이 주요 한계로 지적된다.',
+      fact:'커피 섭취량은 증가했으나 받은 메일 수 역시 증가해 순효과는 확인되지 않았다.',
+      quote:'한 관계자는 “커피는 잘못이 없다. 일이 많은 것이 문제”라고 강조했다.',
+      close:'관계자들은 오후 상황을 지켜본 뒤 세 번째 커피 도입 여부를 결정할 예정이다.',
+      photo:'[사진] 책상 위에 놓인 두 번째 커피의 상상도'
+    },
+    {
+      kicker:'금요일관측',
+      headline:'금요일 오후 4시, 업무효율 행방 묘연…마음은 이미 주말',
+      deck:'모니터는 켜져 있으나 집중력 소재 불명…시계 확인 빈도 급증',
+      lead:'금요일 오후 들어 일부 직장인의 업무 집중력이 평소와 다른 움직임을 보이고 있다. 외형상 근무는 계속되고 있으나 정신적 활동 위치는 명확하지 않다.',
+      body1:'오후 4시 이후 시계를 확인하는 빈도가 증가했으며, 평소보다 메일 알림에 민감하게 반응하는 현상도 관찰됐다. 새로운 업무 요청에는 특히 큰 반응을 보였다.',
+      body2:'한편 다음 주에 처리할 수 있는 업무와 오늘 반드시 처리해야 하는 업무를 구분하는 작업이 활발하게 진행되고 있다.',
+      fact:'퇴근까지 남은 시간은 지속적으로 감소하고 있다. 이는 현재까지 가장 신뢰도 높은 지표다.',
+      quote:'한 관계자는 “지금 시작하면 애매하다”며 구체적인 설명은 생략했다.',
+      close:'직장인들은 정해진 시간이 도래할 경우 주말 체제로 전환할 계획이다.',
+      photo:'[사진] 오후 4시 58분 모니터를 바라보는 직장인의 상상도'
     }
-    rows.push(line(evidence>=50?'──────  ──────  ▓▓▓▓▓▓':''));
-    rows.push(line(quote>0?'“ ───────────────────── ”':''));
-    rows.push(line(close>0?'────── ────── ──────':''));
-    rows.push(bottom);
-    document.getElementById('asciiPaper').textContent=rows.join('\n');
+  ];
+  const FAKE_NEWS=FAKE_NEWS_POOL[Math.floor(Math.random()*FAKE_NEWS_POOL.length)];
+
+  function renderAsciiPaper(lead,body,evidence,quote,close,photo){
     const parts=[lead>=80,body>=50,evidence>=50,quote>0,close>0,photo>0].filter(Boolean).length;
-    const labels=['빈 원고','지면 틀 잡는 중','제목·리드 등장','본문 조립 중','기사 형태 등장','마감 직전','PRESS READY'];
+    const labels=['빈 원고','지면 틀 잡는 중','제목 등장','본문 생성 중','기사 냄새 남','마감 직전','PRESS READY'];
     document.getElementById('asciiState').textContent=labels[parts]||labels[0];
+
+    if(lead<40){
+      document.getElementById('asciiPaper').innerHTML=
+        '<div class="fake-placeholder">┌────────────────────┐<br>│ &nbsp;아직 아무 일도 없다&nbsp; │<br>│ &nbsp;원고를 기다리는 중…&nbsp; │<br>└────────────────────┘</div>';
+      return;
+    }
+
+    const a=FAKE_NEWS;
+    let left='',right='';
+
+    if(lead>=40){
+      left+=`<p>${escapeHtml(a.lead)}</p>`;
+    }
+    if(body>=25){
+      left+=`<p>${escapeHtml(a.body1)}</p>`;
+    }
+    if(evidence>=50){
+      left+=`<div class="fake-fact">${escapeHtml(a.fact)}</div>`;
+    }
+    if(body>=50){
+      right+=`<p>${escapeHtml(a.body2)}</p>`;
+    }
+    if(quote>0){
+      right+=`<div class="fake-quote">“${escapeHtml(a.quote.replace(/^“|”$/g,''))}”</div>`;
+    }
+    if(close>0){
+      right+=`<p>${escapeHtml(a.close)}</p>`;
+    }
+    if(photo>0){
+      right+=`<div class="fake-photo">PHOTO AREA</div><div class="fake-caption">${escapeHtml(a.photo)}</div>`;
+    }
+
+    const headline=lead>=40?`<h4 class="fake-headline">${escapeHtml(a.headline)}</h4>`:'';
+    const deck=lead>=80?`<div class="fake-deck">${escapeHtml(a.deck)}</div>`:'';
+
+    document.getElementById('asciiPaper').innerHTML=
+      `<div class="fake-kicker">${escapeHtml(a.kicker)} · 가짜기사</div>`+
+      headline+deck+
+      `<div class="fake-body"><div class="fake-col">${left||'<p>내용 수집 중…</p>'}</div><div class="fake-col">${right||'<p>아직 더 쓸 말이 필요한 상태다.</p>'}</div></div>`;
   }
 
   function updateAssembly(){
