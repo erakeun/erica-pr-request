@@ -7,176 +7,100 @@
   <title>보도자료 기초자료 제출</title>
   <style>
     :root{
-      --brand:#075ea8;
-      --brand-strong:#034b88;
-      --brand-soft:#eaf4fb;
-      --ink:#17212b;
-      --muted:#687582;
-      --line:#dce4eb;
-      --bg:#f5f8fb;
-      --card:#fff;
-      --danger:#c93838;
-      --success:#16744b;
-      --shadow:0 16px 44px rgba(20,54,84,.08);
-      --radius:18px;
+      --brand:#075ea8;--brand-strong:#034b88;--brand-soft:#eaf4fb;--ink:#17212b;--muted:#687582;
+      --line:#dce4eb;--bg:#f5f8fb;--card:#fff;--danger:#c93838;--success:#16744b;--warn:#a65f08;
+      --shadow:0 16px 44px rgba(20,54,84,.08);--radius:18px;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,"Noto Sans KR",Arial,sans-serif;line-height:1.55}
-    button,input,textarea,select{font:inherit}
-    button{cursor:pointer}
-    .wrap{width:min(980px,calc(100% - 32px));margin:0 auto}
-    .hero{padding:54px 0 28px;background:linear-gradient(180deg,#fff 0%,#f7fbff 100%);border-bottom:1px solid var(--line)}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--brand);letter-spacing:.02em;background:var(--brand-soft);border:1px solid #d2e7f5;padding:7px 10px;border-radius:999px}
-    h1{font-size:clamp(30px,5vw,46px);line-height:1.16;margin:16px 0 14px;letter-spacing:-.035em}
-    .hero p{margin:0;color:var(--muted);font-size:17px;max-width:760px}
-    .notice{margin-top:20px;display:flex;gap:10px;align-items:flex-start;padding:14px 16px;border:1px solid #d9e9f5;background:#f4faff;border-radius:14px;color:#486172;font-size:14px}
-    .progress-shell{position:sticky;top:0;z-index:20;background:rgba(245,248,251,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(220,228,235,.9)}
-    .progress{width:min(980px,calc(100% - 32px));margin:0 auto;padding:13px 0;display:flex;align-items:center;gap:12px}
-    .progress-bar{flex:1;height:7px;background:#e6edf2;border-radius:999px;overflow:hidden}
-    .progress-fill{height:100%;width:0;background:var(--brand);transition:width .25s ease}
-    .progress-txt{font-size:12px;color:var(--muted);font-weight:700;white-space:nowrap}
-    main{padding:28px 0 80px}
-    form{display:grid;gap:18px}
-    .section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
-    .section-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
-    .num{flex:0 0 auto;width:34px;height:34px;border-radius:11px;background:var(--brand);color:white;display:grid;place-items:center;font-weight:900;font-size:14px}
-    h2{font-size:21px;margin:1px 0 4px;letter-spacing:-.025em}
-    .desc{font-size:14px;color:var(--muted);margin:0}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    .span2{grid-column:1/-1}
-    label.field{display:grid;gap:7px}
-    .label{font-size:14px;font-weight:800;color:#293745}
-    .hint{font-size:12px;color:#86919b;font-weight:500;margin-left:6px}
-    .required:after{content:" *";color:var(--danger)}
-    input[type="text"],input[type="email"],input[type="tel"],input[type="date"],textarea,select{
-      width:100%;border:1px solid #cfd9e2;background:#fff;border-radius:12px;padding:12px 13px;color:var(--ink);outline:none;transition:.15s;border-color:.15s,box-shadow .15s
-    }
-    textarea{min-height:116px;resize:vertical}
-    input:focus,textarea:focus,select:focus{border-color:#72afe0;box-shadow:0 0 0 3px rgba(31,120,190,.11)}
-    .choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-    .choice input{position:absolute;opacity:0;pointer-events:none}
-    .choice span{min-height:82px;border:1px solid var(--line);border-radius:14px;background:#fff;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:13px 14px;transition:.15s}
-    .choice strong{font-size:15px}
-    .choice small{font-size:12px;color:var(--muted)}
-    .choice input:checked + span{border-color:var(--brand);background:#f4faff;box-shadow:0 0 0 2px rgba(7,94,168,.08)}
-    .type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
-    .type input{position:absolute;opacity:0;pointer-events:none}
-    .type span{display:grid;place-items:center;text-align:center;min-height:51px;padding:9px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:13px;font-weight:800;transition:.15s}
-    .type input:checked + span{background:var(--brand);border-color:var(--brand);color:#fff}
-    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .rank-grid{display:grid;gap:10px}
-    .rank-row{display:grid;grid-template-columns:66px 1fr;gap:10px;align-items:center}
-    .rank-badge{font-size:12px;font-weight:900;color:var(--brand);background:var(--brand-soft);padding:8px 10px;text-align:center;border-radius:9px}
-    .radio-line,.check-line{display:flex;gap:13px;flex-wrap:wrap;margin-top:4px}
-    .inline-check{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#455462}
-    input[type="checkbox"],input[type="radio"]{accent-color:var(--brand);width:17px;height:17px;margin:2px 0 0}
-    .upload-box{border:1.5px dashed #b8cad8;border-radius:16px;padding:22px;text-align:center;background:#fbfdff}
-    .upload-box.drag{border-color:var(--brand);background:#f1f8fd}
-    .upload-button{display:inline-flex;align-items:center;justify-content:center;padding:11px 16px;border:0;border-radius:11px;background:var(--brand);color:#fff;font-weight:800}
-    .upload-box p{margin:9px 0 0;font-size:13px;color:var(--muted)}
-    .upload-limit{margin-top:8px;font-size:12px;color:#7b8791}
-    .file-list{display:grid;gap:10px;margin-top:14px}
-    .file-card{display:grid;grid-template-columns:58px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:13px;padding:10px;background:#fff;text-align:left}
-    .thumb{width:58px;height:58px;object-fit:cover;border-radius:9px;background:#edf2f5}
-    .file-meta{min-width:0}
-    .file-name{font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .file-size{font-size:11px;color:var(--muted);margin-top:2px}
-    .upload-state{font-size:11px;margin-top:4px;font-weight:800;color:#6f7c87}
-    .upload-state.uploading{color:#9d5d12}.upload-state.uploaded{color:var(--success)}.upload-state.error{color:var(--danger)}
-    .file-actions{display:flex;align-items:center;gap:6px}.retry{border:0;background:#eaf4fb;color:var(--brand);padding:7px 9px;border-radius:8px;font-size:11px;font-weight:900}
-    .retry[hidden]{display:none}.remove:disabled{opacity:.4;cursor:not-allowed}
-    .upload-summary{margin-top:12px;font-size:12px;color:#687582;font-weight:700}.upload-summary.ok{color:var(--success)}.upload-summary.error{color:var(--danger)}
+    button,input,textarea,select{font:inherit} button{cursor:pointer}
+    .wrap{width:min(1260px,calc(100% - 32px));margin:0 auto}
+    .hero{padding:48px 0 25px;background:linear-gradient(180deg,#fff 0%,#f7fbff 100%);border-bottom:1px solid var(--line)}
+    .hero-inner{width:min(1100px,100%)}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:850;color:var(--brand);background:var(--brand-soft);border:1px solid #d2e7f5;padding:7px 10px;border-radius:999px}
+    h1{font-size:clamp(31px,5vw,46px);line-height:1.16;margin:16px 0 13px;letter-spacing:-.035em}
+    .hero p{margin:0;color:var(--muted);font-size:16px;max-width:830px}
+    .hero-guide{margin-top:18px;display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid #d9e9f5;background:#f4faff;border-radius:14px;color:#486172;font-size:13px;max-width:900px}
+    .hero-guide strong{color:var(--brand-strong);white-space:nowrap}
 
-    .uploader-frame-wrap{border:1px solid var(--line);border-radius:16px;background:#fbfdff;overflow:hidden}
-    .uploader-frame{display:block;width:100%;height:330px;border:0;background:#fbfdff}
-    .uploader-note{font-size:12px;color:#607180;background:#f4f8fb;border:1px solid #dce7ef;border-radius:10px;padding:10px 12px;margin-top:12px}
-    .caption{margin-top:7px!important;padding:8px 10px!important;font-size:12px!important}
-    .remove{border:0;background:#f3f5f7;color:#61707c;width:32px;height:32px;border-radius:9px;font-weight:900}
-    .warning{font-size:12px;color:#9d5d12;background:#fff8ea;border:1px solid #f4deaf;border-radius:10px;padding:10px 12px;margin-top:12px}
-    .checks{display:grid;gap:10px}
-    .submit-card{background:#0a477a;color:white;border-radius:var(--radius);padding:25px;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 18px 50px rgba(5,62,108,.18)}
-    .submit-card h2{margin:0 0 4px;color:white}
-    .submit-card p{margin:0;color:#cfe3f3;font-size:13px}
-    .submit-btn{border:0;border-radius:13px;background:#fff;color:#0a477a;padding:14px 22px;font-weight:900;min-width:140px;box-shadow:0 8px 20px rgba(0,0,0,.12)}
-    .submit-btn:disabled{opacity:.55;cursor:not-allowed}
-    .privacy{font-size:12px;color:#7a8791;text-align:center;margin-top:2px}
-    .security-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-    .security-copy strong{display:block;font-size:14px;margin-bottom:3px}.security-copy span{font-size:12px;color:var(--muted)}
-    .security-status{font-size:12px;color:#7b8791;margin-top:6px}.security-status.ok{color:var(--success)}.security-status.error{color:var(--danger)}
+    .status-shell{position:sticky;top:0;z-index:30;background:rgba(245,248,251,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(220,228,235,.9)}
+    .status-bar{width:min(1260px,calc(100% - 32px));margin:0 auto;padding:11px 0;display:flex;align-items:center;gap:12px}
+    .stage-pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:#fff;border:1px solid var(--line);padding:7px 11px;font-size:12px;font-weight:850;white-space:nowrap}
+    .stage-dot{width:8px;height:8px;border-radius:50%;background:#a8b5bf}.stage-pill.ready .stage-dot{background:var(--success)}
+    .mini-progress{flex:1;height:6px;background:#e4ecf2;border-radius:999px;overflow:hidden}.mini-progress>div{height:100%;width:0;background:var(--brand);transition:width .2s ease}
+    .status-note{font-size:12px;color:var(--muted);font-weight:750;white-space:nowrap}
+
+    main{padding:26px 0 80px}
+    .workspace{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}
+    form{display:grid;gap:17px;min-width:0}
+    .section{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+    .section-head{display:flex;align-items:flex-start;gap:13px;margin-bottom:18px}
+    .num{flex:0 0 auto;width:34px;height:34px;border-radius:11px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:900;font-size:14px}
+    h2{font-size:20px;margin:1px 0 3px;letter-spacing:-.025em}.desc{font-size:13px;color:var(--muted);margin:0}
+    .use-note{display:inline-flex;gap:5px;align-items:center;margin-top:5px;font-size:11px;color:#73818c}.use-note b{color:var(--brand)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.span2{grid-column:1/-1}
+    label.field{display:grid;gap:7px}.label{font-size:13px;font-weight:850;color:#293745}.hint{font-size:11px;color:#86919b;font-weight:550;margin-left:5px}.required:after{content:" *";color:var(--danger)}
+    input[type="text"],input[type="email"],input[type="tel"],textarea,select{width:100%;border:1px solid #cfd9e2;background:#fff;border-radius:12px;padding:12px 13px;color:var(--ink);outline:none;transition:.15s}
+    textarea{min-height:108px;resize:vertical}input:focus,textarea:focus,select:focus{border-color:#72afe0;box-shadow:0 0 0 3px rgba(31,120,190,.11)}
+    .choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.choice input,.type input,.chip-check input,.pill-radio input{position:absolute;opacity:0;pointer-events:none}
+    .choice span{min-height:76px;border:1px solid var(--line);border-radius:14px;background:#fff;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:12px 14px;transition:.15s}.choice strong{font-size:14px}.choice small{font-size:11px;color:var(--muted)}
+    .choice input:checked+span{border-color:var(--brand);background:#f4faff;box-shadow:0 0 0 2px rgba(7,94,168,.08)}
+    .type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.type span{display:grid;place-items:center;text-align:center;min-height:48px;padding:8px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:12px;font-weight:850;transition:.15s}.type input:checked+span{background:var(--brand);border-color:var(--brand);color:#fff}
+    .pill-row{display:flex;flex-wrap:wrap;gap:8px}.pill-radio span,.chip-check span{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:750;color:#465764;transition:.15s}.pill-radio input:checked+span,.chip-check input:checked+span{background:#eaf4fb;color:var(--brand-strong);border-color:#9fc7e4;box-shadow:0 0 0 2px rgba(7,94,168,.06)}
+    .chip-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.chip-check span{width:100%;border-radius:11px;min-height:46px}
+    .optional-pill{display:inline-flex;align-items:center;margin-left:7px;padding:3px 7px;border-radius:999px;background:#eef3f7;color:#73808b;font-size:10px;font-weight:800;vertical-align:middle}
+    .subtle-box{border:1px solid #dce7ef;background:#f8fbfd;border-radius:13px;padding:13px 14px;font-size:12px;color:#607180}
+    .optional-intro{background:linear-gradient(135deg,#f5faff,#fff);border:1px solid #d8e9f6;border-radius:16px;padding:18px 20px;box-shadow:var(--shadow)}.optional-intro strong{color:var(--brand-strong);font-size:16px}.optional-intro p{margin:4px 0 0;color:var(--muted);font-size:12px}
+
+    details.section{padding:0;overflow:hidden}details.section>summary{list-style:none;cursor:pointer;padding:21px 23px;display:flex;align-items:flex-start;gap:13px;user-select:none}details.section>summary::-webkit-details-marker{display:none}details.section>summary::after{content:"＋";margin-left:auto;flex:0 0 auto;width:30px;height:30px;border-radius:10px;background:#f0f5f8;color:var(--brand);display:grid;place-items:center;font-size:20px;font-weight:900}details.section[open]>summary::after{content:"−"}details.section>.section-content{padding:0 23px 23px}
+    .section-summary-copy{flex:1}.section-summary-copy h2{margin:1px 0 3px}
+    .conditional-block{display:none;margin-top:13px;border:1px dashed #bdd0df;border-radius:13px;background:#f9fcfe;padding:13px}.conditional-block.active{display:block}.conditional-title{font-size:12px;font-weight:900;color:var(--brand-strong);margin-bottom:9px}
+    .quote-extra,.future-extra{display:none}.quote-extra.active,.future-extra.active{display:grid}
+
+    .assembly{position:sticky;top:68px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 48px rgba(18,58,88,.11);overflow:hidden;max-height:calc(100vh - 88px);overflow-y:auto}
+    .assembly-head{padding:18px 18px 15px;background:linear-gradient(145deg,#0a5b9d,#083f6d);color:#fff}.assembly-kicker{font-size:11px;color:#cce4f5;font-weight:750}.assembly-title{font-size:20px;font-weight:900;margin:3px 0 2px;letter-spacing:-.02em}.assembly-sub{font-size:11px;color:#d7e9f5}
+    .assembly-body{padding:15px}.meter-list{display:grid;gap:8px}.meter-row{display:grid;grid-template-columns:64px 1fr 38px;gap:8px;align-items:center;font-size:11px}.meter-name{font-weight:850;color:#425463}.meter-track{height:7px;background:#edf2f5;border-radius:999px;overflow:hidden}.meter-fill{height:100%;width:0;background:#8dbad9;transition:.2s}.meter-row.active .meter-fill{background:var(--brand)}.meter-pct{text-align:right;color:#7d8992;font-weight:800}
+    .assembly-section{border-top:1px solid #edf1f4;margin-top:14px;padding-top:13px}.assembly-section h3{font-size:12px;margin:0 0 8px;color:#334656}.material-chips{display:flex;flex-wrap:wrap;gap:6px}.material-chip{font-size:10px;background:#eef6fb;color:#245d83;padding:5px 7px;border-radius:999px;font-weight:800}.empty-chip{color:#8a969f;background:#f1f4f6}
+    .skeleton{display:grid;gap:6px}.skeleton-row{border-radius:9px;padding:8px 9px;background:#f7f9fb;border:1px solid #edf1f4;transition:.15s}.skeleton-row.active{border-color:#82b7df;background:#eff8fe}.skeleton-label{font-size:9px;color:#81909b;font-weight:900;text-transform:uppercase}.skeleton-value{font-size:11px;color:#344653;margin-top:2px;word-break:break-word}.skeleton-value.missing{color:#9aa5ad}
+    .readiness{display:grid;gap:6px}.readiness-line{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:#50616e}.readiness-icon{font-weight:900}.readiness-line.ok .readiness-icon{color:var(--success)}.readiness-line.warn .readiness-icon{color:var(--warn)}
+    .next-tip{margin-top:10px;padding:10px 11px;border-radius:11px;background:#fff7e8;color:#85520f;font-size:11px;border:1px solid #f1dcad}
+    .mobile-assembly-btn{display:none;position:fixed;right:16px;bottom:16px;z-index:44;border:0;background:#075ea8;color:#fff;border-radius:999px;padding:12px 15px;font-size:12px;font-weight:900;box-shadow:0 10px 30px rgba(0,64,110,.28)}
+    .assembly-close{display:none;border:0;background:rgba(255,255,255,.15);color:#fff;width:30px;height:30px;border-radius:9px;font-weight:900}
+
+    .uploader-frame-wrap{border:1px solid var(--line);border-radius:16px;background:#fbfdff;overflow:hidden}.uploader-frame{display:block;width:100%;height:330px;border:0;background:#fbfdff}.uploader-note{font-size:11px;color:#607180;background:#f4f8fb;border:1px solid #dce7ef;border-radius:10px;padding:10px 12px;margin-top:11px}.warning{font-size:11px;color:#9d5d12;background:#fff8ea;border:1px solid #f4deaf;border-radius:10px;padding:10px 12px;margin-top:10px}
+    .checks{display:grid;gap:9px}.inline-check{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#455462}input[type="checkbox"],input[type="radio"]{accent-color:var(--brand);width:17px;height:17px;margin:2px 0 0}
+    .security-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 17px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.security-copy strong{display:block;font-size:13px;margin-bottom:3px}.security-copy span{font-size:11px;color:var(--muted)}.security-status{font-size:11px;color:#7b8791;margin-top:5px}.security-status.ok{color:var(--success)}.security-status.error{color:var(--danger)}
+    .submit-card{background:#0a477a;color:#fff;border-radius:var(--radius);padding:23px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 18px 50px rgba(5,62,108,.18)}.submit-card h2{margin:0 0 4px;color:#fff}.submit-card p{margin:0;color:#cfe3f3;font-size:12px}.submit-btn{border:0;border-radius:13px;background:#fff;color:#0a477a;padding:13px 21px;font-weight:900;min-width:136px}.submit-btn:disabled{opacity:.55;cursor:not-allowed}.privacy{font-size:11px;color:#7a8791;text-align:center;margin-top:2px}
     .hp-trap{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
-    .toast{position:fixed;right:20px;bottom:20px;z-index:40;max-width:390px;padding:14px 16px;border-radius:13px;background:#17212b;color:#fff;box-shadow:0 16px 50px rgba(0,0,0,.22);display:none;font-size:14px}
-    .toast.show{display:block}
-    .toast.success{background:#156c48}.toast.error{background:#a52f2f}
-    .overlay{position:fixed;inset:0;background:rgba(10,25,38,.5);display:none;place-items:center;z-index:50;padding:20px}
-    .overlay.show{display:grid}
-    .modal{width:min(500px,100%);background:#fff;border-radius:20px;padding:27px;text-align:center;box-shadow:0 28px 90px rgba(0,0,0,.22)}
-    .spinner{width:42px;height:42px;border:4px solid #dfe9f0;border-top-color:var(--brand);border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .modal h3{margin:0 0 7px;font-size:20px}.modal p{margin:0;color:var(--muted);font-size:14px}
-    .done-mark{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#e8f7ef;color:var(--success);font-size:27px;font-weight:900;margin:0 auto 14px}
-    .modal-btn{margin-top:18px;border:0;background:var(--brand);color:#fff;border-radius:11px;padding:11px 16px;font-weight:900}
-    footer{padding:0 0 48px;color:#89949d;text-align:center;font-size:12px}
+    .toast{position:fixed;right:20px;bottom:20px;z-index:60;max-width:390px;padding:14px 16px;border-radius:13px;background:#17212b;color:#fff;box-shadow:0 16px 50px rgba(0,0,0,.22);display:none;font-size:13px}.toast.show{display:block}.toast.success{background:#156c48}.toast.error{background:#a52f2f}
+    .overlay{position:fixed;inset:0;background:rgba(10,25,38,.5);display:none;place-items:center;z-index:70;padding:20px}.overlay.show{display:grid}.modal{width:min(500px,100%);background:#fff;border-radius:20px;padding:27px;text-align:center;box-shadow:0 28px 90px rgba(0,0,0,.22)}.spinner{width:42px;height:42px;border:4px solid #dfe9f0;border-top-color:var(--brand);border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.modal h3{margin:0 0 7px;font-size:20px}.modal p{margin:0;color:var(--muted);font-size:13px}.done-mark{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#e8f7ef;color:var(--success);font-size:27px;font-weight:900;margin:0 auto 14px}.modal-btn{margin-top:18px;border:0;background:var(--brand);color:#fff;border-radius:11px;padding:11px 16px;font-weight:900}
+    footer{padding:0 0 48px;color:#89949d;text-align:center;font-size:11px}
 
-    /* v1.4: 필수항목 중심 접기 UI */
-    .optional-pill{display:inline-flex;align-items:center;margin-left:8px;padding:3px 7px;border-radius:999px;background:#eef3f7;color:#73808b;font-size:10px;font-weight:800;vertical-align:middle}
-    details.section{padding:0;overflow:hidden}
-    details.section > summary{list-style:none;cursor:pointer;padding:24px 26px;display:flex;align-items:flex-start;gap:14px;position:relative;user-select:none}
-    details.section > summary::-webkit-details-marker{display:none}
-    details.section > summary::after{content:"＋";flex:0 0 auto;width:30px;height:30px;border-radius:10px;background:#f0f5f8;color:var(--brand);display:grid;place-items:center;font-size:21px;font-weight:800;line-height:1;transition:.18s}
-    details.section[open] > summary::after{content:"−"}
-    details.section > .section-content{padding:0 26px 26px}
-    .section-summary-copy{flex:1}
-    .section-summary-copy h2{margin:1px 0 4px}
-    .section-summary-copy .desc{margin:0}
-    .inline-details{grid-column:1/-1;border:1px solid var(--line);border-radius:13px;background:#f9fbfd;overflow:hidden}
-    .inline-details > summary{list-style:none;cursor:pointer;padding:13px 15px;font-size:13px;font-weight:800;color:#445665;display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .inline-details > summary::-webkit-details-marker{display:none}
-    .inline-details > summary::after{content:"＋";color:var(--brand);font-size:18px;font-weight:900}
-    .inline-details[open] > summary::after{content:"−"}
-    .inline-details-body{padding:2px 15px 15px;display:grid;gap:12px}
-    .conditional{margin-top:16px;padding:0;border-radius:15px;background:#f8fbfd;border:1px dashed #b9cddd;display:none;overflow:hidden}
-    .conditional.active{display:block}
-    .conditional > summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:14px;font-weight:900;color:var(--brand-strong);display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .conditional > summary::-webkit-details-marker{display:none}
-    .conditional > summary::after{content:"＋";font-size:19px;color:var(--brand)}
-    .conditional[open] > summary::after{content:"−"}
-    .conditional .conditional-body{padding:0 16px 16px}
-    .photo-mode{margin-top:14px;border:1px solid var(--line);background:#f8fbfd;border-radius:13px;padding:14px}
-    .photo-mode-title{font-size:13px;font-weight:900;margin-bottom:8px}
-    .photo-mode-options{display:flex;gap:9px;flex-wrap:wrap}
-    .photo-mode-option{flex:1;min-width:210px;display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;background:#fff;padding:11px 12px;font-size:12px;color:#51606c}
-    .photo-mode-option strong{display:block;color:#263542;font-size:13px;margin-bottom:2px}
-    .photo-mode-note{font-size:11px;color:#7d8993;margin-top:8px}
-
-    @media(max-width:720px){
-      .wrap{width:min(100% - 22px,980px)}
-      .hero{padding-top:34px}.hero p{font-size:15px}
-      .section{padding:20px}.grid,.mini-grid{grid-template-columns:1fr}.span2{grid-column:auto}
-      .choice-grid{grid-template-columns:1fr}.choice span{min-height:70px}
-      .type-grid{grid-template-columns:repeat(2,1fr)}
-      .submit-card{align-items:stretch;flex-direction:column}.submit-btn{width:100%}
-      .progress{width:min(100% - 22px,980px)}
-    }
+    @media(max-width:1030px){.workspace{grid-template-columns:1fr}.assembly{display:none;position:fixed;z-index:55;inset:64px 12px 12px;max-height:none}.assembly.mobile-open{display:block}.assembly-close{display:grid;place-items:center;position:absolute;right:14px;top:14px}.mobile-assembly-btn{display:block}}
+    @media(max-width:720px){.wrap,.status-bar{width:min(100% - 22px,1260px)}.hero{padding-top:32px}.hero p{font-size:14px}.section{padding:19px}.grid{grid-template-columns:1fr}.span2{grid-column:auto}.choice-grid{grid-template-columns:1fr}.choice span{min-height:66px}.type-grid{grid-template-columns:repeat(2,1fr)}.chip-grid{grid-template-columns:1fr}.submit-card{align-items:stretch;flex-direction:column}.submit-btn{width:100%}.status-note{display:none}}
   </style>
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnload&render=explicit" defer></script>
 </head>
 <body>
   <header class="hero">
-    <div class="wrap">
+    <div class="wrap"><div class="hero-inner">
       <div class="eyebrow">ERICA 대외협력팀 · 보도자료 접수</div>
       <h1>보도자료 기초자료 제출</h1>
-      <p>기사 문장으로 완성해서 보내지 않아도 됩니다. 먼저 필수 내용만 작성하고, 필요한 추가 항목은 펼쳐서 입력해 주세요. 접수된 내용을 바탕으로 홍보 담당자가 보도자료 또는 블로그 기사로 재구성합니다.</p>
-      <div class="notice"><strong>작성 팁</strong><span>정확하지 않거나 아직 확정되지 않은 내용은 비워두거나 ‘확인 필요 / 검토 중’이라고 적어주세요. ‘국내 최초·세계 최초·유일·최고’ 같은 표현은 확인 가능한 근거가 필요합니다.</span></div>
-    </div>
+      <p>기사처럼 잘 쓰려고 고민하지 않아도 됩니다. 기본 5개 영역만 작성하면 접수할 수 있고, 선택정보를 더하면 오른쪽의 <b>기사 조립 현황</b>에 뼈대가 차곡차곡 만들어집니다.</p>
+      <div class="hero-guide"><strong>기본 원칙</strong><span>확인 가능한 사실만 적어주세요. 정확하지 않거나 아직 확정되지 않은 내용은 ‘확인 필요 / 검토 중’이라고 표시하면 됩니다. 선택사항은 몰라도 비워둘 수 있습니다.</span></div>
+    </div></div>
   </header>
 
-  <div class="progress-shell"><div class="progress"><div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div><div class="progress-txt" id="progressTxt">작성 0%</div></div></div>
+  <div class="status-shell"><div class="status-bar">
+    <div class="stage-pill" id="stagePill"><span class="stage-dot"></span><span id="stageText">빈 종이예요</span></div>
+    <div class="mini-progress"><div id="requiredProgress"></div></div>
+    <div class="status-note" id="requiredText">기본정보 0%</div>
+  </div></div>
 
-  <main class="wrap">
+  <main class="wrap"><div class="workspace">
     <form id="requestForm" novalidate>
       <section class="section">
-        <div class="section-head"><div class="num">1</div><div><h2>배포 목적</h2><p class="desc">필요한 배포 범위를 하나 선택해 주세요.</p></div></div>
+        <div class="section-head"><div class="num">1</div><div><h2>어디에 쓸 건가요?</h2><p class="desc">필요한 배포 범위를 하나 선택해 주세요.</p><span class="use-note"><b>기사 활용</b> 접수 후 담당자와 배포 경로를 결정합니다.</span></div></div>
         <div class="choice-grid">
           <label class="choice"><input type="radio" name="distribution" value="external" required><span><strong>외부 언론 배포</strong><small>언론 배포용 보도자료만 필요</small></span></label>
           <label class="choice"><input type="radio" name="distribution" value="both"><span><strong>외부 언론 + 블로그</strong><small>언론 배포와 ERICA 블로그 모두 필요</small></span></label>
@@ -185,7 +109,7 @@
       </section>
 
       <section class="section">
-        <div class="section-head"><div class="num">2</div><div><h2>보도자료 유형</h2><p class="desc">해당하는 유형을 선택하면 필요한 추가 질문만 표시됩니다. 복수 선택 가능합니다.</p></div></div>
+        <div class="section-head"><div class="num">2</div><div><h2>어떤 내용인가요?</h2><p class="desc">해당 유형을 골라주세요. 복수 선택 가능합니다.</p><span class="use-note"><b>기사 활용</b> 질문 예시와 필요한 추가정보가 유형에 맞게 바뀝니다.</span></div></div>
         <div class="type-grid" id="typeGrid">
           <label class="type"><input type="checkbox" name="types" value="행사"><span>행사</span></label>
           <label class="type"><input type="checkbox" name="types" value="연구성과" data-target="research"><span>연구성과</span></label>
@@ -196,125 +120,38 @@
           <label class="type"><input type="checkbox" name="types" value="교육 프로그램" data-target="education"><span>교육 프로그램</span></label>
           <label class="type"><input type="checkbox" name="types" value="국제협력" data-target="education"><span>국제협력</span></label>
         </div>
-        <label class="field" style="margin-top:12px"><span class="label">기타 유형 <span class="hint">필요한 경우만</span></span><input type="text" name="typeOther" placeholder="예: 동문, 기부, 지역협력 등"></label>
-
-        <details class="conditional" id="research"><summary>연구성과 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
-          <label class="field"><span class="label">기존 연구의 한계</span><textarea name="researchLimit" placeholder="기존에는 무엇이 어려웠는지"></textarea></label>
-          <label class="field"><span class="label">이번 연구의 핵심 방법</span><textarea name="researchMethod" placeholder="무엇을 새롭게 적용했는지"></textarea></label>
-          <label class="field"><span class="label">주요 실험·분석 결과</span><textarea name="researchResult" placeholder="수치가 있으면 함께 작성"></textarea></label>
-          <label class="field"><span class="label">논문·학술지 / 저자 정보</span><textarea name="researchPaper" placeholder="논문명, 학술지, 제1저자, 교신저자 등"></textarea></label>
-          <label class="field"><span class="label">연구지원기관</span><input type="text" name="researchSupport"></label>
-          <label class="field"><span class="label">활용 가능 분야</span><input type="text" name="researchUse"></label>
-        </div></div></details>
-
-        <details class="conditional" id="business"><summary>정부사업·사업성과 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
-          <label class="field"><span class="label">정확한 사업명 / 주관 부처·기관</span><textarea name="businessName"></textarea></label>
-          <label class="field"><span class="label">사업기간 / 총사업비 / ERICA 지원액</span><textarea name="businessScale" placeholder="컨소시엄 전체 금액과 ERICA 지원액을 구분해 주세요"></textarea></label>
-          <label class="field"><span class="label">ERICA의 역할·주요 수행내용</span><textarea name="businessRole"></textarea></label>
-          <label class="field"><span class="label">현재까지 완료한 내용</span><textarea name="businessDone"></textarea></label>
-        </div></div></details>
-
-        <details class="conditional" id="agreement"><summary>협약·산학협력 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
-          <label class="field"><span class="label">협약 상대기관 / 협약일</span><textarea name="agreementParty"></textarea></label>
-          <label class="field"><span class="label">협약 목적</span><textarea name="agreementPurpose"></textarea></label>
-          <label class="field"><span class="label">구체적인 협력사항</span><textarea name="agreementDetails" placeholder="공동연구, 인재양성, 현장실습, 기술교류 등"></textarea></label>
-          <label class="field"><span class="label">협약 후 바로 추진할 내용</span><textarea name="agreementNext"></textarea></label>
-        </div></div></details>
-
-        <details class="conditional" id="award"><summary>수상·선정 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
-          <label class="field"><span class="label">정확한 상·사업명 / 주관·선정기관</span><textarea name="awardName"></textarea></label>
-          <label class="field"><span class="label">선정일·수상일 / 선정 규모</span><textarea name="awardDate"></textarea></label>
-          <label class="field"><span class="label">평가·선정 사유</span><textarea name="awardReason"></textarea></label>
-          <label class="field"><span class="label">주요 결과·관련 수치</span><textarea name="awardResult"></textarea></label>
-        </div></div></details>
-
-        <details class="conditional" id="education"><summary>국제협력·교육 프로그램 세부정보 <span class="optional-pill">선택사항</span></summary><div class="conditional-body"><div class="mini-grid">
-          <label class="field"><span class="label">대상 국가·기관·교육대상</span><textarea name="eduTarget"></textarea></label>
-          <label class="field"><span class="label">프로그램 목적 / 운영기간</span><textarea name="eduPurpose"></textarea></label>
-          <label class="field"><span class="label">참가·교육 인원 / 주요 내용</span><textarea name="eduScale"></textarea></label>
-          <label class="field"><span class="label">현재 성과 / 향후 일정</span><textarea name="eduResult"></textarea></label>
-        </div></div></details>
+        <label class="field" style="margin-top:11px"><span class="label">기타 유형 <span class="hint">필요한 경우만</span></span><input type="text" name="typeOther" placeholder="예: 동문, 기부, 지역협력 등"></label>
       </section>
 
       <section class="section">
-        <div class="section-head"><div class="num">3</div><div><h2>기본 정보</h2><p class="desc">육하원칙에 해당하는 기본 사실을 적어주세요.</p></div></div>
+        <div class="section-head"><div class="num">3</div><div><h2>기본 사실</h2><p class="desc">기사 첫 문단을 만들 때 필요한 최소 정보입니다.</p><span class="use-note"><b>기사 활용</b> 제목·첫 문단의 ‘누가/언제/어디서’에 사용됩니다.</span></div></div>
         <div class="grid">
-          <label class="field span2"><span class="label required">공식 명칭</span><input type="text" name="officialName" required placeholder="예: ○○사업 / ○○ 연구성과 / ○○ 협약식"></label>
-          <label class="field"><span class="label">일시</span><input type="text" name="when" placeholder="예: 2026년 8월 26일 / 2026.03~2028.02"></label>
-          <label class="field"><span class="label">장소</span><input type="text" name="where" placeholder="해당하는 경우만"></label>
-          <label class="field span2"><span class="label required">주관·참여</span><textarea name="who" required placeholder="주관 부서·학과·연구팀·교수·학생·참여기관·주요 인물 등"></textarea></label>
-          <details class="inline-details">
-            <summary>추가 기본정보 <span class="optional-pill">선택사항</span></summary>
-            <div class="inline-details-body">
-              <label class="field"><span class="label">주요 수행 내용</span><textarea name="what" placeholder="행사 프로그램, 연구 내용, 사업 내용, 교육 내용 등"></textarea></label>
-              <label class="field"><span class="label">추진 배경·목적</span><textarea name="why" placeholder="기존 문제, 사업 목적, 이 일을 추진하게 된 이유 등"></textarea></label>
-            </div>
-          </details>
+          <label class="field span2" data-article-target="lead"><span class="label required">공식 명칭</span><input type="text" name="officialName" required placeholder="예: 2026 ○○ 포럼 / ○○ 연구성과 / ○○ 협약식"></label>
+          <div class="field span2"><span class="label">일정 유형</span><div class="pill-row">
+            <label class="pill-radio"><input type="radio" name="dateType" value="하루 행사"><span>하루 행사</span></label>
+            <label class="pill-radio"><input type="radio" name="dateType" value="기간 행사"><span>여러 날 진행</span></label>
+            <label class="pill-radio"><input type="radio" name="dateType" value="장기 사업·연구"><span>장기 사업·연구</span></label>
+            <label class="pill-radio"><input type="radio" name="dateType" value="기타"><span>기타/기준일</span></label>
+          </div></div>
+          <label class="field" data-article-target="lead"><span class="label required">일시·기준일</span><input type="text" name="when" required placeholder="예: 2026년 8월 20일 / 2026.03~2028.02"></label>
+          <label class="field" data-article-target="lead"><span class="label">장소</span><input type="text" name="where" placeholder="해당하는 경우만"></label>
+          <label class="field span2" data-article-target="lead"><span class="label required">우리 학교 담당</span><input type="text" name="ourOrg" required placeholder="예: 한양IDEA센터 / ○○학과 / ○○ 교수 연구팀"></label>
+          <label class="field"><span class="label">함께한 외부 기관 <span class="hint">선택</span></span><textarea name="externalOrgs" placeholder="예: 한국대학IR협의회, 산업연구원"></textarea></label>
+          <label class="field"><span class="label">주요 인물 <span class="hint">선택</span></span><textarea name="keyPeople" placeholder="예: ○○○ 총장, ○○○ 센터장, 참여 교수·학생 등"></textarea></label>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-head"><div class="num">4</div><div><h2>한눈에 보는 핵심 내용</h2><p class="desc">제목과 첫 문단을 만드는 데 가장 중요한 정보입니다.</p></div></div>
+        <div class="section-head"><div class="num">4</div><div><h2>무슨 일이 있었나요?</h2><p class="desc">문장을 다듬지 않아도 됩니다. 있었던 일을 편하게 적어주세요.</p><span class="use-note"><b>기사 활용</b> 제목·첫 문단·핵심 성과 설명의 재료가 됩니다.</span></div></div>
         <div class="grid">
-          <label class="field span2"><span class="label required">한 문장 요약</span><textarea name="summary" required placeholder="이번에 무엇을 했고, 어떤 결과가 나왔는지 한 문장으로 적어주세요."></textarea></label>
-          <label class="field span2"><span class="label">가장 중요한 결과</span><textarea name="mainResult" placeholder="가능하면 숫자로 적어주세요. 예: 14개 팀 최종 선발 / 교원 1,280명 연수"></textarea></label>
-          <div class="span2 rank-grid">
-            <div class="rank-row"><div class="rank-badge">1순위</div><input type="text" name="priority1" placeholder="가장 강조할 내용"></div>
-          </div>
-          <details class="inline-details">
-            <summary>강조 포인트 2·3순위 추가 <span class="optional-pill">선택사항</span></summary>
-            <div class="inline-details-body rank-grid">
-              <div class="rank-row"><div class="rank-badge">2순위</div><input type="text" name="priority2"></div>
-              <div class="rank-row"><div class="rank-badge">3순위</div><input type="text" name="priority3"></div>
-            </div>
-          </details>
+          <label class="field span2" data-article-target="lead"><span class="label required">있었던 일을 편하게 적어주세요</span><textarea id="summaryField" name="summary" required placeholder="예: 전국 대학 관계자들이 한자리에 모여 데이터 기반 대학 혁신 방향을 논의했다."></textarea></label>
+          <label class="field span2" data-article-target="body"><span class="label required">그래서 실제로 무엇이 나왔나요?</span><textarea id="resultField" name="mainResult" required placeholder="예: 전국 대학 관계자 450여 명이 참여했고, 4개 분과에서 실제 IR 구축·분석 사례를 공유했다."></textarea></label>
+          <label class="field span2"><span class="label">꼭 기사에 들어갔으면 하는 내용 <span class="hint">선택</span></span><textarea name="mustInclude" placeholder="담당자가 놓치면 안 되는 내용이 있다면 적어주세요."></textarea></label>
         </div>
       </section>
 
-      <details class="section optional-section">
-        <summary><div class="num">5</div><div class="section-summary-copy"><h2>뉴스 가치·수치·근거 <span class="optional-pill">선택사항</span></h2><p class="desc">“그래서 왜 기사로 낼 만한가?”를 판단할 수 있게 적어주세요.</p></div></summary>
-        <div class="section-content">
-        <div class="grid">
-          <label class="field span2"><span class="label">기존과 다른 점 / 왜 중요한가</span><textarea name="difference" placeholder="기존의 한계와 이번에 달라진 점, 외부에 알려야 하는 이유"></textarea></label>
-          <label class="field span2"><span class="label">특별한 이유</span><textarea name="special" placeholder="최초, 유일, 최대, 1위, 성능 향상, 외부기관 인정 등이 있으면 작성"></textarea></label>
-          <label class="field span2"><span class="label">기사에 활용할 수 있는 주요 수치</span><textarea name="numbers" placeholder="참여 인원, 사업비, 사업기간, 선정 규모, 연구 성능, 특허·기술이전 등. 수치가 무엇을 의미하는지도 함께 적어주세요."></textarea></label>
-          <label class="field span2"><span class="label">근거·출처</span><textarea name="sources" placeholder="공식 공문, 정부·기관 발표, 논문, 사업 공고, 공식 홈페이지 URL 등"></textarea></label>
-        </div>
-        </div>
-      </details>
-
-      <details class="section optional-section">
-        <summary><div class="num">6</div><div class="section-summary-copy"><h2>관계자 발언·향후 계획 <span class="optional-pill">선택사항</span></h2><p class="desc">실제 발언과 보도자료용 초안을 구분해 주세요.</p></div></summary>
-        <div class="section-content">
-        <div class="grid">
-          <label class="field"><span class="label">성명 / 소속·직위</span><input type="text" name="quotePerson" placeholder="예: ○○○ 한양대학교 ERICA ○○학과 교수"></label>
-          <label class="field"><span class="label">발언 성격</span><select name="quoteType"><option value="">선택 안 함</option><option>실제 행사·인터뷰에서 한 발언</option><option>보도자료용으로 작성·승인한 문안</option><option>초안 작성 요청</option></select></label>
-          <label class="field span2"><span class="label">발언 내용</span><textarea name="quote" placeholder="실제 발언 또는 승인된 문안을 적어주세요. 실제 발언이 없으면 발언 성격에서 ‘초안 작성 요청’을 선택해 주세요."></textarea></label>
-          <label class="field span2"><span class="label">향후 계획</span><textarea name="future" placeholder="확정된 일정·후속 연구·추가 교육·사업 확대 계획 등을 적어주세요. 미확정이면 상태를 표시해 주세요."></textarea></label>
-        </div>
-        </div>
-      </details>
-
-      <details class="section optional-section">
-        <summary><div class="num">7</div><div class="section-summary-copy"><h2>보도자료용 사진 <span class="optional-pill">선택사항</span></h2><p class="desc">사진을 선택하면 원본이 한 장씩 임시 Drive 폴더에 먼저 업로드됩니다.</p></div></summary>
-        <div class="section-content">
-          <div class="uploader-frame-wrap">
-            <iframe
-              id="photoUploaderFrame"
-              class="uploader-frame"
-              title="보도자료 사진 업로더"
-              src="about:blank"
-              loading="lazy"
-              referrerpolicy="strict-origin-when-cross-origin"
-            ></iframe>
-          </div>
-          <div class="uploader-note">사진 파일은 이 영역 안의 Apps Script 업로더가 Google Drive로 직접 전송합니다. GitHub 페이지에서 Base64로 변환하지 않기 때문에 기존 방식보다 훨씬 가볍게 전송됩니다.</div>
-          <div class="warning"><strong>원본 화질 그대로</strong> 임시 Drive에 업로드한 뒤, 최종 제출 시 DOCX와 함께 메일 첨부로 전송합니다. 메일 발송이 성공하면 임시폴더는 자동으로 휴지통으로 이동하며, 제출하지 않은 임시파일도 24시간 후 자동 정리됩니다.</div>
-        </div>
-      </details>
-
       <section class="section">
-        <div class="section-head"><div class="num">8</div><div><h2>내용 확인 담당자</h2><p class="desc">작성 중 사실관계나 수치를 확인할 수 있는 담당자 정보를 적어주세요.</p></div></div>
+        <div class="section-head"><div class="num">5</div><div><h2>내용 확인 담당자</h2><p class="desc">작성 내용의 사실관계와 수치를 확인할 수 있는 담당자입니다.</p><span class="use-note"><b>기사 활용</b> 추가 확인이 필요할 때 홍보 담당자가 연락합니다.</span></div></div>
         <div class="grid">
           <label class="field"><span class="label required">성명</span><input type="text" name="contactName" required></label>
           <label class="field"><span class="label required">부서</span><input type="text" name="contactDept" required></label>
@@ -323,292 +160,246 @@
         </div>
       </section>
 
-      <details class="section optional-section">
-        <summary><div class="num">9</div><div class="section-summary-copy"><h2>추가 메모·주의사항 <span class="optional-pill">선택사항</span></h2><p class="desc">보도 시점이나 공개 주의사항이 있는 경우만 작성해 주세요.</p></div></summary>
+      <div class="optional-intro"><strong>여기까지 작성하면 기본 접수는 가능합니다.</strong><p>아래 선택정보를 추가하면 기사에 수치·맥락·인용·사진이 붙어 훨씬 풍부해집니다. 모르는 항목은 열지 않아도 됩니다.</p></div>
+
+      <details class="section optional-section" id="newsSection">
+        <summary><div class="section-summary-copy"><h2>기사로 낼 만한 포인트가 있나요? <span class="optional-pill">선택</span></h2><p class="desc">어려운 ‘뉴스 가치’ 대신 해당하는 특징만 골라주세요.</p></div></summary>
         <div class="section-content">
-        <div class="grid">
-          <label class="field"><span class="label">보도 희망 시점</span><input type="text" name="desiredDate" placeholder="예: 8월 30일 이후 / 행사 종료 후 / 별도 제한 없음"></label>
-          <label class="field"><span class="label">참고 링크</span><input type="text" name="links" placeholder="기존 기사, 기관 홈페이지, 논문·공고 URL 등"></label>
-          <label class="field span2"><span class="label">반드시 반영할 사항</span><textarea name="mustInclude" placeholder="제목·본문에서 꼭 강조하거나 포함해야 하는 내용"></textarea></label>
-          <label class="field span2"><span class="label">공개 주의 정보</span><textarea name="caution" placeholder="외부 공개 전 확인이 필요하거나 공개하면 안 되는 정보"></textarea></label>
-          <label class="field span2"><span class="label">기타 메모</span><textarea name="memo" placeholder="용어 표기, 기관 요청사항, 기타 참고사항"></textarea></label>
-        </div>
+          <div class="chip-grid" id="newsPointGrid">
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="참여 인원이 많음" data-news="participants"><span>👥 참여 인원이 많음</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="정부·공공기관 사업 선정"><span>🏛 정부·공공기관 사업 선정</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="사업비·지원금 규모가 있음" data-news="funding"><span>💰 사업비·지원금 규모가 있음</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="수상·평가·인증 성과"><span>🏆 수상·평가·인증 성과</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="기존보다 성능·성과 향상" data-news="performance"><span>📈 기존보다 성능·성과 향상</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="학생 직접 성과"><span>🎓 학생에게 직접적인 성과</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="지역사회 관련 성과"><span>📍 지역사회와 관련된 성과</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="여러 기관 참여"><span>🤝 여러 기관이 함께 참여</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="최초·유일·최고 표현" data-news="superlative"><span>⭐ 최초·유일·최고 등의 특징</span></label>
+            <label class="chip-check"><input type="checkbox" name="newsPoints" value="논문·특허·기술이전 성과"><span>🔬 논문·특허·기술이전 성과</span></label>
+          </div>
+          <div class="conditional-block" data-news-block="participants"><div class="conditional-title">참여 규모를 알려주세요.</div><label class="field"><span class="label">참가·교육·연수 인원</span><input type="text" name="participantCount" placeholder="예: 450여 명 / 교원 1,280명"></label></div>
+          <div class="conditional-block" data-news-block="funding"><div class="conditional-title">사업비·지원금 정보를 알려주세요.</div><div class="grid"><label class="field"><span class="label">금액</span><input type="text" name="fundingAmount" placeholder="예: 120억 원"></label><label class="field"><span class="label">금액의 범위</span><select name="fundingScope"><option value="">선택 안 함</option><option>ERICA 단독</option><option>컨소시엄 전체</option><option>연간 규모</option><option>총사업비</option><option>확인 필요</option></select></label></div></div>
+          <div class="conditional-block" data-news-block="performance"><div class="conditional-title">무엇이 얼마나 좋아졌나요?</div><label class="field"><span class="label">성능·성과 수치</span><input type="text" name="performanceMetric" placeholder="예: 정확도 18% 향상 / 감도 2배 증가"></label></div>
+          <div class="conditional-block" data-news-block="superlative"><div class="conditional-title">‘최초·유일·최고’ 표현은 근거가 필요합니다.</div><div class="grid"><label class="field"><span class="label">표현</span><select name="superlativeType"><option value="">선택 안 함</option><option>국내 최초</option><option>세계 최초</option><option>국내 유일</option><option>세계 유일</option><option>최고 성능</option><option>1위</option><option>기타</option></select></label><label class="field"><span class="label">확인 가능한 근거</span><input type="text" name="superlativeEvidence" placeholder="공문, 논문, 기관 발표, URL 또는 ‘확인 필요’"></label></div></div>
+          <div class="grid" style="margin-top:13px">
+            <label class="field span2"><span class="label">왜 외부에 알릴 만한가요? <span class="hint">선택</span></span><textarea name="newsMeaning" placeholder="예: 전국 대학의 실제 데이터 활용 사례를 공유하고 AI 시대 대학 혁신 방향을 함께 논의했다는 점에 의미가 있음"></textarea></label>
+            <label class="field span2"><span class="label">추가 숫자·구체적인 성과 <span class="hint">선택</span></span><textarea name="numbersExtra" placeholder="예: 4개 분과 동시 진행 / 14개 팀 최종 선발 / 특허 3건 등"></textarea></label>
+          </div>
         </div>
       </details>
 
-      <section class="section">
-        <div class="section-head"><div class="num">10</div><div><h2>제출 전 확인</h2><p class="desc">아래 항목을 확인한 뒤 제출해 주세요.</p></div></div>
-        <div class="checks">
-          <label class="inline-check"><input type="checkbox" name="confirmAccuracy" required><span>숫자와 날짜가 정확한지 확인했습니다.</span></label>
-          <label class="inline-check"><input type="checkbox" name="confirmSuperlative" required><span>‘최초·유일·최고’ 등의 표현을 적은 경우 확인 가능한 근거가 있습니다. 해당 표현이 없다면 그대로 체크해 주세요.</span></label>
-          <label class="inline-check"><input type="checkbox" name="confirmQuote" required><span>관계자 발언이 실제 발언인지, 승인된 문안인지, 초안 요청인지 구분했습니다.</span></label>
-          <label class="inline-check"><input type="checkbox" name="confirmPlan" required><span>확정되지 않은 향후 계획은 ‘검토 중’ 등 현재 상태를 표시했습니다.</span></label>
-          <label class="inline-check"><input type="checkbox" name="confirmPhoto" required><span>사진을 첨부한 경우 기사에 사용할 수 있는 사진이며, 필요한 인물 정보와 설명을 입력했습니다.</span></label>
+      <details class="section optional-section" id="detailSection">
+        <summary><div class="section-summary-copy"><h2>세부 내용·유형별 추가정보 <span class="optional-pill">선택</span></h2><p class="desc">기사 본문에 살을 붙일 세부 프로그램·연구·사업 내용을 적습니다.</p></div></summary>
+        <div class="section-content">
+          <div class="grid">
+            <label class="field span2" data-article-target="body"><span class="label">세부 내용 / 주요 프로그램</span><textarea name="detailDescription" placeholder="행사 순서, 주요 발표, 연구 방법, 사업 수행내용 등 기사 몸통이 될 내용을 자유롭게 적어주세요."></textarea></label>
+            <label class="field span2"><span class="label">추진 배경·목적</span><textarea name="background" placeholder="왜 이 일을 시작했는지, 기존 문제나 사업 목적 등을 적어주세요."></textarea></label>
+          </div>
+          <div class="conditional-block" id="research"><div class="conditional-title">연구성과 추가정보</div><div class="grid"><label class="field"><span class="label">기존 연구의 한계</span><textarea name="researchLimit"></textarea></label><label class="field"><span class="label">이번 연구의 핵심 방법</span><textarea name="researchMethod"></textarea></label><label class="field"><span class="label">주요 실험·분석 결과</span><textarea name="researchResult"></textarea></label><label class="field"><span class="label">논문·학술지 / 저자 정보</span><textarea name="researchPaper"></textarea></label><label class="field"><span class="label">연구지원기관</span><input type="text" name="researchSupport"></label><label class="field"><span class="label">활용 가능 분야</span><input type="text" name="researchUse"></label></div></div>
+          <div class="conditional-block" id="business"><div class="conditional-title">정부사업·사업성과 추가정보</div><div class="grid"><label class="field"><span class="label">정확한 사업명 / 주관 부처·기관</span><textarea name="businessName"></textarea></label><label class="field"><span class="label">사업기간 / 총사업비 / ERICA 지원액</span><textarea name="businessScale"></textarea></label><label class="field"><span class="label">ERICA 역할·주요 수행내용</span><textarea name="businessRole"></textarea></label><label class="field"><span class="label">현재까지 완료한 내용</span><textarea name="businessDone"></textarea></label></div></div>
+          <div class="conditional-block" id="agreement"><div class="conditional-title">협약·산학협력 추가정보</div><div class="grid"><label class="field"><span class="label">협약 상대기관 / 협약일</span><textarea name="agreementParty"></textarea></label><label class="field"><span class="label">협약 목적</span><textarea name="agreementPurpose"></textarea></label><label class="field"><span class="label">구체적인 협력사항</span><textarea name="agreementDetails"></textarea></label><label class="field"><span class="label">협약 후 바로 추진할 내용</span><textarea name="agreementNext"></textarea></label></div></div>
+          <div class="conditional-block" id="award"><div class="conditional-title">수상·선정 추가정보</div><div class="grid"><label class="field"><span class="label">정확한 상·사업명 / 주관·선정기관</span><textarea name="awardName"></textarea></label><label class="field"><span class="label">선정일·수상일 / 선정 규모</span><textarea name="awardDate"></textarea></label><label class="field"><span class="label">평가·선정 사유</span><textarea name="awardReason"></textarea></label><label class="field"><span class="label">주요 결과·관련 수치</span><textarea name="awardResult"></textarea></label></div></div>
+          <div class="conditional-block" id="education"><div class="conditional-title">국제협력·교육 프로그램 추가정보</div><div class="grid"><label class="field"><span class="label">대상 국가·기관·교육대상</span><textarea name="eduTarget"></textarea></label><label class="field"><span class="label">프로그램 목적 / 운영기간</span><textarea name="eduPurpose"></textarea></label><label class="field"><span class="label">참가·교육 인원 / 주요 내용</span><textarea name="eduScale"></textarea></label><label class="field"><span class="label">현재 성과 / 향후 일정</span><textarea name="eduResult"></textarea></label></div></div>
         </div>
+      </details>
+
+      <details class="section optional-section" id="quoteSection">
+        <summary><div class="section-summary-copy"><h2>관계자 발언 <span class="optional-pill">선택</span></h2><p class="desc">발언이 있는지부터 선택하면 필요한 칸만 열립니다.</p></div></summary>
+        <div class="section-content">
+          <div class="pill-row">
+            <label class="pill-radio"><input type="radio" name="quoteMode" value="actual"><span>실제 발언이 있음</span></label>
+            <label class="pill-radio"><input type="radio" name="quoteMode" value="approved"><span>승인된 문안이 있음</span></label>
+            <label class="pill-radio"><input type="radio" name="quoteMode" value="draft"><span>초안 작성 요청</span></label>
+            <label class="pill-radio"><input type="radio" name="quoteMode" value="none"><span>발언 없이 진행</span></label>
+          </div>
+          <div class="quote-extra grid" id="quoteFields" style="margin-top:13px">
+            <label class="field"><span class="label">성명 / 소속·직위</span><input type="text" name="quotePerson" placeholder="예: ○○○ 한양대학교 ERICA ○○학과 교수"></label>
+            <label class="field"><span class="label">발언 성격</span><input type="text" name="quoteTypeDisplay" readonly></label>
+            <label class="field span2" data-article-target="quote"><span class="label">발언 내용</span><textarea name="quote" placeholder="실제 발언 또는 승인된 문안을 그대로 붙여주세요."></textarea></label>
+          </div>
+          <div class="quote-extra grid" id="quoteDraftFields" style="margin-top:13px"><label class="field"><span class="label">누구 명의의 발언이 필요한가요?</span><input type="text" name="quotePersonDraft"></label><label class="field"><span class="label">어떤 취지였으면 하나요?</span><textarea name="quoteIntent" placeholder="예: 이번 협력이 학생 교육과 지역 산업에 갖는 의미를 강조"></textarea></label></div>
+        </div>
+      </details>
+
+      <details class="section optional-section" id="futureSection">
+        <summary><div class="section-summary-copy"><h2>향후 계획 <span class="optional-pill">선택</span></h2><p class="desc">없는 계획을 억지로 만들 필요 없습니다.</p></div></summary>
+        <div class="section-content">
+          <div class="pill-row"><label class="pill-radio"><input type="radio" name="futureStatus" value="confirmed"><span>확정된 후속 계획 있음</span></label><label class="pill-radio"><input type="radio" name="futureStatus" value="reviewing"><span>논의·검토 중</span></label><label class="pill-radio"><input type="radio" name="futureStatus" value="none"><span>별도 계획 없음</span></label></div>
+          <div class="future-extra grid" id="futureFields" style="margin-top:13px"><label class="field span2" data-article-target="close"><span class="label">향후 일정·후속 계획</span><textarea name="future" placeholder="확정 일정 또는 ‘검토 중’인 내용을 상태와 함께 적어주세요."></textarea></label></div>
+        </div>
+      </details>
+
+      <details class="section optional-section" id="sourceSection">
+        <summary><div class="section-summary-copy"><h2>참고자료·링크 <span class="optional-pill">선택</span></h2><p class="desc">이미 정리된 자료가 있다면 다시 쓰지 말고 링크로 알려주세요.</p></div></summary>
+        <div class="section-content">
+          <div class="chip-grid">
+            <label class="chip-check"><input type="checkbox" name="sourceTypes" value="기존 보도자료"><span>기존 보도자료</span></label>
+            <label class="chip-check"><input type="checkbox" name="sourceTypes" value="행사계획서·결과보고서"><span>행사계획서·결과보고서</span></label>
+            <label class="chip-check"><input type="checkbox" name="sourceTypes" value="PPT"><span>PPT</span></label>
+            <label class="chip-check"><input type="checkbox" name="sourceTypes" value="논문·학술자료"><span>논문·학술자료</span></label>
+            <label class="chip-check"><input type="checkbox" name="sourceTypes" value="사업 공고문"><span>사업 공고문</span></label>
+            <label class="chip-check"><input type="checkbox" name="sourceTypes" value="외부 기사·웹페이지"><span>외부 기사·웹페이지</span></label>
+          </div>
+          <div class="grid" style="margin-top:13px"><label class="field span2"><span class="label">자료 링크</span><textarea name="links" placeholder="Google Drive, OneDrive, 기관 홈페이지, 기사 URL 등을 줄바꿈해서 붙여주세요."></textarea></label><label class="field span2"><span class="label">근거·출처 메모</span><textarea name="sourceEvidence" placeholder="예: 사업비는 공문 2페이지 / ‘국내 최초’ 근거는 논문 서론 참조"></textarea></label></div>
+        </div>
+      </details>
+
+      <details class="section optional-section" id="photoSection">
+        <summary><div class="section-summary-copy"><h2>보도자료용 사진 <span class="optional-pill">선택</span></h2><p class="desc">사진은 원본 화질 그대로 임시 Drive에 먼저 업로드됩니다.</p></div></summary>
+        <div class="section-content">
+          <div class="uploader-frame-wrap"><iframe id="photoUploaderFrame" class="uploader-frame" title="보도자료 사진 업로더" src="about:blank" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="uploader-note">사진 업로더가 Google Drive로 직접 전송합니다. 최종 제출 때는 사진 자체를 다시 업로드하지 않습니다.</div>
+          <div class="warning"><strong>원본 화질 유지</strong> · JPG/JPEG/PNG · 1장 최대 5MB · 최대 5장 · 전체 최대 18MB. 메일 발송 성공 후 임시폴더는 휴지통으로 이동합니다.</div>
+        </div>
+      </details>
+
+      <details class="section optional-section" id="cautionSection">
+        <summary><div class="section-summary-copy"><h2>보도 시점·공개 주의사항 <span class="optional-pill">선택</span></h2><p class="desc">특정 날짜 이후 공개하거나 반드시 피해야 할 정보가 있을 때만 작성합니다.</p></div></summary>
+        <div class="section-content"><div class="grid"><label class="field"><span class="label">보도 희망 시점</span><input type="text" name="desiredDate" placeholder="예: 8월 30일 이후 / 행사 종료 후"></label><label class="field"><span class="label">기타 메모</span><input type="text" name="memo" placeholder="용어 표기, 기관 요청사항 등"></label><label class="field span2"><span class="label">공개 주의 정보</span><textarea name="caution" placeholder="외부 공개 전 확인이 필요하거나 공개하면 안 되는 정보"></textarea></label></div></div>
+      </details>
+
+      <section class="section">
+        <div class="section-head"><div><h2>제출 전 마지막 확인</h2><p class="desc">마지막 두 가지만 확인해 주세요.</p></div></div>
+        <div class="checks"><label class="inline-check"><input type="checkbox" name="confirmAccuracy" required><span>입력한 날짜·숫자·고유명사가 정확한지 확인했습니다.</span></label><label class="inline-check"><input type="checkbox" name="confirmDisclosure" required><span>외부에 공개하면 안 되는 내용이 포함되지 않았는지 확인했습니다.</span></label></div>
       </section>
 
-      <div class="hp-trap" aria-hidden="true">
-        <label>웹사이트 주소<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-      </div>
-
-      <div class="security-box">
-        <div class="security-copy">
-          <strong>자동 제출 방지 확인</strong>
-          <span>정상 사용자는 대부분 별도 동작 없이 자동으로 확인됩니다.</span>
-          <div class="security-status" id="securityStatus">보안 확인 준비 중...</div>
-          <button type="button" id="turnstileRetry" style="display:none;margin-top:10px;padding:8px 14px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font-weight:700;cursor:pointer;">보안 확인 다시 시도</button>
-        </div>
-        <div id="turnstileWidget"></div>
-      </div>
-
-      <div class="submit-card">
-        <div><h2>작성 완료</h2><p>제출하면 입력 내용은 DOCX로 정리되고, 선택한 배포 목적에 따라 담당자 메일로 전송됩니다.</p></div>
-        <button type="submit" class="submit-btn" id="submitBtn" disabled>제출하기</button>
-      </div>
-      <div class="privacy">※ 입력 내용은 사이트에 저장하지 않습니다. 사진은 전송을 위해 Google Drive 임시폴더에 보관되며, 메일 발송 성공 후 자동으로 휴지통으로 이동합니다.</div>
+      <label class="hp-trap" aria-hidden="true">홈페이지<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      <div class="security-box"><div class="security-copy"><strong>자동 제출 방지 확인</strong><span>정상 사용자는 대부분 별도 동작 없이 자동으로 확인됩니다.</span><div id="securityStatus" class="security-status">보안 확인 준비 중...</div><button type="button" id="turnstileRetry" style="display:none;margin-top:7px;border:1px solid #ccd9e2;background:#fff;border-radius:9px;padding:6px 9px;font-size:11px;font-weight:800">보안 확인 다시 시도</button></div><div id="turnstileWidget"></div></div>
+      <div class="submit-card"><div><h2>기사 재료 제출하기</h2><p id="submitSummary">기본정보를 채우면 제출할 수 있습니다.</p></div><button type="submit" class="submit-btn" id="submitBtn" disabled>제출하기</button></div>
+      <div class="privacy">※ 입력 내용은 GitHub 사이트에 저장하지 않습니다. 사진은 전송을 위해 Google Drive 임시폴더에 보관되며, 메일 발송 성공 후 자동으로 휴지통으로 이동합니다.</div>
     </form>
-  </main>
-  <footer>Hanyang University ERICA · External Relations · v2.2</footer>
 
+    <aside class="assembly" id="assemblyPanel" aria-label="기사 조립 현황">
+      <div class="assembly-head"><button type="button" class="assembly-close" id="assemblyClose">×</button><div class="assembly-kicker">AI 없이 실시간으로 조립됩니다</div><div class="assembly-title">📰 기사 조립 현황</div><div class="assembly-sub" id="assemblyStageSub">아직 빈 종이예요. 기본 사실부터 넣어주세요.</div></div>
+      <div class="assembly-body">
+        <div class="meter-list">
+          <div class="meter-row" data-meter="lead"><span class="meter-name">첫 문단</span><div class="meter-track"><div class="meter-fill" id="meterLead"></div></div><span class="meter-pct" id="pctLead">0%</span></div>
+          <div class="meter-row" data-meter="body"><span class="meter-name">본문</span><div class="meter-track"><div class="meter-fill" id="meterBody"></div></div><span class="meter-pct" id="pctBody">0%</span></div>
+          <div class="meter-row" data-meter="evidence"><span class="meter-name">근거·수치</span><div class="meter-track"><div class="meter-fill" id="meterEvidence"></div></div><span class="meter-pct" id="pctEvidence">0%</span></div>
+          <div class="meter-row" data-meter="quote"><span class="meter-name">인용</span><div class="meter-track"><div class="meter-fill" id="meterQuote"></div></div><span class="meter-pct" id="pctQuote">0%</span></div>
+          <div class="meter-row" data-meter="close"><span class="meter-name">마무리</span><div class="meter-track"><div class="meter-fill" id="meterClose"></div></div><span class="meter-pct" id="pctClose">0%</span></div>
+          <div class="meter-row" data-meter="photo"><span class="meter-name">사진</span><div class="meter-track"><div class="meter-fill" id="meterPhoto"></div></div><span class="meter-pct" id="pctPhoto">0%</span></div>
+        </div>
+
+        <div class="assembly-section"><h3>제목에 쓸 수 있는 재료</h3><div class="material-chips" id="titleMaterials"><span class="material-chip empty-chip">아직 재료가 부족해요</span></div></div>
+        <div class="assembly-section"><h3>예상 첫 문단 골격</h3><div class="skeleton">
+          <div class="skeleton-row" data-key="lead"><div class="skeleton-label">누가</div><div class="skeleton-value missing" id="skWho">우리 학교 담당을 입력해 주세요</div></div>
+          <div class="skeleton-row" data-key="lead"><div class="skeleton-label">언제 · 어디서</div><div class="skeleton-value missing" id="skWhenWhere">일시와 장소가 들어옵니다</div></div>
+          <div class="skeleton-row" data-key="lead"><div class="skeleton-label">무엇을</div><div class="skeleton-value missing" id="skWhat">공식 명칭과 있었던 일이 들어옵니다</div></div>
+          <div class="skeleton-row" data-key="body"><div class="skeleton-label">결과</div><div class="skeleton-value missing" id="skResult">실제로 나온 결과가 들어옵니다</div></div>
+        </div></div>
+        <div class="assembly-section"><h3>현재 확보된 기사 재료</h3><div class="readiness" id="readinessList"></div><div class="next-tip" id="nextTip">공식 명칭과 핵심 내용을 먼저 적으면 기사 뼈대가 나타납니다.</div></div>
+      </div>
+    </aside>
+  </div></main>
+
+  <button type="button" class="mobile-assembly-btn" id="mobileAssemblyBtn">📰 기사 뼈대 보기</button>
+  <footer>Hanyang University ERICA · External Relations · v3.0</footer>
   <div class="toast" id="toast"></div>
-  <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 Drive에 준비되어 있어요. DOCX를 만들고 메일 첨부를 준비합니다.</p></div></div>
+  <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p></div></div>
 
 <script>
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbw_k2xT--loMBrhgXyH5lnuD7SOnsPVmUAK8gL0Co4oPP63uq6NXLyQE_HmPJeYJLs/exec';
-  const TURNSTILE_SITE_KEY = '0x4AAAAAAEclMaZaO8EkBTix';
-  const TURNSTILE_ACTION = 'pr_submit';
+  const WEB_APP_URL='https://script.google.com/macros/s/AKfycbw_k2xT--loMBrhgXyH5lnuD7SOnsPVmUAK8gL0Co4oPP63uq6NXLyQE_HmPJeYJLs/exec';
+  const TURNSTILE_SITE_KEY='0x4AAAAAAEclMaZaO8EkBTix';
+  const TURNSTILE_ACTION='pr_submit';
+  const FORM_STARTED_AT=Date.now();
+  const CLIENT_ID=getOrCreateClientId();
+  const UPLOADER_CHANNEL='pr_uploader_v30_'+makeId('ch');
+  let UPLOAD_KEY=makeId('upl');
+  let uploaderPhotos=[],uploadBusy=false,turnstileToken='',turnstileWidgetId=null,isSubmitting=false;
+  const pendingRequests=new Map();
+  const form=document.getElementById('requestForm');
+  const photoUploaderFrame=document.getElementById('photoUploaderFrame');
+  const overlay=document.getElementById('overlay'),modal=document.getElementById('modal'),submitBtn=document.getElementById('submitBtn');
+  const securityStatus=document.getElementById('securityStatus'),turnstileRetry=document.getElementById('turnstileRetry');
 
-  const FORM_STARTED_AT = Date.now();
-  const CLIENT_ID = getOrCreateClientId();
-  const UPLOADER_CHANNEL = 'pr_uploader_v22_'+makeId('ch');
-  let UPLOAD_KEY = makeId('upl');
+  document.querySelectorAll('textarea').forEach(el=>el.maxLength=4000);
+  document.querySelectorAll('input[type="text"],input[type="email"]').forEach(el=>el.maxLength=320);
 
-  let uploaderPhotos = [];
-  let uploadBusy = false;
-  let turnstileToken = '';
-  let turnstileWidgetId = null;
-  let isSubmitting = false;
-  const pendingRequests = new Map();
-
-  const form = document.getElementById('requestForm');
-  const photoUploaderFrame = document.getElementById('photoUploaderFrame');
-  const overlay = document.getElementById('overlay');
-  const modal = document.getElementById('modal');
-  const submitBtn = document.getElementById('submitBtn');
-  const securityStatus = document.getElementById('securityStatus');
-  const turnstileRetry = document.getElementById('turnstileRetry');
-
-  document.querySelectorAll('textarea').forEach(el => el.maxLength = 4000);
-  document.querySelectorAll('input[type="text"]').forEach(el => el.maxLength = 320);
-  document.querySelectorAll('input[type="email"]').forEach(el => el.maxLength = 320);
-
-  window.turnstileOnload = function(){
-    if(!window.turnstile) return;
-    if(!TURNSTILE_SITE_KEY || TURNSTILE_SITE_KEY.startsWith('PASTE_')){
-      setSecurityStatus('Turnstile Site Key를 먼저 설정해줘.', 'error');
-      syncSubmitButton();
-      return;
-    }
-    try{
-      turnstileWidgetId = turnstile.render('#turnstileWidget', {
-        sitekey: TURNSTILE_SITE_KEY,
-        action: TURNSTILE_ACTION,
-        theme: 'light',
-        callback: token => {
-          turnstileToken = token || '';
-          if(turnstileRetry) turnstileRetry.style.display = 'none';
-          setSecurityStatus('보안 확인 완료', 'ok');
-          syncSubmitButton();
-        },
-        'error-callback': code => {
-          turnstileToken = '';
-          setSecurityStatus(`보안 확인 실패 · 오류코드 ${String(code || '확인 불가')}`, 'error');
-          if(turnstileRetry) turnstileRetry.style.display = 'inline-block';
-          syncSubmitButton();
-          return true;
-        },
-        'expired-callback': () => { turnstileToken = ''; syncSubmitButton(); setTimeout(resetTurnstile,150); },
-        'timeout-callback': () => { turnstileToken = ''; syncSubmitButton(); setTimeout(resetTurnstile,150); }
-      });
-      setSecurityStatus('보안 확인 중...', '');
-    }catch(err){
-      setSecurityStatus('Turnstile 설정을 확인해줘.', 'error');
-      syncSubmitButton();
-    }
+  window.turnstileOnload=function(){
+    if(!window.turnstile)return;
+    try{turnstileWidgetId=turnstile.render('#turnstileWidget',{sitekey:TURNSTILE_SITE_KEY,action:TURNSTILE_ACTION,theme:'light',callback:token=>{turnstileToken=token||'';turnstileRetry.style.display='none';setSecurityStatus('보안 확인 완료','ok');syncSubmitButton();},'error-callback':code=>{turnstileToken='';setSecurityStatus(`보안 확인 실패 · 오류코드 ${String(code||'확인 불가')}`,'error');turnstileRetry.style.display='inline-block';syncSubmitButton();return true;},'expired-callback':()=>{turnstileToken='';syncSubmitButton();setTimeout(resetTurnstile,150);},'timeout-callback':()=>{turnstileToken='';syncSubmitButton();setTimeout(resetTurnstile,150);}});setSecurityStatus('보안 확인 중...','');}catch(err){setSecurityStatus('Turnstile 설정을 확인해줘.','error');syncSubmitButton();}
   };
+  function setSecurityStatus(message,type=''){securityStatus.textContent=message;securityStatus.className=`security-status ${type}`}
+  function resetTurnstile(){turnstileToken='';syncSubmitButton();try{if(window.turnstile&&turnstileWidgetId!==null)turnstile.reset(turnstileWidgetId)}catch(err){}}
+  turnstileRetry.addEventListener('click',()=>{turnstileRetry.style.display='none';setSecurityStatus('보안 확인을 다시 시도하고 있어...','');resetTurnstile()});
+  function syncSubmitButton(){const pendingPhoto=uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded');submitBtn.disabled=isSubmitting||pendingPhoto||!turnstileToken}
+  function setSubmitting(value){isSubmitting=!!value;syncSubmitButton()}
+  function getOrCreateClientId(){const key='erica_pr_client_id_v1';try{let id=localStorage.getItem(key);if(id&&/^[A-Za-z0-9_-]{16,80}$/.test(id))return id;id=(crypto&&crypto.randomUUID)?crypto.randomUUID():`c_${Date.now()}_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;localStorage.setItem(key,id);return id}catch(err){return `c_${Date.now()}_${Math.random().toString(36).slice(2)}`}}
+  function makeId(prefix='r'){const core=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():`${Date.now()}_${Math.random().toString(36).slice(2)}`;return `${prefix}_${core.replace(/[^A-Za-z0-9_-]/g,'')}`}
+  function val(name){const el=form.elements[name];return el?String(el.value||'').trim():''}
+  function checkedValues(name){return [...form.querySelectorAll(`input[name="${name}"]:checked`)].map(x=>x.value)}
+  function showToast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast show ${type}`;clearTimeout(t._timer);t._timer=setTimeout(()=>t.className='toast',4800)}
+  function escapeHtml(str=''){return String(str).replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':'&quot;'}[m]))}
 
-  function setSecurityStatus(message, type=''){
-    securityStatus.textContent = message;
-    securityStatus.className = `security-status ${type}`;
+  document.querySelectorAll('input[name="types"]').forEach(cb=>cb.addEventListener('change',()=>{renderTypeConditionals();updateTypeGuidance();updateAssembly()}));
+  function renderTypeConditionals(){document.querySelectorAll('#detailSection .conditional-block[id]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('input[name="types"]:checked').forEach(cb=>{if(cb.dataset.target)document.getElementById(cb.dataset.target)?.classList.add('active')})}
+  function updateTypeGuidance(){const type=checkedValues('types')[0]||'';const s=document.getElementById('summaryField'),r=document.getElementById('resultField');const guides={
+    '행사':['예: 전국 대학 관계자들이 한자리에 모여 데이터 기반 대학 혁신 방향을 논의했다.','예: 450여 명이 참여했고 4개 분과에서 실제 사례를 공유했다.'],
+    '연구성과':['예: ○○ 교수 연구팀이 기존 방식의 한계를 개선한 새로운 ○○ 기술을 개발했다.','예: 기존 대비 정확도 18% 향상 / 국제학술지 게재 / 특허 출원 등'],
+    '수상·선정':['예: ○○팀이 ○○기관 주관 사업·대회에서 최종 선정·수상됐다.','예: 전국 14개 팀 중 최종 선정 / 대상 수상 등'],
+    '정부사업·사업성과':['예: ERICA ○○사업단이 정부 ○○사업에 선정돼 ○년간 사업을 수행한다.','예: 총사업비 ○억 원 / ○개 기관 참여 / ○년간 지원 등'],
+    '협약·산학협력':['예: ERICA와 ○○기관이 공동연구·인재양성을 위한 협약을 체결했다.','예: 공동연구, 현장실습, 기술교류 등 구체적 협력과제가 확정됐다.'],
+    '학생성과':['예: ERICA 학생팀이 ○○대회에서 ○○성과를 거뒀다.','예: ○개 팀 중 대상 / 상금 ○원 / 후속 사업화 등'],
+    '교육 프로그램':['예: ○○대상 교육 프로그램을 운영해 ○○역량을 강화했다.','예: 총 ○명 수료 / 만족도 ○점 / 후속 과정 운영 등'],
+    '국제협력':['예: ERICA가 ○○국가·기관과 교육·연구 협력 프로그램을 운영했다.','예: ○개국 ○명 참여 / 공동 프로그램 개설 등']};
+    const g=guides[type]||['이번에 무엇을 했는지, 어떤 일이 있었는지 편하게 적어주세요.','숫자·선정·성과·결과 등 실제로 나온 것을 적어주세요.'];s.placeholder=g[0];r.placeholder=g[1];
   }
 
-  function resetTurnstile(){
-    turnstileToken = '';
-    syncSubmitButton();
-    try{ if(window.turnstile && turnstileWidgetId !== null) turnstile.reset(turnstileWidgetId); }catch(err){}
+  document.querySelectorAll('input[name="newsPoints"]').forEach(cb=>cb.addEventListener('change',()=>{renderNewsBlocks();updateAssembly()}));
+  function renderNewsBlocks(){document.querySelectorAll('[data-news-block]').forEach(b=>b.classList.remove('active'));document.querySelectorAll('input[name="newsPoints"]:checked').forEach(cb=>{if(cb.dataset.news)document.querySelector(`[data-news-block="${cb.dataset.news}"]`)?.classList.add('active')})}
+
+  document.querySelectorAll('input[name="quoteMode"]').forEach(r=>r.addEventListener('change',()=>{renderQuote();updateAssembly()}));
+  function renderQuote(){const mode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';document.getElementById('quoteFields').classList.toggle('active',mode==='actual'||mode==='approved');document.getElementById('quoteDraftFields').classList.toggle('active',mode==='draft');const display=form.elements.quoteTypeDisplay;if(display)display.value=mode==='actual'?'실제 행사·인터뷰에서 한 발언':mode==='approved'?'보도자료용으로 작성·승인한 문안':mode==='draft'?'초안 작성 요청':''}
+  document.querySelectorAll('input[name="futureStatus"]').forEach(r=>r.addEventListener('change',()=>{document.getElementById('futureFields').classList.toggle('active',['confirmed','reviewing'].includes(r.value)&&r.checked);updateAssembly()}));
+
+  function loadUploader(){photoUploaderFrame.src=WEB_APP_URL+'?mode=uploader&v=30&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(UPLOADER_CHANNEL)}
+  window.addEventListener('message',e=>{const data=e.data||{};if(data.channel!==UPLOADER_CHANNEL)return;if(data.type==='pr-uploader-state'){uploaderPhotos=Array.isArray(data.photos)?data.photos:[];uploadBusy=!!data.busy;syncSubmitButton();updateAssembly()}if(data.type==='pr-uploader-height'){photoUploaderFrame.style.height=Math.max(280,Math.min(1100,Number(data.height)||330))+'px'}if(data.type==='pr-uploader-toast')showToast(String(data.message||''),String(data.level||''))});
+
+  function composeWho(){return [val('ourOrg')&&`우리 학교: ${val('ourOrg')}`,val('externalOrgs')&&`외부 기관: ${val('externalOrgs')}`,val('keyPeople')&&`주요 인물: ${val('keyPeople')}`].filter(Boolean).join('\n')}
+  function quoteTypeFromMode(){const mode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';return mode==='actual'?'실제 행사·인터뷰에서 한 발언':mode==='approved'?'보도자료용으로 작성·승인한 문안':mode==='draft'?'초안 작성 요청':''}
+  function formObject(){const fd=new FormData(form),obj={};for(const[k,v]of fd.entries()){if(['types','newsPoints','sourceTypes','quoteMode'].includes(k))continue;obj[k]=v}obj.types=checkedValues('types');obj.newsPoints=checkedValues('newsPoints');obj.sourceTypes=checkedValues('sourceTypes');obj.quoteMode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';obj.quoteType=quoteTypeFromMode();if(obj.quoteMode==='draft'){obj.quotePerson=val('quotePersonDraft');obj.quote='';}obj.who=composeWho();obj.what=val('detailDescription');obj.why=val('background');obj.priority1=val('mustInclude');obj.difference=val('newsMeaning');obj.sources=[obj.sourceTypes.join(', '),val('sourceEvidence'),val('links')].filter(Boolean).join('\n');obj.confirmAccuracy=!!form.elements.confirmAccuracy?.checked;obj.confirmDisclosure=!!form.elements.confirmDisclosure?.checked;return obj}
+
+  function validateForm(){if(!form.reportValidity())return false;if(checkedValues('types').length===0&&!val('typeOther')){showToast('보도자료 유형을 하나 이상 선택해줘.','error');return false}if(uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded')){showToast('사진 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(uploaderPhotos.some(x=>!String(x.caption||'').trim())){showToast('첨부한 사진마다 사진 설명을 적어줘.','error');return false}if(!turnstileToken){showToast('자동 제출 방지 확인이 끝난 뒤 제출해줘.','error');return false}return true}
+
+  function requiredProgress(){const core=['distribution','officialName','when','ourOrg','summary','mainResult','contactName','contactDept','contactEmail'];let done=0;core.forEach(name=>{if(name==='distribution'){if(form.querySelector('input[name="distribution"]:checked'))done++;}else if(val(name))done++;});if(checkedValues('types').length||val('typeOther'))done++;return Math.min(100,Math.round(done/(core.length+1)*100))}
+  function score(items){const filled=items.filter(Boolean).length;return Math.round(filled/Math.max(1,items.length)*100)}
+  function setMeter(name,pct){document.getElementById('meter'+name[0].toUpperCase()+name.slice(1)).style.width=pct+'%';document.getElementById('pct'+name[0].toUpperCase()+name.slice(1)).textContent=pct+'%'}
+  function nonEmptySpecific(){return ['researchLimit','researchMethod','researchResult','researchPaper','businessName','businessScale','businessRole','businessDone','agreementParty','agreementPurpose','agreementDetails','agreementNext','awardName','awardDate','awardReason','awardResult','eduTarget','eduPurpose','eduScale','eduResult'].some(n=>val(n))}
+
+  function updateAssembly(){
+    const req=requiredProgress();document.getElementById('requiredProgress').style.width=req+'%';document.getElementById('requiredText').textContent=`기본정보 ${req}%`;
+    const types=checkedValues('types'),news=checkedValues('newsPoints');const quoteMode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';const futureStatus=form.querySelector('input[name="futureStatus"]:checked')?.value||'';
+    const lead=score([val('officialName'),val('when'),val('ourOrg'),val('summary'),val('mainResult')]);
+    const body=score([val('mainResult'),val('detailDescription')||nonEmptySpecific(),val('background')||val('newsMeaning'),news.length>0]);
+    const evidence=score([news.length>0,val('participantCount')||val('fundingAmount')||val('performanceMetric')||val('numbersExtra'),val('sourceEvidence')||val('links')]);
+    let quote=0;if(quoteMode==='none')quote=100;else if(quoteMode==='draft')quote=score([val('quotePersonDraft'),val('quoteIntent')]);else if(['actual','approved'].includes(quoteMode))quote=score([val('quotePerson'),val('quote')]);
+    let close=0;if(futureStatus==='none')close=100;else if(['confirmed','reviewing'].includes(futureStatus))close=val('future')?100:50;
+    const photo=uploaderPhotos.length?100:0;
+    setMeter('lead',lead);setMeter('body',body);setMeter('evidence',evidence);setMeter('quote',quote);setMeter('close',close);setMeter('photo',photo);
+
+    let stage='빈 종이예요',sub='기본 사실부터 넣어주세요.';if(req>0)stage='뼈대를 만드는 중';if(lead>=80){stage='첫 문단 조립 가능';sub='기사 첫 문단에 필요한 핵심 재료가 거의 모였어요.'}if(lead>=80&&body>=50){stage='기사다운 모양이 보여요';sub='핵심 사실에 본문 재료가 붙기 시작했어요.'}if(lead===100&&body>=70&&(evidence>=50||quote>0||close>0||photo>0)){stage='살이 붙고 있어요';sub='수치·근거·인용·사진 중 추가 재료가 확보됐어요.'}if(req===100&&lead===100){stage='기사 재료 준비 완료';sub='기본 접수에 필요한 정보가 모두 준비됐어요.'}
+    document.getElementById('stageText').textContent=stage;document.getElementById('assemblyStageSub').textContent=sub;document.getElementById('stagePill').classList.toggle('ready',req===100&&lead===100);document.getElementById('submitSummary').textContent=req===100?'기본 접수 준비 완료 · 선택정보가 많을수록 기사 작성이 빨라집니다.':'기본 5개 영역을 채우면 제출 준비가 완료됩니다.';
+
+    const chips=[];if(types[0])chips.push(types[0]);if(val('officialName'))chips.push(val('officialName'));news.slice(0,3).forEach(n=>chips.push(n.replace(' 성과','')));if(val('participantCount'))chips.push(val('participantCount'));if(val('fundingAmount'))chips.push(val('fundingAmount'));const chipBox=document.getElementById('titleMaterials');chipBox.innerHTML=chips.length?chips.slice(0,6).map(x=>`<span class="material-chip">${escapeHtml(x)}</span>`).join(''):'<span class="material-chip empty-chip">아직 재료가 부족해요</span>';
+    setSkeleton('skWho',val('ourOrg'),'우리 학교 담당을 입력해 주세요');setSkeleton('skWhenWhere',[val('when'),val('where')].filter(Boolean).join(' · '),'일시와 장소가 들어옵니다');setSkeleton('skWhat',[val('officialName'),val('summary')].filter(Boolean).join(' — '),'공식 명칭과 있었던 일이 들어옵니다');setSkeleton('skResult',val('mainResult'),'실제로 나온 결과가 들어옵니다');
+
+    const readiness=[['행사·연구의 기본 개요',lead>=80],['구체적인 결과·성과',!!val('mainResult')],['수치·근거 자료',evidence>=50],['관계자 발언',quote>0],['향후 계획',close>0],['사진',photo>0]];document.getElementById('readinessList').innerHTML=readiness.map(([t,ok])=>`<div class="readiness-line ${ok?'ok':'warn'}"><span class="readiness-icon">${ok?'✓':'△'}</span><span>${t}${ok?' 확보':' 선택정보'}</span></div>`).join('');
+    let tip='공식 명칭과 핵심 내용을 먼저 적으면 기사 뼈대가 나타납니다.';if(lead>=80&&!val('mainResult'))tip='실제로 나온 결과를 적으면 첫 문단이 훨씬 선명해져요.';else if(lead>=80&&evidence<50)tip='참가 인원·사업비·선정 규모 같은 숫자가 있으면 기사 설득력이 올라가요.';else if(evidence>=50&&quote===0)tip='관계자 발언이 있다면 인용문까지 장착할 수 있어요. 없어도 제출은 가능합니다.';else if(req===100&&lead===100)tip='기본 재료는 충분해요. 이제 선택정보는 있는 것만 추가하면 됩니다.';document.getElementById('nextTip').textContent=tip;
   }
+  function setSkeleton(id,value,fallback){const el=document.getElementById(id);el.textContent=value||fallback;el.classList.toggle('missing',!value)}
 
-  function waitForTurnstileToken(timeoutMs=12000){
-    if(turnstileToken) return Promise.resolve(turnstileToken);
-    return new Promise((resolve,reject)=>{
-      const started = Date.now();
-      const timer = setInterval(()=>{
-        if(turnstileToken){ clearInterval(timer); resolve(turnstileToken); }
-        else if(Date.now()-started > timeoutMs){ clearInterval(timer); reject(new Error('보안 확인이 끝나지 않았어. 잠시 후 다시 시도해줘.')); }
-      },180);
-    });
-  }
+  form.addEventListener('input',updateAssembly);form.addEventListener('change',updateAssembly);
+  document.querySelectorAll('[data-article-target]').forEach(el=>{el.addEventListener('focusin',()=>{document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active'));document.querySelectorAll(`.skeleton-row[data-key="${el.dataset.articleTarget}"]`).forEach(x=>x.classList.add('active'))});el.addEventListener('focusout',()=>document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active')))});
+  const assemblyPanel=document.getElementById('assemblyPanel');document.getElementById('mobileAssemblyBtn').onclick=()=>assemblyPanel.classList.add('mobile-open');document.getElementById('assemblyClose').onclick=()=>assemblyPanel.classList.remove('mobile-open');
 
-  if(turnstileRetry){
-    turnstileRetry.addEventListener('click', ()=>{
-      turnstileRetry.style.display = 'none';
-      setSecurityStatus('보안 확인을 다시 시도하고 있어...', '');
-      resetTurnstile();
-    });
-  }
+  form.addEventListener('submit',async e=>{e.preventDefault();if(!validateForm())return;setSubmitting(true);overlay.classList.add('show');modal.innerHTML='<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p>';try{const payload={...formObject(),action:'submit',uploadKey:UPLOAD_KEY,turnstileToken,clientId:CLIENT_ID,formStartedAt:FORM_STARTED_AT,website:''};const res=await postApi(payload,90000);turnstileToken='';syncSubmitButton();if(!res.ok)throw new Error(res.message||'전송에 실패했어.');modal.innerHTML=`<div class="done-mark">✓</div><h3>접수가 완료됐어</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();uploaderPhotos=[];uploadBusy=false;UPLOAD_KEY=makeId('upl');loadUploader();renderTypeConditionals();renderNewsBlocks();renderQuote();document.getElementById('futureFields').classList.remove('active');document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''}}catch(err){overlay.classList.remove('show');resetTurnstile();showToast(String(err.message||err),'error')}finally{setSubmitting(false)}});
 
-  function syncSubmitButton(){
-    const pendingPhoto = uploadBusy || uploaderPhotos.some(x => x.status !== 'uploaded');
-    submitBtn.disabled = isSubmitting || pendingPhoto || !turnstileToken;
-  }
+  function postApi(payload,timeoutMs=60000){return new Promise((resolve,reject)=>{const requestId=makeId('req');payload.requestId=requestId;const iframe=document.createElement('iframe'),iframeName=`frame_${requestId}`;iframe.name=iframeName;iframe.hidden=true;document.body.appendChild(iframe);const carrier=document.createElement('form');carrier.method='POST';carrier.action=WEB_APP_URL;carrier.target=iframeName;carrier.enctype='multipart/form-data';carrier.style.display='none';const field=document.createElement('textarea');field.name='payload';field.value=JSON.stringify(payload);carrier.appendChild(field);document.body.appendChild(carrier);const timer=setTimeout(()=>{pendingRequests.delete(requestId);carrier.remove();iframe.remove();reject(new Error('서버 응답 시간이 너무 오래 걸렸어. 다시 시도해줘.'))},timeoutMs);pendingRequests.set(requestId,{resolve,reject,timer,iframe,carrier});carrier.submit();carrier.remove()})}
+  window.addEventListener('message',e=>{const data=e.data;if(!data||data.type!=='pr-api-result'||!data.requestId)return;const pending=pendingRequests.get(data.requestId);if(!pending)return;clearTimeout(pending.timer);pendingRequests.delete(data.requestId);pending.iframe.remove();pending.resolve(data)});
+  setTimeout(()=>{if(turnstileWidgetId===null&&(!securityStatus.textContent||securityStatus.textContent.includes('준비 중')))setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 새로고침하거나 네트워크를 확인해줘.','error')},10000);
 
-  function setSubmitting(value){ isSubmitting = !!value; syncSubmitButton(); }
-
-  function getOrCreateClientId(){
-    const key = 'erica_pr_client_id_v1';
-    try{
-      let id = localStorage.getItem(key);
-      if(id && /^[A-Za-z0-9_-]{16,80}$/.test(id)) return id;
-      id = (window.crypto && window.crypto.randomUUID) ? window.crypto.randomUUID() : `c_${Date.now()}_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;
-      localStorage.setItem(key,id); return id;
-    }catch(err){ return `c_${Date.now()}_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`; }
-  }
-
-  function makeId(prefix='r'){
-    const core = (window.crypto && window.crypto.randomUUID) ? window.crypto.randomUUID() : `${Date.now()}_${Math.random().toString(36).slice(2)}`;
-    return `${prefix}_${core.replace(/[^A-Za-z0-9_-]/g,'')}`;
-  }
-
-  document.querySelectorAll('input[name="types"]').forEach(cb => cb.addEventListener('change', renderConditionals));
-  function renderConditionals(){
-    document.querySelectorAll('.conditional').forEach(x=>{ x.classList.remove('active'); x.open=false; });
-    document.querySelectorAll('input[name="types"]:checked').forEach(cb=>{ if(cb.dataset.target) document.getElementById(cb.dataset.target)?.classList.add('active'); });
-  }
-
-  function showToast(msg,type=''){
-    const t=document.getElementById('toast'); t.textContent=msg; t.className=`toast show ${type}`;
-    clearTimeout(t._timer); t._timer=setTimeout(()=>t.className='toast',4800);
-  }
-
-  function escapeHtml(str=''){ return String(str).replace(/[&<>'"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':'&quot;'}[m])); }
-
-  function loadUploader(){
-    photoUploaderFrame.src = WEB_APP_URL + '?mode=uploader&v=22&uploadKey=' + encodeURIComponent(UPLOAD_KEY) + '&channel=' + encodeURIComponent(UPLOADER_CHANNEL);
-  }
-
-  window.addEventListener('message', e=>{
-    const data=e.data || {};
-    if(data.channel !== UPLOADER_CHANNEL) return;
-
-    if(data.type==='pr-uploader-ready') return;
-
-    if(data.type==='pr-uploader-state'){
-      uploaderPhotos=Array.isArray(data.photos)?data.photos:[];
-      uploadBusy=!!data.busy;
-      syncSubmitButton();
-      return;
-    }
-
-    if(data.type==='pr-uploader-height'){
-      const h=Math.max(280,Math.min(1100,Number(data.height)||330));
-      photoUploaderFrame.style.height=h+'px';
-      return;
-    }
-
-    if(data.type==='pr-uploader-toast'){
-      showToast(String(data.message||''),String(data.level||''));
-    }
-  });
-
-  function formObject(){
-    const fd=new FormData(form); const obj={};
-    for(const [k,v] of fd.entries()){ if(k==='types') continue; obj[k]=v; }
-    obj.types=[...document.querySelectorAll('input[name="types"]:checked')].map(x=>x.value);
-    ['confirmAccuracy','confirmSuperlative','confirmQuote','confirmPlan','confirmPhoto'].forEach(k=>obj[k]=!!form.elements[k]?.checked);
-    return obj;
-  }
-
-  function validateForm(){
-    if(!form.reportValidity()) return false;
-    const types=[...document.querySelectorAll('input[name="types"]:checked')];
-    if(types.length===0 && !form.elements.typeOther.value.trim()){ showToast('보도자료 유형을 하나 이상 선택해줘.','error'); return false; }
-    if(uploadBusy || uploaderPhotos.some(x=>x.status!=='uploaded')){ showToast('사진 Drive 임시 업로드가 모두 끝난 뒤 제출해줘.','error'); photoUploaderFrame.scrollIntoView({behavior:'smooth',block:'center'}); return false; }
-    if(uploaderPhotos.some(x=>!String(x.caption||'').trim())){ showToast('첨부한 사진마다 사진 설명을 적어줘.','error'); photoUploaderFrame.scrollIntoView({behavior:'smooth',block:'center'}); return false; }
-    if(!turnstileToken){ showToast('자동 제출 방지 확인이 끝난 뒤 제출해줘.','error'); return false; }
-    return true;
-  }
-
-  function updateProgress(){
-    const required=[...form.querySelectorAll('[required]')];
-    const uniqueRadioNames=[...new Set(required.filter(x=>x.type==='radio').map(x=>x.name))];
-    const nonRadio=required.filter(x=>x.type!=='radio');
-    const total=nonRadio.length+uniqueRadioNames.length;
-    const done=nonRadio.filter(el=>el.type==='checkbox'?el.checked:String(el.value||'').trim()).length+uniqueRadioNames.filter(name=>form.querySelector(`input[name="${name}"]:checked`)).length;
-    const pct=Math.min(100,Math.round(done/Math.max(1,total)*100));
-    document.getElementById('progressFill').style.width=pct+'%'; document.getElementById('progressTxt').textContent=`필수항목 ${pct}%`;
-  }
-  form.addEventListener('input',updateProgress); form.addEventListener('change',updateProgress); updateProgress();
-
-  form.addEventListener('submit', async e=>{
-    e.preventDefault(); if(!validateForm()) return;
-    setSubmitting(true); overlay.classList.add('show');
-    modal.innerHTML='<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p>';
-    try{
-      const payload={ ...formObject(), action:'submit', uploadKey:UPLOAD_KEY, turnstileToken, clientId:CLIENT_ID, formStartedAt:FORM_STARTED_AT, website:'' };
-      const res=await postApi(payload,90000);
-      turnstileToken=''; syncSubmitButton();
-      if(!res.ok) throw new Error(res.message||'전송에 실패했어.');
-      modal.innerHTML=`<div class="done-mark">✓</div><h3>접수가 완료됐어</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;
-      document.getElementById('doneBtn').onclick=()=>{
-        overlay.classList.remove('show'); form.reset(); uploaderPhotos=[]; uploadBusy=false; UPLOAD_KEY=makeId('upl'); loadUploader(); renderConditionals();
-        document.querySelectorAll('details.optional-section,details.inline-details,details.conditional').forEach(d=>d.open=false);
-        updateProgress(); resetTurnstile(); location.hash='';
-      };
-    }catch(err){
-      overlay.classList.remove('show'); resetTurnstile(); showToast(String(err.message||err),'error');
-    }finally{ setSubmitting(false); }
-  });
-
-  function postApi(payload, timeoutMs=60000){
-    return new Promise((resolve,reject)=>{
-      const requestId=makeId('req'); payload.requestId=requestId;
-      const iframe=document.createElement('iframe');
-      const iframeName=`frame_${requestId}`; iframe.name=iframeName; iframe.hidden=true; document.body.appendChild(iframe);
-      const carrier=document.createElement('form'); carrier.method='POST'; carrier.action=WEB_APP_URL; carrier.target=iframeName; carrier.enctype='multipart/form-data'; carrier.style.display='none';
-      const field=document.createElement('textarea'); field.name='payload'; field.value=JSON.stringify(payload); carrier.appendChild(field); document.body.appendChild(carrier);
-      const timer=setTimeout(()=>{ pendingRequests.delete(requestId); carrier.remove(); iframe.remove(); reject(new Error('서버 응답 시간이 너무 오래 걸렸어. 다시 시도해줘.')); },timeoutMs);
-      pendingRequests.set(requestId,{ resolve,reject,timer,iframe,carrier });
-      carrier.submit(); carrier.remove();
-    });
-  }
-
-  window.addEventListener('message',e=>{
-    const data=e.data;
-    if(!data || data.type!=='pr-api-result' || !data.requestId) return;
-    const pending=pendingRequests.get(data.requestId); if(!pending) return;
-    clearTimeout(pending.timer); pendingRequests.delete(data.requestId); pending.iframe.remove();
-    pending.resolve(data);
-  });
-
-  setTimeout(()=>{
-    if(turnstileWidgetId===null && (!securityStatus.textContent || securityStatus.textContent.includes('준비 중'))){
-      setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 광고 차단 확장프로그램을 확인하거나 새로고침해줘.','error');
-    }
-  },10000);
-
-  loadUploader();
-  syncSubmitButton();
+  renderTypeConditionals();renderNewsBlocks();renderQuote();updateTypeGuidance();loadUploader();updateAssembly();syncSubmitButton();
 </script>
-
 </body>
 </html>
