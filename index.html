@@ -69,7 +69,7 @@
     .mobile-assembly-btn{display:none;position:fixed;right:16px;bottom:16px;z-index:44;border:0;background:#075ea8;color:#fff;border-radius:999px;padding:12px 15px;font-size:12px;font-weight:900;box-shadow:0 10px 30px rgba(0,64,110,.28)}
     .assembly-close{display:none;border:0;background:rgba(255,255,255,.15);color:#fff;width:30px;height:30px;border-radius:9px;font-weight:900}
 
-    .uploader-frame-wrap{border:1px solid var(--line);border-radius:16px;background:#fbfdff;overflow:hidden}.uploader-frame{display:block;width:100%;height:330px;border:0;background:#fbfdff}.uploader-note{font-size:11px;color:#607180;background:#f4f8fb;border:1px solid #dce7ef;border-radius:10px;padding:10px 12px;margin-top:11px}.warning{font-size:11px;color:#9d5d12;background:#fff8ea;border:1px solid #f4deaf;border-radius:10px;padding:10px 12px;margin-top:10px}
+    .uploader-frame-wrap{border:1px solid var(--line);border-radius:16px;background:#fbfdff;overflow:hidden}.uploader-frame{display:block;width:100%;height:330px;border:0;background:#fbfdff}.uploader-note{font-size:11px;color:#607180;background:#f4f8fb;border:1px solid #dce7ef;border-radius:10px;padding:10px 12px;margin-top:11px}.warning{font-size:11px;color:#9d5d12;background:#fff8ea;border:1px solid #f4deaf;border-radius:10px;padding:10px 12px;margin-top:10px}.attachment-usage{display:flex;align-items:center;gap:10px;margin-top:11px;padding:10px 12px;border:1px solid #dce7ef;border-radius:10px;background:#fff;font-size:11px;color:#607180}.attachment-usage strong{color:var(--brand-strong)}.attachment-usage-bar{flex:1;height:6px;background:#e8eef2;border-radius:999px;overflow:hidden}.attachment-usage-fill{height:100%;width:0;background:#78aacf;transition:.2s}.attachment-usage.over .attachment-usage-fill{background:var(--danger)}.preview-mode-note{padding:16px;border:1px dashed #b8cad8;border-radius:12px;color:#73818c;background:#f8fbfd;text-align:center;font-size:12px;font-weight:750}
     .checks{display:grid;gap:9px}.inline-check{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#455462}input[type="checkbox"],input[type="radio"]{accent-color:var(--brand);width:17px;height:17px;margin:2px 0 0}
     .security-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 17px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.security-copy strong{display:block;font-size:13px;margin-bottom:3px}.security-copy span{font-size:11px;color:var(--muted)}.security-status{font-size:11px;color:#7b8791;margin-top:5px}.security-status.ok{color:var(--success)}.security-status.error{color:var(--danger)}
     .submit-card{background:#0a477a;color:#fff;border-radius:var(--radius);padding:23px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 18px 50px rgba(5,62,108,.18)}.submit-card h2{margin:0 0 4px;color:#fff}.submit-card p{margin:0;color:#cfe3f3;font-size:12px}.submit-btn{border:0;border-radius:13px;background:#fff;color:#0a477a;padding:13px 21px;font-weight:900;min-width:136px}.submit-btn:disabled{opacity:.55;cursor:not-allowed}.privacy{font-size:11px;color:#7a8791;text-align:center;margin-top:2px}
@@ -81,7 +81,7 @@
     @media(max-width:1030px){.workspace{grid-template-columns:1fr}.assembly{display:none;position:fixed;z-index:55;inset:64px 12px 12px;max-height:none}.assembly.mobile-open{display:block}.assembly-close{display:grid;place-items:center;position:absolute;right:14px;top:14px}.mobile-assembly-btn{display:block}}
     @media(max-width:720px){.wrap,.status-bar{width:min(100% - 22px,1260px)}.hero{padding-top:32px}.hero p{font-size:14px}.section{padding:19px}.grid{grid-template-columns:1fr}.span2{grid-column:auto}.choice-grid{grid-template-columns:1fr}.choice span{min-height:66px}.type-grid{grid-template-columns:repeat(2,1fr)}.chip-grid{grid-template-columns:1fr}.submit-card{align-items:stretch;flex-direction:column}.submit-btn{width:100%}.status-note{display:none}}
   </style>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnload&render=explicit" defer></script>
+  
 </head>
 <body>
   <header class="hero">
@@ -264,12 +264,22 @@
         </div>
       </details>
 
+      <details class="section optional-section" id="referenceFileSection">
+        <summary><div class="section-summary-copy"><h2>참고자료 파일 첨부 <span class="optional-pill">선택</span></h2><p class="desc">공문·계획서·기존 보도자료·논문·PPT 등 이미 정리된 파일이 있다면 그대로 첨부해 주세요.</p></div></summary>
+        <div class="section-content">
+          <div class="uploader-frame-wrap"><iframe id="referenceUploaderFrame" class="uploader-frame" title="참고자료 파일 업로더" src="about:blank" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+          <div class="uploader-note">참고자료도 사진과 같은 임시 Drive 폴더에 먼저 저장되고, 최종 제출 때 DOCX와 함께 담당자 메일에 첨부됩니다.</div>
+          <div class="warning"><strong>허용 파일</strong> · PDF / DOCX / XLSX / PPTX / HWP / HWPX · 1개 최대 10MB · 최대 5개. 실행파일·매크로 문서·압축파일은 받지 않습니다.</div>
+          <div class="attachment-usage" id="attachmentUsage"><strong>전체 임시첨부</strong><div class="attachment-usage-bar"><div class="attachment-usage-fill" id="attachmentUsageFill"></div></div><span id="attachmentUsageText">0 MB / 19 MB</span></div>
+        </div>
+      </details>
+
       <details class="section optional-section" id="photoSection">
         <summary><div class="section-summary-copy"><h2>보도자료용 사진 <span class="optional-pill">선택</span></h2><p class="desc">사진은 원본 화질 그대로 임시 Drive에 먼저 업로드됩니다.</p></div></summary>
         <div class="section-content">
           <div class="uploader-frame-wrap"><iframe id="photoUploaderFrame" class="uploader-frame" title="보도자료 사진 업로더" src="about:blank" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
           <div class="uploader-note">사진 업로더가 Google Drive로 직접 전송합니다. 최종 제출 때는 사진 자체를 다시 업로드하지 않습니다.</div>
-          <div class="warning"><strong>원본 화질 유지</strong> · JPG/JPEG/PNG · 1장 최대 5MB · 최대 5장 · 전체 최대 18MB. 메일 발송 성공 후 임시폴더는 휴지통으로 이동합니다.</div>
+          <div class="warning"><strong>원본 화질 유지</strong> · JPG/JPEG/PNG · 1장 최대 5MB · 최대 5장 · 사진만 최대 18MB. 참고자료까지 포함한 전체 임시첨부는 19MB 이하로 맞춰주세요.</div>
         </div>
       </details>
 
@@ -286,7 +296,7 @@
       <label class="hp-trap" aria-hidden="true">홈페이지<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       <div class="security-box"><div class="security-copy"><strong>자동 제출 방지 확인</strong><span>정상 사용자는 대부분 별도 동작 없이 자동으로 확인됩니다.</span><div id="securityStatus" class="security-status">보안 확인 준비 중...</div><button type="button" id="turnstileRetry" style="display:none;margin-top:7px;border:1px solid #ccd9e2;background:#fff;border-radius:9px;padding:6px 9px;font-size:11px;font-weight:800">보안 확인 다시 시도</button></div><div id="turnstileWidget"></div></div>
       <div class="submit-card"><div><h2>기사 재료 제출하기</h2><p id="submitSummary">기본정보를 채우면 제출할 수 있습니다.</p></div><button type="submit" class="submit-btn" id="submitBtn" disabled>제출하기</button></div>
-      <div class="privacy">※ 입력 내용은 GitHub 사이트에 저장하지 않습니다. 사진은 전송을 위해 Google Drive 임시폴더에 보관되며, 메일 발송 성공 후 자동으로 휴지통으로 이동합니다.</div>
+      <div class="privacy">※ 입력 내용은 GitHub 사이트에 저장하지 않습니다. 사진·참고자료 파일은 전송을 위해 Google Drive 임시폴더에 보관되며, 메일 발송 성공 후 자동으로 휴지통으로 이동합니다.</div>
     </form>
 
     <aside class="assembly" id="assemblyPanel" aria-label="기사 조립 현황">
@@ -319,22 +329,27 @@
   </div></main>
 
   <button type="button" class="mobile-assembly-btn" id="mobileAssemblyBtn">📰 기사 뼈대 보기</button>
-  <footer>Hanyang University ERICA · External Relations · v3.2</footer>
+  <footer>Hanyang University ERICA · External Relations · v3.3</footer>
   <div class="toast" id="toast"></div>
-  <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p></div></div>
+  <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진과 참고자료는 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p></div></div>
 
 <script>
   const WEB_APP_URL='https://script.google.com/macros/s/AKfycbw_k2xT--loMBrhgXyH5lnuD7SOnsPVmUAK8gL0Co4oPP63uq6NXLyQE_HmPJeYJLs/exec';
+  const PRODUCTION_HOST='erakeun.github.io';
+  const IS_PRODUCTION=location.hostname===PRODUCTION_HOST;
   const TURNSTILE_SITE_KEY='0x4AAAAAAEclMaZaO8EkBTix';
   const TURNSTILE_ACTION='pr_submit';
   const FORM_STARTED_AT=Date.now();
   const CLIENT_ID=getOrCreateClientId();
-  const UPLOADER_CHANNEL='pr_uploader_v31_'+makeId('ch');
+  const UPLOADER_CHANNEL='pr_uploader_v33_'+makeId('ch');
+  const REFERENCE_CHANNEL='pr_reference_v33_'+makeId('ch');
   let UPLOAD_KEY=makeId('upl');
-  let uploaderPhotos=[],uploadBusy=false,turnstileToken='',turnstileWidgetId=null,isSubmitting=false;
+  let uploaderPhotos=[],uploaderReferences=[],uploadBusy=false,referenceUploadBusy=false,turnstileToken='',turnstileWidgetId=null,isSubmitting=false;
   const pendingRequests=new Map();
   const form=document.getElementById('requestForm');
   const photoUploaderFrame=document.getElementById('photoUploaderFrame');
+  const referenceUploaderFrame=document.getElementById('referenceUploaderFrame');
+  const attachmentUsage=document.getElementById('attachmentUsage'),attachmentUsageFill=document.getElementById('attachmentUsageFill'),attachmentUsageText=document.getElementById('attachmentUsageText');
   const overlay=document.getElementById('overlay'),modal=document.getElementById('modal'),submitBtn=document.getElementById('submitBtn');
   const securityStatus=document.getElementById('securityStatus'),turnstileRetry=document.getElementById('turnstileRetry');
 
@@ -348,7 +363,7 @@
   function setSecurityStatus(message,type=''){securityStatus.textContent=message;securityStatus.className=`security-status ${type}`}
   function resetTurnstile(){turnstileToken='';syncSubmitButton();try{if(window.turnstile&&turnstileWidgetId!==null)turnstile.reset(turnstileWidgetId)}catch(err){}}
   turnstileRetry.addEventListener('click',()=>{turnstileRetry.style.display='none';setSecurityStatus('보안 확인을 다시 시도하고 있어...','');resetTurnstile()});
-  function syncSubmitButton(){const pendingPhoto=uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded');submitBtn.disabled=isSubmitting||pendingPhoto||!turnstileToken}
+  function syncSubmitButton(){const pendingPhoto=uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded');const pendingRef=referenceUploadBusy||uploaderReferences.some(x=>x.status!=='uploaded');submitBtn.disabled=isSubmitting||pendingPhoto||pendingRef||!turnstileToken||!IS_PRODUCTION}
   function setSubmitting(value){isSubmitting=!!value;syncSubmitButton()}
   function getOrCreateClientId(){const key='erica_pr_client_id_v1';try{let id=localStorage.getItem(key);if(id&&/^[A-Za-z0-9_-]{16,80}$/.test(id))return id;id=(crypto&&crypto.randomUUID)?crypto.randomUUID():`c_${Date.now()}_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;localStorage.setItem(key,id);return id}catch(err){return `c_${Date.now()}_${Math.random().toString(36).slice(2)}`}}
   function makeId(prefix='r'){const core=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():`${Date.now()}_${Math.random().toString(36).slice(2)}`;return `${prefix}_${core.replace(/[^A-Za-z0-9_-]/g,'')}`}
@@ -379,14 +394,23 @@
   document.querySelectorAll('input[name="futureStatus"]').forEach(r=>r.addEventListener('change',()=>{document.getElementById('futureFields').classList.toggle('active',['confirmed','reviewing'].includes(r.value)&&r.checked);updateAssembly()}));
   document.querySelectorAll('input[name="termStatus"]').forEach(r=>r.addEventListener('change',()=>{document.getElementById('termFields').classList.toggle('active',r.value==='yes'&&r.checked);updateAssembly()}));
 
-  function loadUploader(){photoUploaderFrame.src=WEB_APP_URL+'?mode=uploader&v=31&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(UPLOADER_CHANNEL)}
-  window.addEventListener('message',e=>{const data=e.data||{};if(data.channel!==UPLOADER_CHANNEL)return;if(data.type==='pr-uploader-state'){uploaderPhotos=Array.isArray(data.photos)?data.photos:[];uploadBusy=!!data.busy;syncSubmitButton();updateAssembly()}if(data.type==='pr-uploader-height'){photoUploaderFrame.style.height=Math.max(280,Math.min(1100,Number(data.height)||330))+'px'}if(data.type==='pr-uploader-toast')showToast(String(data.message||''),String(data.level||''))});
+  function previewFrameHtml(label){return '<div style="font-family:Pretendard,Arial,sans-serif;margin:18px;padding:16px;border:1px dashed #b8cad8;border-radius:12px;color:#73818c;background:#f8fbfd;text-align:center;font-size:12px;font-weight:750">'+label+'<br><small>실제 GitHub 주소에서 업로드 기능이 활성화됩니다.</small></div>'}
+  function loadUploaders(){
+    if(!IS_PRODUCTION){photoUploaderFrame.srcdoc=previewFrameHtml('미리보기 모드 · 사진 업로드 비활성화');referenceUploaderFrame.srcdoc=previewFrameHtml('미리보기 모드 · 참고자료 업로드 비활성화');return;}
+    photoUploaderFrame.src=WEB_APP_URL+'?mode=uploader&v=33&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(UPLOADER_CHANNEL);
+    referenceUploaderFrame.src=WEB_APP_URL+'?mode=referenceUploader&v=33&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(REFERENCE_CHANNEL);
+  }
+  function updateAttachmentUsage(){const photoBytes=uploaderPhotos.reduce((s,x)=>s+(Number(x.size)||0),0);const refBytes=uploaderReferences.reduce((s,x)=>s+(Number(x.size)||0),0);const total=photoBytes+refBytes,max=19*1024*1024,pct=Math.min(100,Math.round(total/max*100));if(attachmentUsageFill)attachmentUsageFill.style.width=pct+'%';if(attachmentUsageText)attachmentUsageText.textContent=(total/1024/1024).toFixed(2)+' MB / 19 MB';if(attachmentUsage)attachmentUsage.classList.toggle('over',total>max)}
+  window.addEventListener('message',e=>{const data=e.data||{};
+    if(data.channel===UPLOADER_CHANNEL){if(data.type==='pr-uploader-state'){uploaderPhotos=Array.isArray(data.photos)?data.photos:[];uploadBusy=!!data.busy;updateAttachmentUsage();syncSubmitButton();updateAssembly()}if(data.type==='pr-uploader-height'){photoUploaderFrame.style.height=Math.max(280,Math.min(1100,Number(data.height)||330))+'px'}if(data.type==='pr-uploader-toast')showToast(String(data.message||''),String(data.level||''));}
+    if(data.channel===REFERENCE_CHANNEL){if(data.type==='pr-reference-uploader-state'){uploaderReferences=Array.isArray(data.files)?data.files:[];referenceUploadBusy=!!data.busy;updateAttachmentUsage();syncSubmitButton();updateAssembly()}if(data.type==='pr-reference-uploader-height'){referenceUploaderFrame.style.height=Math.max(260,Math.min(1000,Number(data.height)||300))+'px'}if(data.type==='pr-uploader-toast')showToast(String(data.message||''),String(data.level||''));}
+  });
 
   function composeWho(){return [val('ourOrg')&&`우리 학교: ${val('ourOrg')}`,val('externalOrgs')&&`외부 기관: ${val('externalOrgs')}`,val('keyPeople')&&`주요 인물: ${val('keyPeople')}`].filter(Boolean).join('\n')}
   function quoteTypeFromMode(){const mode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';return mode==='actual'?'실제 행사·인터뷰에서 한 발언':mode==='approved'?'보도자료용으로 작성·승인한 문안':mode==='draft'?'초안 작성 요청':''}
-  function formObject(){const fd=new FormData(form),obj={};for(const[k,v]of fd.entries()){if(['types','newsPoints','sourceTypes','quoteMode'].includes(k))continue;obj[k]=v}obj.types=checkedValues('types');obj.newsPoints=checkedValues('newsPoints');obj.sourceTypes=checkedValues('sourceTypes');obj.quoteMode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';obj.quoteType=quoteTypeFromMode();if(obj.quoteMode==='draft'){obj.quotePerson=val('quotePersonDraft');obj.quote='';}obj.who=composeWho();obj.what=val('detailDescription');obj.why=val('background');obj.priority1=val('mustInclude');obj.difference=val('newsMeaning');obj.sources=[obj.sourceTypes.join(', '),val('sourceEvidence'),val('links')].filter(Boolean).join('\n');obj.confirmAccuracy=!!form.elements.confirmAccuracy?.checked;obj.confirmDisclosure=!!form.elements.confirmDisclosure?.checked;return obj}
+  function formObject(){const fd=new FormData(form),obj={};for(const[k,v]of fd.entries()){if(['types','newsPoints','sourceTypes','quoteMode'].includes(k))continue;obj[k]=v}obj.types=checkedValues('types');obj.newsPoints=checkedValues('newsPoints');obj.sourceTypes=checkedValues('sourceTypes');obj.quoteMode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';obj.quoteType=quoteTypeFromMode();if(obj.quoteMode==='draft'){obj.quotePerson=val('quotePersonDraft');obj.quote='';}obj.who=composeWho();obj.what=val('detailDescription');obj.why=val('background');obj.priority1=val('mustInclude');obj.difference=val('newsMeaning');obj.sources=[obj.sourceTypes.join(', '),val('sourceEvidence'),val('links')].filter(Boolean).join('\n');obj.referenceFiles=uploaderReferences.filter(x=>x.status==='uploaded').map(x=>({fileId:x.fileId,name:x.name,type:x.type,size:x.size}));obj.confirmAccuracy=!!form.elements.confirmAccuracy?.checked;obj.confirmDisclosure=!!form.elements.confirmDisclosure?.checked;return obj}
 
-  function validateForm(){if(!form.reportValidity())return false;if(checkedValues('types').length===0&&!val('typeOther')){showToast('보도자료 유형을 하나 이상 선택해줘.','error');return false}if(uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded')){showToast('사진 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(uploaderPhotos.some(x=>!String(x.caption||'').trim())){showToast('첨부한 사진마다 사진 설명을 적어줘.','error');return false}if(!turnstileToken){showToast('자동 제출 방지 확인이 끝난 뒤 제출해줘.','error');return false}return true}
+  function validateForm(){if(!form.reportValidity())return false;if(checkedValues('types').length===0&&!val('typeOther')){showToast('보도자료 유형을 하나 이상 선택해줘.','error');return false}if(uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded')){showToast('사진 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(referenceUploadBusy||uploaderReferences.some(x=>x.status!=='uploaded')){showToast('참고자료 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(uploaderPhotos.some(x=>!String(x.caption||'').trim())){showToast('첨부한 사진마다 사진 설명을 적어줘.','error');return false}const attachmentBytes=[...uploaderPhotos,...uploaderReferences].reduce((s,x)=>s+(Number(x.size)||0),0);if(attachmentBytes>19*1024*1024){showToast('사진과 참고자료를 합쳐 19MB 이하로 맞춰줘.','error');return false}if(!turnstileToken){showToast('자동 제출 방지 확인이 끝난 뒤 제출해줘.','error');return false}return true}
 
   function requiredProgress(){const core=['distribution','officialName','when','ourOrg','summary','mainResult','contactName','contactDept','contactEmail'];let done=0;core.forEach(name=>{if(name==='distribution'){if(form.querySelector('input[name="distribution"]:checked'))done++;}else if(val(name))done++;});if(checkedValues('types').length||val('typeOther'))done++;return Math.min(100,Math.round(done/(core.length+1)*100))}
   function score(items){const filled=items.filter(Boolean).length;return Math.round(filled/Math.max(1,items.length)*100)}
@@ -519,7 +543,7 @@
     const types=checkedValues('types'),news=checkedValues('newsPoints');const quoteMode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';const futureStatus=form.querySelector('input[name="futureStatus"]:checked')?.value||'';
     const lead=score([val('officialName'),val('when'),val('ourOrg'),val('summary'),val('mainResult')]);
     const body=score([val('mainResult'),val('detailDescription')||nonEmptySpecific(),val('background')||val('newsMeaning'),news.length>0]);
-    const evidence=score([news.length>0,val('participantCount')||val('fundingAmount')||val('performanceMetric')||val('numbersExtra'),val('sourceEvidence')||val('links')]);
+    const evidence=score([news.length>0,val('participantCount')||val('fundingAmount')||val('performanceMetric')||val('numbersExtra'),val('sourceEvidence')||val('links')||uploaderReferences.length]);
     let quote=0;if(quoteMode==='none')quote=100;else if(quoteMode==='draft')quote=score([val('quotePersonDraft'),val('quoteIntent')]);else if(['actual','approved'].includes(quoteMode))quote=score([val('quotePerson'),val('quote')]);
     let close=0;if(futureStatus==='none')close=100;else if(['confirmed','reviewing'].includes(futureStatus))close=val('future')?100:50;
     const photo=uploaderPhotos.length?100:0;
@@ -532,7 +556,7 @@
     const chips=[];if(types[0])chips.push(types[0]);if(val('officialName'))chips.push(val('officialName'));news.slice(0,3).forEach(n=>chips.push(n.replace(' 성과','')));if(val('participantCount'))chips.push(val('participantCount'));if(val('fundingAmount'))chips.push(val('fundingAmount'));const chipBox=document.getElementById('titleMaterials');chipBox.innerHTML=chips.length?chips.slice(0,6).map(x=>`<span class="material-chip">${escapeHtml(x)}</span>`).join(''):'<span class="material-chip empty-chip">아직 재료가 부족해요</span>';
     setSkeleton('skWho',val('ourOrg'),'우리 학교 담당을 입력해 주세요');setSkeleton('skWhenWhere',[val('when'),val('where')].filter(Boolean).join(' · '),'일시와 장소가 들어옵니다');setSkeleton('skWhat',[val('officialName'),val('summary')].filter(Boolean).join(' — '),'공식 명칭과 있었던 일이 들어옵니다');setSkeleton('skResult',val('mainResult'),'이미 확정되거나 완료된 결과가 들어옵니다');
 
-    const readiness=[['행사·연구의 기본 개요',lead>=80],['확정·완료된 결과',!!val('mainResult')],['수치·근거 자료',evidence>=50],['관계자 발언',quote>0],['향후 계획',close>0],['사진',photo>0]];document.getElementById('readinessList').innerHTML=readiness.map(([t,ok])=>`<div class="readiness-line ${ok?'ok':'warn'}"><span class="readiness-icon">${ok?'✓':'△'}</span><span>${t}${ok?' 확보':' 선택정보'}</span></div>`).join('');
+    const readiness=[['행사·연구의 기본 개요',lead>=80],['확정·완료된 결과',!!val('mainResult')],['수치·근거 자료',evidence>=50],['관계자 발언',quote>0],['향후 계획',close>0],['참고자료',uploaderReferences.length>0],['사진',photo>0]];document.getElementById('readinessList').innerHTML=readiness.map(([t,ok])=>`<div class="readiness-line ${ok?'ok':'warn'}"><span class="readiness-icon">${ok?'✓':'△'}</span><span>${t}${ok?' 확보':' 선택정보'}</span></div>`).join('');
     let tip='공식 명칭과 핵심 내용을 먼저 적으면 기사 뼈대가 나타납니다.';if(lead>=80&&!val('mainResult'))tip='이미 확정되거나 완료된 결과를 적으면 첫 문단이 훨씬 선명해져요.';else if(lead>=80&&evidence<50)tip='참가 인원·사업비·선정 규모 같은 숫자가 있으면 기사 설득력이 올라가요.';else if(evidence>=50&&quote===0)tip='관계자 발언이 있다면 인용문까지 장착할 수 있어요. 없어도 제출은 가능합니다.';else if(req===100&&lead===100)tip='기본 재료는 충분해요. 이제 선택정보는 있는 것만 추가하면 됩니다.';document.getElementById('nextTip').textContent=tip;
   }
   function setSkeleton(id,value,fallback){const el=document.getElementById(id);el.textContent=value||fallback;el.classList.toggle('missing',!value)}
@@ -541,13 +565,14 @@
   document.querySelectorAll('[data-article-target]').forEach(el=>{el.addEventListener('focusin',()=>{document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active'));document.querySelectorAll(`.skeleton-row[data-key="${el.dataset.articleTarget}"]`).forEach(x=>x.classList.add('active'))});el.addEventListener('focusout',()=>document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active')))});
   const assemblyPanel=document.getElementById('assemblyPanel');document.getElementById('mobileAssemblyBtn').onclick=()=>assemblyPanel.classList.add('mobile-open');document.getElementById('assemblyClose').onclick=()=>assemblyPanel.classList.remove('mobile-open');
 
-  form.addEventListener('submit',async e=>{e.preventDefault();if(!validateForm())return;setSubmitting(true);overlay.classList.add('show');modal.innerHTML='<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진은 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p>';try{const payload={...formObject(),action:'submit',uploadKey:UPLOAD_KEY,turnstileToken,clientId:CLIENT_ID,formStartedAt:FORM_STARTED_AT,website:''};const res=await postApi(payload,90000);turnstileToken='';syncSubmitButton();if(!res.ok)throw new Error(res.message||'전송에 실패했어.');modal.innerHTML=`<div class="done-mark">✓</div><h3>접수가 완료됐어</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();uploaderPhotos=[];uploadBusy=false;UPLOAD_KEY=makeId('upl');loadUploader();renderTypeConditionals();renderNewsBlocks();renderQuote();document.getElementById('futureFields').classList.remove('active');document.getElementById('termFields').classList.remove('active');document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''}}catch(err){overlay.classList.remove('show');resetTurnstile();showToast(String(err.message||err),'error')}finally{setSubmitting(false)}});
+  form.addEventListener('submit',async e=>{e.preventDefault();if(!validateForm())return;setSubmitting(true);overlay.classList.add('show');modal.innerHTML='<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진과 참고자료는 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p>';try{const payload={...formObject(),action:'submit',uploadKey:UPLOAD_KEY,turnstileToken,clientId:CLIENT_ID,formStartedAt:FORM_STARTED_AT,website:''};const res=await postApi(payload,90000);turnstileToken='';syncSubmitButton();if(!res.ok)throw new Error(res.message||'전송에 실패했어.');modal.innerHTML=`<div class="done-mark">✓</div><h3>접수가 완료됐어</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();uploaderPhotos=[];uploaderReferences=[];uploadBusy=false;referenceUploadBusy=false;UPLOAD_KEY=makeId('upl');loadUploaders();updateAttachmentUsage();renderTypeConditionals();renderNewsBlocks();renderQuote();document.getElementById('futureFields').classList.remove('active');document.getElementById('termFields').classList.remove('active');document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''}}catch(err){overlay.classList.remove('show');resetTurnstile();showToast(String(err.message||err),'error')}finally{setSubmitting(false)}});
 
   function postApi(payload,timeoutMs=60000){return new Promise((resolve,reject)=>{const requestId=makeId('req');payload.requestId=requestId;const iframe=document.createElement('iframe'),iframeName=`frame_${requestId}`;iframe.name=iframeName;iframe.hidden=true;document.body.appendChild(iframe);const carrier=document.createElement('form');carrier.method='POST';carrier.action=WEB_APP_URL;carrier.target=iframeName;carrier.enctype='multipart/form-data';carrier.style.display='none';const field=document.createElement('textarea');field.name='payload';field.value=JSON.stringify(payload);carrier.appendChild(field);document.body.appendChild(carrier);const timer=setTimeout(()=>{pendingRequests.delete(requestId);carrier.remove();iframe.remove();reject(new Error('서버 응답 시간이 너무 오래 걸렸어. 다시 시도해줘.'))},timeoutMs);pendingRequests.set(requestId,{resolve,reject,timer,iframe,carrier});carrier.submit();carrier.remove()})}
   window.addEventListener('message',e=>{const data=e.data;if(!data||data.type!=='pr-api-result'||!data.requestId)return;const pending=pendingRequests.get(data.requestId);if(!pending)return;clearTimeout(pending.timer);pendingRequests.delete(data.requestId);pending.iframe.remove();pending.resolve(data)});
-  setTimeout(()=>{if(turnstileWidgetId===null&&(!securityStatus.textContent||securityStatus.textContent.includes('준비 중')))setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 새로고침하거나 네트워크를 확인해줘.','error')},10000);
+  function loadTurnstileScript(){if(!IS_PRODUCTION){setSecurityStatus('미리보기 모드 · 실제 GitHub 주소에서 보안 확인이 활성화됩니다.','');turnstileRetry.style.display='none';syncSubmitButton();return;}const s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnload&render=explicit';s.defer=true;s.onerror=()=>setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 네트워크를 확인해줘.','error');document.head.appendChild(s)}
+  setTimeout(()=>{if(IS_PRODUCTION&&turnstileWidgetId===null&&(!securityStatus.textContent||securityStatus.textContent.includes('준비 중')))setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 새로고침하거나 네트워크를 확인해줘.','error')},10000);
 
-  renderTypeConditionals();renderNewsBlocks();renderQuote();updateTypeGuidance();loadUploader();updateAssembly();syncSubmitButton();
+  renderTypeConditionals();renderNewsBlocks();renderQuote();updateTypeGuidance();loadUploaders();updateAttachmentUsage();updateAssembly();syncSubmitButton();loadTurnstileScript();
 </script>
 </body>
 </html>
