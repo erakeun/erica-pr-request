@@ -72,7 +72,7 @@
     .uploader-frame-wrap{border:1px solid var(--line);border-radius:16px;background:#fbfdff;overflow:hidden}.uploader-frame{display:block;width:100%;height:330px;border:0;background:#fbfdff}.uploader-note{font-size:11px;color:#607180;background:#f4f8fb;border:1px solid #dce7ef;border-radius:10px;padding:10px 12px;margin-top:11px}.warning{font-size:11px;color:#9d5d12;background:#fff8ea;border:1px solid #f4deaf;border-radius:10px;padding:10px 12px;margin-top:10px}.attachment-usage{display:flex;align-items:center;gap:10px;margin-top:11px;padding:10px 12px;border:1px solid #dce7ef;border-radius:10px;background:#fff;font-size:11px;color:#607180}.attachment-usage strong{color:var(--brand-strong)}.attachment-usage-bar{flex:1;height:6px;background:#e8eef2;border-radius:999px;overflow:hidden}.attachment-usage-fill{height:100%;width:0;background:#78aacf;transition:.2s}.attachment-usage.over .attachment-usage-fill{background:var(--danger)}.preview-mode-note{padding:16px;border:1px dashed #b8cad8;border-radius:12px;color:#73818c;background:#f8fbfd;text-align:center;font-size:12px;font-weight:750}
     .checks{display:grid;gap:9px}.inline-check{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#455462}input[type="checkbox"],input[type="radio"]{accent-color:var(--brand);width:17px;height:17px;margin:2px 0 0}
     .security-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 17px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}.security-copy strong{display:block;font-size:13px;margin-bottom:3px}.security-copy span{font-size:11px;color:var(--muted)}.security-status{font-size:11px;color:#7b8791;margin-top:5px}.security-status.ok{color:var(--success)}.security-status.error{color:var(--danger)}
-    .submit-card{background:#0a477a;color:#fff;border-radius:var(--radius);padding:23px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 18px 50px rgba(5,62,108,.18)}.submit-card h2{margin:0 0 4px;color:#fff}.submit-card p{margin:0;color:#cfe3f3;font-size:12px}.submit-btn{border:0;border-radius:13px;background:#fff;color:#0a477a;padding:13px 21px;font-weight:900;min-width:136px}.submit-btn:disabled{opacity:.55;cursor:not-allowed}.privacy{font-size:11px;color:#7a8791;text-align:center;margin-top:2px}
+    .submit-card{background:#0a477a;color:#fff;border-radius:var(--radius);padding:23px;display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 18px 50px rgba(5,62,108,.18)}.submit-card h2{margin:0 0 4px;color:#fff}.submit-card p{margin:0;color:#cfe3f3;font-size:12px}.submit-btn{border:0;border-radius:13px;background:#fff;color:#0a477a;padding:13px 21px;font-weight:900;min-width:136px}.submit-btn:disabled{opacity:.55;cursor:not-allowed}.submit-btn.sending{background:#dbeaf5;color:#0a477a}.submit-btn.done{background:#e5f5ec;color:#14724a}.privacy{font-size:11px;color:#7a8791;text-align:center;margin-top:2px}
     .hp-trap{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
     .toast{position:fixed;right:20px;bottom:20px;z-index:60;max-width:390px;padding:14px 16px;border-radius:13px;background:#17212b;color:#fff;box-shadow:0 16px 50px rgba(0,0,0,.22);display:none;font-size:13px}.toast.show{display:block}.toast.success{background:#156c48}.toast.error{background:#a52f2f}
     .overlay{position:fixed;inset:0;background:rgba(10,25,38,.5);display:none;place-items:center;z-index:70;padding:20px}.overlay.show{display:grid}.modal{width:min(500px,100%);background:#fff;border-radius:20px;padding:27px;text-align:center;box-shadow:0 28px 90px rgba(0,0,0,.22)}.spinner{width:42px;height:42px;border:4px solid #dfe9f0;border-top-color:var(--brand);border-radius:50%;margin:0 auto 16px;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.modal h3{margin:0 0 7px;font-size:20px}.modal p{margin:0;color:var(--muted);font-size:13px}.done-mark{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#e8f7ef;color:var(--success);font-size:27px;font-weight:900;margin:0 auto 14px}.modal-btn{margin-top:18px;border:0;background:var(--brand);color:#fff;border-radius:11px;padding:11px 16px;font-weight:900}
@@ -329,7 +329,7 @@
   </div></main>
 
   <button type="button" class="mobile-assembly-btn" id="mobileAssemblyBtn">📰 기사 뼈대 보기</button>
-  <footer>Hanyang University ERICA · External Relations · v3.3</footer>
+  <footer>Hanyang University ERICA · External Relations · v3.4</footer>
   <div class="toast" id="toast"></div>
   <div class="overlay" id="overlay"><div class="modal" id="modal"><div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진과 참고자료는 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p></div></div>
 
@@ -341,9 +341,13 @@
   const TURNSTILE_ACTION='pr_submit';
   const FORM_STARTED_AT=Date.now();
   const CLIENT_ID=getOrCreateClientId();
-  const UPLOADER_CHANNEL='pr_uploader_v33_'+makeId('ch');
-  const REFERENCE_CHANNEL='pr_reference_v33_'+makeId('ch');
+  const UPLOADER_CHANNEL='pr_uploader_v34_'+makeId('ch');
+  const REFERENCE_CHANNEL='pr_reference_v34_'+makeId('ch');
+  const SUBMISSION_KEY_STORAGE='erica_pr_submission_key_v34';
+  const SUBMISSION_PENDING_STORAGE='erica_pr_submission_pending_v34';
   let UPLOAD_KEY=makeId('upl');
+  let SUBMISSION_KEY=getOrCreateSubmissionKey();
+  let submissionLocked=getSubmissionPendingFlag();
   let uploaderPhotos=[],uploaderReferences=[],uploadBusy=false,referenceUploadBusy=false,turnstileToken='',turnstileWidgetId=null,isSubmitting=false;
   const pendingRequests=new Map();
   const form=document.getElementById('requestForm');
@@ -363,8 +367,28 @@
   function setSecurityStatus(message,type=''){securityStatus.textContent=message;securityStatus.className=`security-status ${type}`}
   function resetTurnstile(){turnstileToken='';syncSubmitButton();try{if(window.turnstile&&turnstileWidgetId!==null)turnstile.reset(turnstileWidgetId)}catch(err){}}
   turnstileRetry.addEventListener('click',()=>{turnstileRetry.style.display='none';setSecurityStatus('보안 확인을 다시 시도하고 있어...','');resetTurnstile()});
-  function syncSubmitButton(){const pendingPhoto=uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded');const pendingRef=referenceUploadBusy||uploaderReferences.some(x=>x.status!=='uploaded');submitBtn.disabled=isSubmitting||pendingPhoto||pendingRef||!turnstileToken||!IS_PRODUCTION}
+  function syncSubmitButton(){
+    const pendingPhoto=uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded');
+    const pendingRef=referenceUploadBusy||uploaderReferences.some(x=>x.status!=='uploaded');
+    submitBtn.disabled=submissionLocked||isSubmitting||pendingPhoto||pendingRef||!turnstileToken||!IS_PRODUCTION;
+    submitBtn.classList.toggle('sending',submissionLocked&&isSubmitting);
+    if(submissionLocked&&isSubmitting)submitBtn.textContent='제출 처리 중…';
+    else if(submissionLocked)submitBtn.textContent='중복 제출 차단됨';
+    else submitBtn.textContent='제출하기';
+  }
   function setSubmitting(value){isSubmitting=!!value;syncSubmitButton()}
+  function getOrCreateSubmissionKey(){
+    try{
+      let id=sessionStorage.getItem(SUBMISSION_KEY_STORAGE);
+      if(id&&/^[A-Za-z0-9_-]{20,100}$/.test(id))return id;
+      id=makeId('sub');sessionStorage.setItem(SUBMISSION_KEY_STORAGE,id);return id;
+    }catch(err){return makeId('sub')}
+  }
+  function getSubmissionPendingFlag(){try{return sessionStorage.getItem(SUBMISSION_PENDING_STORAGE)==='1'}catch(err){return false}}
+  function setSubmissionPendingFlag(value){try{if(value)sessionStorage.setItem(SUBMISSION_PENDING_STORAGE,'1');else sessionStorage.removeItem(SUBMISSION_PENDING_STORAGE)}catch(err){}}
+  function rotateSubmissionKey(){try{sessionStorage.removeItem(SUBMISSION_KEY_STORAGE);sessionStorage.removeItem(SUBMISSION_PENDING_STORAGE)}catch(err){}SUBMISSION_KEY=getOrCreateSubmissionKey();submissionLocked=false;isSubmitting=false;syncSubmitButton()}
+  function lockSubmission(){submissionLocked=true;isSubmitting=true;setSubmissionPendingFlag(true);syncSubmitButton()}
+  function unlockSubmission(){submissionLocked=false;isSubmitting=false;setSubmissionPendingFlag(false);syncSubmitButton()}
   function getOrCreateClientId(){const key='erica_pr_client_id_v1';try{let id=localStorage.getItem(key);if(id&&/^[A-Za-z0-9_-]{16,80}$/.test(id))return id;id=(crypto&&crypto.randomUUID)?crypto.randomUUID():`c_${Date.now()}_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;localStorage.setItem(key,id);return id}catch(err){return `c_${Date.now()}_${Math.random().toString(36).slice(2)}`}}
   function makeId(prefix='r'){const core=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():`${Date.now()}_${Math.random().toString(36).slice(2)}`;return `${prefix}_${core.replace(/[^A-Za-z0-9_-]/g,'')}`}
   function val(name){const el=form.elements[name];return el?String(el.value||'').trim():''}
@@ -397,8 +421,8 @@
   function previewFrameHtml(label){return '<div style="font-family:Pretendard,Arial,sans-serif;margin:18px;padding:16px;border:1px dashed #b8cad8;border-radius:12px;color:#73818c;background:#f8fbfd;text-align:center;font-size:12px;font-weight:750">'+label+'<br><small>실제 GitHub 주소에서 업로드 기능이 활성화됩니다.</small></div>'}
   function loadUploaders(){
     if(!IS_PRODUCTION){photoUploaderFrame.srcdoc=previewFrameHtml('미리보기 모드 · 사진 업로드 비활성화');referenceUploaderFrame.srcdoc=previewFrameHtml('미리보기 모드 · 참고자료 업로드 비활성화');return;}
-    photoUploaderFrame.src=WEB_APP_URL+'?mode=uploader&v=33&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(UPLOADER_CHANNEL);
-    referenceUploaderFrame.src=WEB_APP_URL+'?mode=referenceUploader&v=33&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(REFERENCE_CHANNEL);
+    photoUploaderFrame.src=WEB_APP_URL+'?mode=uploader&v=34&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(UPLOADER_CHANNEL);
+    referenceUploaderFrame.src=WEB_APP_URL+'?mode=referenceUploader&v=34&uploadKey='+encodeURIComponent(UPLOAD_KEY)+'&channel='+encodeURIComponent(REFERENCE_CHANNEL);
   }
   function updateAttachmentUsage(){const photoBytes=uploaderPhotos.reduce((s,x)=>s+(Number(x.size)||0),0);const refBytes=uploaderReferences.reduce((s,x)=>s+(Number(x.size)||0),0);const total=photoBytes+refBytes,max=19*1024*1024,pct=Math.min(100,Math.round(total/max*100));if(attachmentUsageFill)attachmentUsageFill.style.width=pct+'%';if(attachmentUsageText)attachmentUsageText.textContent=(total/1024/1024).toFixed(2)+' MB / 19 MB';if(attachmentUsage)attachmentUsage.classList.toggle('over',total>max)}
   window.addEventListener('message',e=>{const data=e.data||{};
@@ -565,14 +589,107 @@
   document.querySelectorAll('[data-article-target]').forEach(el=>{el.addEventListener('focusin',()=>{document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active'));document.querySelectorAll(`.skeleton-row[data-key="${el.dataset.articleTarget}"]`).forEach(x=>x.classList.add('active'))});el.addEventListener('focusout',()=>document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active')))});
   const assemblyPanel=document.getElementById('assemblyPanel');document.getElementById('mobileAssemblyBtn').onclick=()=>assemblyPanel.classList.add('mobile-open');document.getElementById('assemblyClose').onclick=()=>assemblyPanel.classList.remove('mobile-open');
 
-  form.addEventListener('submit',async e=>{e.preventDefault();if(!validateForm())return;setSubmitting(true);overlay.classList.add('show');modal.innerHTML='<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>사진과 참고자료는 이미 준비됐어요. DOCX를 만들고 메일에 첨부하는 중입니다.</p>';try{const payload={...formObject(),action:'submit',uploadKey:UPLOAD_KEY,turnstileToken,clientId:CLIENT_ID,formStartedAt:FORM_STARTED_AT,website:''};const res=await postApi(payload,90000);turnstileToken='';syncSubmitButton();if(!res.ok)throw new Error(res.message||'전송에 실패했어.');modal.innerHTML=`<div class="done-mark">✓</div><h3>접수가 완료됐어</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();uploaderPhotos=[];uploaderReferences=[];uploadBusy=false;referenceUploadBusy=false;UPLOAD_KEY=makeId('upl');loadUploaders();updateAttachmentUsage();renderTypeConditionals();renderNewsBlocks();renderQuote();document.getElementById('futureFields').classList.remove('active');document.getElementById('termFields').classList.remove('active');document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''}}catch(err){overlay.classList.remove('show');resetTurnstile();showToast(String(err.message||err),'error')}finally{setSubmitting(false)}});
+  async function resolveSubmissionResult(res){
+    if(res&&res.ok&&res.data&&res.data.submissionState==='processing'){
+      modal.innerHTML='<div class="spinner"></div><h3>이미 접수 요청을 받았어요</h3><p>메일은 한 번만 발송됩니다. 서버 처리 완료 여부를 확인하고 있어요.</p>';
+      return await pollSubmissionStatus(150000);
+    }
+    return res;
+  }
 
-  function postApi(payload,timeoutMs=60000){return new Promise((resolve,reject)=>{const requestId=makeId('req');payload.requestId=requestId;const iframe=document.createElement('iframe'),iframeName=`frame_${requestId}`;iframe.name=iframeName;iframe.hidden=true;document.body.appendChild(iframe);const carrier=document.createElement('form');carrier.method='POST';carrier.action=WEB_APP_URL;carrier.target=iframeName;carrier.enctype='multipart/form-data';carrier.style.display='none';const field=document.createElement('textarea');field.name='payload';field.value=JSON.stringify(payload);carrier.appendChild(field);document.body.appendChild(carrier);const timer=setTimeout(()=>{pendingRequests.delete(requestId);carrier.remove();iframe.remove();reject(new Error('서버 응답 시간이 너무 오래 걸렸어. 다시 시도해줘.'))},timeoutMs);pendingRequests.set(requestId,{resolve,reject,timer,iframe,carrier});carrier.submit();carrier.remove()})}
+  async function pollSubmissionStatus(maxWaitMs=150000){
+    const started=Date.now();
+    while(Date.now()-started<maxWaitMs){
+      await new Promise(r=>setTimeout(r,2500));
+      try{
+        const res=await postApi({action:'submissionStatus',submissionKey:SUBMISSION_KEY,clientId:CLIENT_ID},25000);
+        const state=res&&res.data&&res.data.submissionState;
+        if(state==='sent')return {ok:true,message:res.message||'이미 접수가 완료됐어.',data:res.data};
+        if(state==='failed')throw new Error(res.message||'서버 처리 중 오류가 발생했어.');
+        if(state==='none')throw new Error('제출 처리 기록을 찾지 못했어. 다시 제출해줘.');
+      }catch(err){
+        if(err&&err.code==='request_timeout')continue;
+        throw err;
+      }
+    }
+    const err=new Error('서버가 아직 처리 중이야. 중복 발송을 막기 위해 제출 버튼은 잠가뒀어. 잠시 뒤 메일을 확인해줘.');
+    err.code='still_processing';
+    throw err;
+  }
+
+  async function submitWithRecovery(payload){
+    try{
+      const first=await postApi(payload,120000);
+      return await resolveSubmissionResult(first);
+    }catch(err){
+      if(err&&err.code==='request_timeout'){
+        modal.innerHTML='<div class="spinner"></div><h3>서버 응답이 늦지만 처리는 계속 확인할게요</h3><p>다시 누르지 않아도 됩니다. 중복 발송 방지 기능이 작동 중이에요.</p>';
+        return await pollSubmissionStatus(150000);
+      }
+      throw err;
+    }
+  }
+
+  function showSuccessResult(res,recovered=false){
+    turnstileToken='';
+    submitBtn.classList.remove('sending');submitBtn.classList.add('done');submitBtn.textContent='제출 완료';
+    modal.innerHTML=`<div class="done-mark">✓</div><h3>${recovered?'이전 접수가 완료됐어':'접수가 완료됐어'}</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 한 번만 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;
+    document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();uploaderPhotos=[];uploaderReferences=[];uploadBusy=false;referenceUploadBusy=false;UPLOAD_KEY=makeId('upl');rotateSubmissionKey();submitBtn.classList.remove('done');loadUploaders();updateAttachmentUsage();renderTypeConditionals();renderNewsBlocks();renderQuote();document.getElementById('futureFields').classList.remove('active');document.getElementById('termFields').classList.remove('active');document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''};
+  }
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    if(submissionLocked){showToast('이미 제출 처리 중이야. 메일은 한 번만 발송돼.','error');return}
+    if(!validateForm())return;
+
+    lockSubmission();
+    overlay.classList.add('show');
+    modal.innerHTML='<div class="spinner"></div><h3>보도자료 기초자료를 전송하고 있어요</h3><p>한 번만 누르면 됩니다. 메일 중복 발송은 자동으로 차단됩니다.</p>';
+
+    try{
+      const payload={...formObject(),action:'submit',submissionKey:SUBMISSION_KEY,uploadKey:UPLOAD_KEY,turnstileToken,clientId:CLIENT_ID,formStartedAt:FORM_STARTED_AT,website:''};
+      const res=await submitWithRecovery(payload);
+      if(!res||!res.ok)throw new Error(res&&res.message?res.message:'전송에 실패했어.');
+      showSuccessResult(res,false);
+    }catch(err){
+      if(err&&err.code==='still_processing'){
+        isSubmitting=false;
+        syncSubmitButton();
+        overlay.classList.remove('show');
+        showToast(err.message,'error');
+        return;
+      }
+      overlay.classList.remove('show');
+      unlockSubmission();
+      resetTurnstile();
+      showToast(String(err.message||err),'error');
+    }
+  });
+
+  async function recoverPendingSubmission(){
+    if(!getSubmissionPendingFlag())return;
+    submissionLocked=true;isSubmitting=true;syncSubmitButton();
+    overlay.classList.add('show');
+    modal.innerHTML='<div class="spinner"></div><h3>이전 제출 상태를 확인하고 있어요</h3><p>중복 발송 없이 기존 요청의 결과만 확인합니다.</p>';
+    try{
+      const res=await pollSubmissionStatus(90000);
+      showSuccessResult(res,true);
+    }catch(err){
+      overlay.classList.remove('show');
+      if(err&&err.code==='still_processing'){
+        isSubmitting=false;syncSubmitButton();showToast(err.message,'error');
+      }else{
+        unlockSubmission();showToast(String(err.message||err),'error');
+      }
+    }
+  }
+
+  function postApi(payload,timeoutMs=60000){return new Promise((resolve,reject)=>{const requestId=makeId('req');payload.requestId=requestId;const iframe=document.createElement('iframe'),iframeName=`frame_${requestId}`;iframe.name=iframeName;iframe.hidden=true;document.body.appendChild(iframe);const carrier=document.createElement('form');carrier.method='POST';carrier.action=WEB_APP_URL;carrier.target=iframeName;carrier.enctype='multipart/form-data';carrier.style.display='none';const field=document.createElement('textarea');field.name='payload';field.value=JSON.stringify(payload);carrier.appendChild(field);document.body.appendChild(carrier);const timer=setTimeout(()=>{pendingRequests.delete(requestId);carrier.remove();iframe.remove();const err=new Error('서버 응답 시간이 오래 걸리고 있어. 중복 발송 방지를 위해 처리 상태를 확인할게.');err.code='request_timeout';reject(err)},timeoutMs);pendingRequests.set(requestId,{resolve,reject,timer,iframe,carrier});carrier.submit();carrier.remove()})}
   window.addEventListener('message',e=>{const data=e.data;if(!data||data.type!=='pr-api-result'||!data.requestId)return;const pending=pendingRequests.get(data.requestId);if(!pending)return;clearTimeout(pending.timer);pendingRequests.delete(data.requestId);pending.iframe.remove();pending.resolve(data)});
   function loadTurnstileScript(){if(!IS_PRODUCTION){setSecurityStatus('미리보기 모드 · 실제 GitHub 주소에서 보안 확인이 활성화됩니다.','');turnstileRetry.style.display='none';syncSubmitButton();return;}const s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnload&render=explicit';s.defer=true;s.onerror=()=>setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 네트워크를 확인해줘.','error');document.head.appendChild(s)}
   setTimeout(()=>{if(IS_PRODUCTION&&turnstileWidgetId===null&&(!securityStatus.textContent||securityStatus.textContent.includes('준비 중')))setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 새로고침하거나 네트워크를 확인해줘.','error')},10000);
 
-  renderTypeConditionals();renderNewsBlocks();renderQuote();updateTypeGuidance();loadUploaders();updateAttachmentUsage();updateAssembly();syncSubmitButton();loadTurnstileScript();
+  renderTypeConditionals();renderNewsBlocks();renderQuote();updateTypeGuidance();loadUploaders();updateAttachmentUsage();updateAssembly();syncSubmitButton();loadTurnstileScript();setTimeout(recoverPendingSubmission,350);
 </script>
 </body>
 </html>
