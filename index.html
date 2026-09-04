@@ -56,7 +56,8 @@
     details.section{padding:0;overflow:hidden}details.section>summary{list-style:none;cursor:pointer;padding:21px 23px;display:flex;align-items:flex-start;gap:13px;user-select:none}details.section>summary::-webkit-details-marker{display:none}details.section>summary::after{content:"＋";margin-left:auto;flex:0 0 auto;width:30px;height:30px;border-radius:10px;background:#f0f5f8;color:var(--brand);display:grid;place-items:center;font-size:20px;font-weight:900}details.section[open]>summary::after{content:"−"}details.section>.section-content{padding:0 23px 23px}
     .section-summary-copy{flex:1}.section-summary-copy h2{margin:1px 0 3px}
     .conditional-block{display:none;margin-top:13px;border:1px dashed #bdd0df;border-radius:13px;background:#f9fcfe;padding:13px}.conditional-block.active{display:block}.conditional-title{font-size:12px;font-weight:900;color:var(--brand-strong);margin-bottom:9px}
-    .quote-extra,.future-extra{display:none}.quote-extra.active,.future-extra.active{display:grid}
+    .future-extra{display:none}.future-extra.active{display:grid}
+    .quote-list{display:grid;gap:12px}.quote-empty{border:1px dashed #bdd0df;border-radius:14px;background:#f9fcfe;padding:18px;text-align:center;color:var(--muted);font-size:12px}.quote-entry{border:1px solid #d8e3eb;border-radius:15px;background:#fbfdff;padding:15px}.quote-entry-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.quote-entry-title{font-size:13px;font-weight:900;color:#334656}.quote-remove{width:30px;height:30px;border:1px solid #e5caca;border-radius:9px;background:#fff;color:var(--danger);font-size:18px;font-weight:800;line-height:1}.quote-mode-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.quote-mode span{display:grid;place-items:center;text-align:center;min-height:43px;border:1px solid var(--line);border-radius:10px;background:#fff;padding:7px;font-size:11px;font-weight:800;color:#52616d;transition:.15s}.quote-mode input{position:absolute;opacity:0;pointer-events:none}.quote-mode input:checked+span{background:var(--brand);border-color:var(--brand);color:#fff}.quote-entry-fields{display:none;grid-template-columns:1fr;gap:12px;margin-top:13px}.quote-entry.has-mode .quote-entry-fields{display:grid}.quote-actions{display:flex;align-items:center;gap:10px;margin-top:13px}.quote-add{border:1px solid #9fc7e4;background:#f4faff;color:var(--brand-strong);border-radius:11px;padding:9px 12px;font-size:12px;font-weight:900}.quote-add:disabled{opacity:.5;cursor:not-allowed}.quote-count{font-size:11px;color:var(--muted);font-weight:750}
 
     .assembly{position:sticky;top:68px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 18px 48px rgba(18,58,88,.11);overflow:hidden;max-height:calc(100vh - 88px);overflow-y:auto}
     .assembly-head{padding:18px 18px 15px;background:linear-gradient(145deg,#0a5b9d,#083f6d);color:#fff}.assembly-kicker{font-size:11px;color:#cce4f5;font-weight:750}.assembly-title{font-size:20px;font-weight:900;margin:3px 0 2px;letter-spacing:-.02em}.assembly-sub{font-size:11px;color:#d7e9f5}
@@ -80,7 +81,7 @@
     footer{padding:0 0 48px;color:#89949d;text-align:center;font-size:11px}
 
     @media(max-width:1030px){.workspace{grid-template-columns:1fr}.assembly{display:none;position:fixed;z-index:55;inset:64px 12px 12px;max-height:none}.assembly.mobile-open{display:block}.assembly-close{display:grid;place-items:center;position:absolute;right:14px;top:14px}.mobile-assembly-btn{display:block}}
-    @media(max-width:720px){.wrap,.status-bar{width:min(100% - 22px,1260px)}.hero{padding-top:32px}.hero p{font-size:14px}.section{padding:19px}.grid{grid-template-columns:1fr}.span2{grid-column:auto}.choice-grid{grid-template-columns:1fr}.choice span{min-height:66px}.type-grid{grid-template-columns:repeat(2,1fr)}.chip-grid{grid-template-columns:1fr}.submit-card{align-items:stretch;flex-direction:column}.submit-btn{width:100%}.status-note{display:none}}
+    @media(max-width:720px){.wrap,.status-bar{width:min(100% - 22px,1260px)}.hero{padding-top:32px}.hero p{font-size:14px}.section{padding:19px}.grid{grid-template-columns:1fr}.span2{grid-column:auto}.choice-grid{grid-template-columns:1fr}.choice span{min-height:66px}.type-grid{grid-template-columns:repeat(2,1fr)}.chip-grid{grid-template-columns:1fr}.quote-mode-row{grid-template-columns:1fr}.submit-card{align-items:stretch;flex-direction:column}.submit-btn{width:100%}.status-note{display:none}}
   </style>
   
 </head>
@@ -225,20 +226,10 @@
       </details>
 
       <details class="section optional-section" id="quoteSection">
-        <summary><div class="section-summary-copy"><h2>관계자 발언 <span class="optional-pill">선택</span></h2><p class="desc">발언이 있는지부터 선택하면 필요한 칸만 열립니다.</p></div></summary>
+        <summary><div class="section-summary-copy"><h2>관계자 발언 <span class="optional-pill">선택 · 최대 5명</span></h2><p class="desc">관계자별로 발언 성격을 선택하고 내용을 적어주세요. 발언이 없으면 비워두면 됩니다.</p></div></summary>
         <div class="section-content">
-          <div class="pill-row">
-            <label class="pill-radio"><input type="radio" name="quoteMode" value="actual"><span>실제 발언이 있음</span></label>
-            <label class="pill-radio"><input type="radio" name="quoteMode" value="approved"><span>승인된 문안이 있음</span></label>
-            <label class="pill-radio"><input type="radio" name="quoteMode" value="draft"><span>초안 작성 요청</span></label>
-            <label class="pill-radio"><input type="radio" name="quoteMode" value="none"><span>발언 없이 진행</span></label>
-          </div>
-          <div class="quote-extra grid" id="quoteFields" style="margin-top:13px">
-            <label class="field"><span class="label">성명 / 소속·직위</span><input type="text" name="quotePerson" placeholder="예: ○○○ 한양대학교 ERICA ○○학과 교수"></label>
-            <label class="field"><span class="label">발언 성격</span><input type="text" name="quoteTypeDisplay" readonly></label>
-            <label class="field span2" data-article-target="quote"><span class="label">발언 내용</span><textarea name="quote" placeholder="실제 발언 또는 승인된 문안을 그대로 붙여주세요."></textarea></label>
-          </div>
-          <div class="quote-extra grid" id="quoteDraftFields" style="margin-top:13px"><label class="field"><span class="label">누구 명의의 발언이 필요한가요?</span><input type="text" name="quotePersonDraft"></label><label class="field"><span class="label">어떤 취지였으면 하나요?</span><textarea name="quoteIntent" placeholder="예: 이번 협력이 학생 교육과 지역 산업에 갖는 의미를 강조"></textarea></label></div>
+          <div class="quote-list" id="quoteList"></div>
+          <div class="quote-actions"><button type="button" class="quote-add" id="addQuoteBtn">＋ 관계자 추가</button><span class="quote-count" id="quoteCount" aria-live="polite">0 / 5명</span></div>
         </div>
       </details>
 
@@ -414,8 +405,16 @@
   document.querySelectorAll('input[name="newsPoints"]').forEach(cb=>cb.addEventListener('change',()=>{renderNewsBlocks();scheduleAssembly()}));
   function renderNewsBlocks(){document.querySelectorAll('[data-news-block]').forEach(b=>b.classList.remove('active'));document.querySelectorAll('input[name="newsPoints"]:checked').forEach(cb=>{if(cb.dataset.news)document.querySelector(`[data-news-block="${cb.dataset.news}"]`)?.classList.add('active')})}
 
-  document.querySelectorAll('input[name="quoteMode"]').forEach(r=>r.addEventListener('change',()=>{renderQuote();scheduleAssembly()}));
-  function renderQuote(){const mode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';document.getElementById('quoteFields').classList.toggle('active',mode==='actual'||mode==='approved');document.getElementById('quoteDraftFields').classList.toggle('active',mode==='draft');const display=form.elements.quoteTypeDisplay;if(display)display.value=mode==='actual'?'실제 행사·인터뷰에서 한 발언':mode==='approved'?'보도자료용으로 작성·승인한 문안':mode==='draft'?'초안 작성 요청':''}
+  const QUOTE_LIMIT=5;
+  const quoteList=document.getElementById('quoteList'),addQuoteBtn=document.getElementById('addQuoteBtn'),quoteCount=document.getElementById('quoteCount');
+  let quoteEntrySeq=0;
+  function quoteTypeFromMode(mode=''){return mode==='actual'?'실제 행사·인터뷰에서 한 발언':mode==='approved'?'보도자료용으로 작성·승인한 문안':mode==='draft'?'초안 작성 요청':''}
+  function quoteEntries(){return [...quoteList.querySelectorAll('.quote-entry')].map(entry=>{const mode=entry.querySelector('input[type="radio"]:checked')?.value||'',person=String(entry.querySelector('[data-quote-field="person"]')?.value||'').trim(),content=String(entry.querySelector('[data-quote-field="content"]')?.value||'').trim();return {mode,quoteType:quoteTypeFromMode(mode),person,content,quote:mode==='actual'||mode==='approved'?content:'',intent:mode==='draft'?content:''}}).filter(x=>x.mode||x.person||x.content)}
+  function renderQuoteEntry(entry){const mode=entry.querySelector('input[type="radio"]:checked')?.value||'',content=entry.querySelector('[data-quote-field="content"]'),personLabel=entry.querySelector('[data-quote-person-label]'),contentLabel=entry.querySelector('[data-quote-content-label]');entry.classList.toggle('has-mode',!!mode);personLabel.textContent=mode==='draft'?'초안이 필요한 관계자 성명 / 소속·직위':'성명 / 소속·직위';contentLabel.textContent=mode==='actual'?'실제 발언 내용':mode==='approved'?'승인된 문안':mode==='draft'?'초안에 담을 취지':'발언 내용';content.placeholder=mode==='actual'?'행사·인터뷰에서 실제로 한 발언을 그대로 적어주세요.':mode==='approved'?'보도자료에 사용할 수 있도록 승인된 문안을 적어주세요.':mode==='draft'?'예: 이번 협력이 학생 교육과 지역 산업에 갖는 의미를 강조':''}
+  function updateQuoteList(){const entries=[...quoteList.querySelectorAll('.quote-entry')];entries.forEach((entry,i)=>entry.querySelector('.quote-entry-title').textContent=`관계자 ${i+1}`);quoteCount.textContent=`${entries.length} / ${QUOTE_LIMIT}명`;addQuoteBtn.disabled=entries.length>=QUOTE_LIMIT;addQuoteBtn.title=entries.length>=QUOTE_LIMIT?'관계자는 최대 5명까지 추가할 수 있습니다.':'';if(!entries.length&&!quoteList.querySelector('.quote-empty'))quoteList.innerHTML='<div class="quote-empty">등록할 발언이 있다면 아래 ＋ 버튼으로 관계자를 추가해 주세요.</div>'}
+  function addQuoteEntry(data={}){if(quoteList.querySelectorAll('.quote-entry').length>=QUOTE_LIMIT)return;quoteList.querySelector('.quote-empty')?.remove();const id=++quoteEntrySeq,entry=document.createElement('div');entry.className='quote-entry';entry.dataset.quoteId=String(id);entry.innerHTML=`<div class="quote-entry-head"><strong class="quote-entry-title">관계자</strong><button type="button" class="quote-remove" aria-label="이 관계자 발언 삭제" title="삭제">×</button></div><div class="quote-mode-row" role="group" aria-label="발언 성격"><label class="quote-mode"><input type="radio" name="quoteMode_${id}" value="actual"><span>실제 발언</span></label><label class="quote-mode"><input type="radio" name="quoteMode_${id}" value="approved"><span>승인된 문안</span></label><label class="quote-mode"><input type="radio" name="quoteMode_${id}" value="draft"><span>초안 작성 요청</span></label></div><div class="quote-entry-fields"><label class="field"><span class="label" data-quote-person-label>성명 / 소속·직위</span><input type="text" data-quote-field="person" maxlength="320" placeholder="예: ○○○ 한양대학교 ERICA ○○학과 교수"></label><label class="field" data-article-target="quote"><span class="label" data-quote-content-label>발언 내용</span><textarea data-quote-field="content" maxlength="4000"></textarea></label></div>`;quoteList.appendChild(entry);if(data.mode)entry.querySelector(`input[value="${data.mode}"]`)?.setAttribute('checked','');entry.querySelector('[data-quote-field="person"]').value=data.person||'';entry.querySelector('[data-quote-field="content"]').value=data.content||data.quote||data.intent||'';entry.querySelectorAll('input[type="radio"]').forEach(r=>r.addEventListener('change',()=>{renderQuoteEntry(entry);scheduleAssembly()}));entry.querySelector('.quote-remove').addEventListener('click',()=>{entry.remove();updateQuoteList();scheduleAssembly()});entry.querySelectorAll('[data-article-target]').forEach(el=>{el.addEventListener('focusin',()=>{document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active'));document.querySelectorAll(`.skeleton-row[data-key="${el.dataset.articleTarget}"]`).forEach(x=>x.classList.add('active'))});el.addEventListener('focusout',()=>document.querySelectorAll('.skeleton-row').forEach(x=>x.classList.remove('active')))});renderQuoteEntry(entry);updateQuoteList()}
+  function resetQuotes(){quoteList.innerHTML='';quoteEntrySeq=0;addQuoteEntry()}
+  addQuoteBtn.addEventListener('click',()=>{addQuoteEntry();quoteList.querySelector('.quote-entry:last-child')?.scrollIntoView({behavior:'smooth',block:'nearest'});scheduleAssembly()});
   document.querySelectorAll('input[name="futureStatus"]').forEach(r=>r.addEventListener('change',()=>{document.getElementById('futureFields').classList.toggle('active',['confirmed','reviewing'].includes(r.value)&&r.checked);scheduleAssembly()}));
   document.querySelectorAll('input[name="termStatus"]').forEach(r=>r.addEventListener('change',()=>{document.getElementById('termFields').classList.toggle('active',r.value==='yes'&&r.checked);scheduleAssembly()}));
 
@@ -437,10 +436,28 @@
   });
 
   function composeWho(){return [val('ourOrg')&&`우리 학교: ${val('ourOrg')}`,val('externalOrgs')&&`외부 기관: ${val('externalOrgs')}`,val('keyPeople')&&`주요 인물: ${val('keyPeople')}`].filter(Boolean).join('\n')}
-  function quoteTypeFromMode(){const mode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';return mode==='actual'?'실제 행사·인터뷰에서 한 발언':mode==='approved'?'보도자료용으로 작성·승인한 문안':mode==='draft'?'초안 작성 요청':''}
-  function formObject(){const fd=new FormData(form),obj={};for(const[k,v]of fd.entries()){if(['types','newsPoints','sourceTypes','quoteMode'].includes(k))continue;obj[k]=v}obj.types=checkedValues('types');obj.newsPoints=checkedValues('newsPoints');obj.sourceTypes=checkedValues('sourceTypes');obj.quoteMode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';obj.quoteType=quoteTypeFromMode();if(obj.quoteMode==='draft'){obj.quotePerson=val('quotePersonDraft');obj.quote='';}obj.who=composeWho();obj.what=val('detailDescription');obj.why=val('background');obj.priority1=val('mustInclude');obj.difference=val('newsMeaning');obj.sources=[obj.sourceTypes.join(', '),val('sourceEvidence'),val('links')].filter(Boolean).join('\n');obj.photos=uploaderPhotos.filter(x=>x.status==='uploaded').map(x=>({fileId:x.fileId,name:x.name,type:x.type,size:x.size,caption:x.caption||''}));obj.referenceFiles=uploaderReferences.filter(x=>x.status==='uploaded').map(x=>({fileId:x.fileId,name:x.name,type:x.type,size:x.size}));obj.confirmAccuracy=!!form.elements.confirmAccuracy?.checked;obj.confirmDisclosure=!!form.elements.confirmDisclosure?.checked;return obj}
+  function formObject(){
+    const fd=new FormData(form),obj={};
+    for(const[k,v]of fd.entries()){if(['types','newsPoints','sourceTypes'].includes(k)||k.startsWith('quoteMode_'))continue;obj[k]=v}
+    obj.types=checkedValues('types');obj.newsPoints=checkedValues('newsPoints');obj.sourceTypes=checkedValues('sourceTypes');
+    obj.quotes=quoteEntries().map(({mode,quoteType,person,quote,intent})=>({quoteMode:mode,quoteType,quotePerson:person,quote,quoteIntent:intent}));
+    obj.quoteCount=obj.quotes.length;
+    obj.quotesText=obj.quotes.map((q,i)=>`[관계자 ${i+1}] ${q.quotePerson} · ${q.quoteType}\n${q.quoteMode==='draft'?q.quoteIntent:q.quote}`).join('\n\n');
+    const first=obj.quotes[0];
+    obj.quoteMode=first?.quoteMode||'none';
+    if(obj.quotes.length>1){
+      obj.quoteType=`관계자 발언 ${obj.quotes.length}건 · 개별 성격은 내용에 표시`;
+      obj.quotePerson=obj.quotes.map(q=>q.quotePerson).join(' / ');
+      obj.quotePersonDraft=obj.quotePerson;
+      obj.quote=obj.quotesText;
+      obj.quoteIntent=obj.quotesText;
+    }else{
+      obj.quoteType=first?.quoteType||'';obj.quotePerson=first?.quotePerson||'';obj.quotePersonDraft=first?.quoteMode==='draft'?first.quotePerson:'';obj.quote=first?.quote||'';obj.quoteIntent=first?.quoteIntent||'';
+    }
+    obj.who=composeWho();obj.what=val('detailDescription');obj.why=val('background');obj.priority1=val('mustInclude');obj.difference=val('newsMeaning');obj.sources=[obj.sourceTypes.join(', '),val('sourceEvidence'),val('links')].filter(Boolean).join('\n');obj.photos=uploaderPhotos.filter(x=>x.status==='uploaded').map(x=>({fileId:x.fileId,name:x.name,type:x.type,size:x.size,caption:x.caption||''}));obj.referenceFiles=uploaderReferences.filter(x=>x.status==='uploaded').map(x=>({fileId:x.fileId,name:x.name,type:x.type,size:x.size}));obj.confirmAccuracy=!!form.elements.confirmAccuracy?.checked;obj.confirmDisclosure=!!form.elements.confirmDisclosure?.checked;return obj
+  }
 
-  function validateForm(){if(!form.reportValidity())return false;if(checkedValues('types').length===0&&!val('typeOther')){showToast('보도자료 유형을 하나 이상 선택해줘.','error');return false}if(uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded')){showToast('사진 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(referenceUploadBusy||uploaderReferences.some(x=>x.status!=='uploaded')){showToast('참고자료 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(uploaderPhotos.some(x=>!String(x.caption||'').trim())){showToast('첨부한 사진마다 사진 설명을 적어줘.','error');return false}const attachmentBytes=[...uploaderPhotos,...uploaderReferences].reduce((s,x)=>s+(Number(x.size)||0),0);if(attachmentBytes>19*1024*1024){showToast('사진과 참고자료를 합쳐 19MB 이하로 맞춰줘.','error');return false}if(!turnstileToken){showToast('자동 제출 방지 확인이 끝난 뒤 제출해줘.','error');return false}return true}
+  function validateForm(){const incompleteQuote=[...quoteList.querySelectorAll('.quote-entry')].find(entry=>{const mode=entry.querySelector('input[type="radio"]:checked')?.value||'',person=String(entry.querySelector('[data-quote-field="person"]')?.value||'').trim(),content=String(entry.querySelector('[data-quote-field="content"]')?.value||'').trim();return (!mode&&(person||content))||(mode&&(!person||!content))});if(incompleteQuote){document.getElementById('quoteSection').open=true;incompleteQuote.scrollIntoView({behavior:'smooth',block:'center'});showToast('추가한 관계자의 발언 성격·성명·내용을 모두 입력해줘.','error');return false}if(!form.reportValidity())return false;if(checkedValues('types').length===0&&!val('typeOther')){showToast('보도자료 유형을 하나 이상 선택해줘.','error');return false}if(uploadBusy||uploaderPhotos.some(x=>x.status!=='uploaded')){showToast('사진 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(referenceUploadBusy||uploaderReferences.some(x=>x.status!=='uploaded')){showToast('참고자료 업로드가 모두 끝난 뒤 제출해줘.','error');return false}if(uploaderPhotos.some(x=>!String(x.caption||'').trim())){showToast('첨부한 사진마다 사진 설명을 적어줘.','error');return false}const attachmentBytes=[...uploaderPhotos,...uploaderReferences].reduce((s,x)=>s+(Number(x.size)||0),0);if(attachmentBytes>19*1024*1024){showToast('사진과 참고자료를 합쳐 19MB 이하로 맞춰줘.','error');return false}if(!turnstileToken){showToast('자동 제출 방지 확인이 끝난 뒤 제출해줘.','error');return false}return true}
 
   function requiredProgress(){const core=['distribution','officialName','when','ourOrg','summary','mainResult','contactName','contactDept','contactEmail'];let done=0;core.forEach(name=>{if(name==='distribution'){if(form.querySelector('input[name="distribution"]:checked'))done++;}else if(val(name))done++;});if(checkedValues('types').length||val('typeOther'))done++;return Math.min(100,Math.round(done/(core.length+1)*100))}
   function score(items){const filled=items.filter(Boolean).length;return Math.round(filled/Math.max(1,items.length)*100)}
@@ -570,11 +587,11 @@
 
   function updateAssembly(){
     const req=updateCoreProgress();
-    const types=checkedValues('types'),news=checkedValues('newsPoints');const quoteMode=form.querySelector('input[name="quoteMode"]:checked')?.value||'';const futureStatus=form.querySelector('input[name="futureStatus"]:checked')?.value||'';
+    const types=checkedValues('types'),news=checkedValues('newsPoints'),quotes=quoteEntries();const futureStatus=form.querySelector('input[name="futureStatus"]:checked')?.value||'';
     const lead=score([val('officialName'),val('when'),val('ourOrg'),val('summary'),val('mainResult')]);
     const body=score([val('mainResult'),val('detailDescription')||nonEmptySpecific(),val('background')||val('newsMeaning'),news.length>0]);
     const evidence=score([news.length>0,val('participantCount')||val('fundingAmount')||val('performanceMetric')||val('numbersExtra'),val('sourceEvidence')||val('links')||uploaderReferences.length]);
-    let quote=0;if(quoteMode==='none')quote=100;else if(quoteMode==='draft')quote=score([val('quotePersonDraft'),val('quoteIntent')]);else if(['actual','approved'].includes(quoteMode))quote=score([val('quotePerson'),val('quote')]);
+    let quote=quotes.length?Math.max(...quotes.map(q=>score([q.mode,q.person,q.content]))):0;
     let close=0;if(futureStatus==='none')close=100;else if(['confirmed','reviewing'].includes(futureStatus))close=val('future')?100:50;
     const photo=uploaderPhotos.length?100:0;
     setMeter('lead',lead);setMeter('body',body);setMeter('evidence',evidence);setMeter('quote',quote);setMeter('close',close);setMeter('photo',photo);
@@ -643,7 +660,7 @@
     turnstileToken='';
     submitBtn.classList.remove('sending');submitBtn.classList.add('done');submitBtn.textContent='제출 완료';
     modal.innerHTML=`<div class="done-mark">✓</div><h3>${recovered?'이전 접수가 완료됐어':'접수가 완료됐어'}</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 한 번만 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;
-    document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();uploaderPhotos=[];uploaderReferences=[];uploadBusy=false;referenceUploadBusy=false;UPLOAD_KEY=makeId('upl');rotateSubmissionKey();submitBtn.classList.remove('done');photoUploaderLoaded=false;referenceUploaderLoaded=false;photoUploaderFrame.src='about:blank';referenceUploaderFrame.src='about:blank';document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);loadUploaders();updateAttachmentUsage();renderTypeConditionals();renderNewsBlocks();renderQuote();document.getElementById('futureFields').classList.remove('active');document.getElementById('termFields').classList.remove('active');updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''};
+    document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();resetQuotes();uploaderPhotos=[];uploaderReferences=[];uploadBusy=false;referenceUploadBusy=false;UPLOAD_KEY=makeId('upl');rotateSubmissionKey();submitBtn.classList.remove('done');photoUploaderLoaded=false;referenceUploaderLoaded=false;photoUploaderFrame.src='about:blank';referenceUploaderFrame.src='about:blank';document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);loadUploaders();updateAttachmentUsage();renderTypeConditionals();renderNewsBlocks();document.getElementById('futureFields').classList.remove('active');document.getElementById('termFields').classList.remove('active');updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''};
   }
 
   form.addEventListener('submit',async e=>{
@@ -698,7 +715,7 @@
   function loadTurnstileScript(){if(!IS_PRODUCTION){setSecurityStatus('미리보기 모드 · 실제 GitHub 주소에서 보안 확인이 활성화됩니다.','');turnstileRetry.style.display='none';syncSubmitButton();return;}if(turnstileScriptRequested)return;turnstileScriptRequested=true;setSecurityStatus('보안 확인 모듈을 준비하고 있어...','');const s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?onload=turnstileOnload&render=explicit';s.defer=true;s.onerror=()=>setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 네트워크를 확인해줘.','error');document.head.appendChild(s);setTimeout(()=>{if(turnstileWidgetId===null)setSecurityStatus('보안 확인 모듈을 불러오지 못했어. 새로고침하거나 네트워크를 확인해줘.','error')},10000)}
   function armTurnstile(){if(!IS_PRODUCTION){loadTurnstileScript();return}setSecurityStatus('마지막 제출 단계에 가까워지면 보안 확인을 시작할게.','');const box=document.querySelector('.security-box');if(!('IntersectionObserver'in window)){loadTurnstileScript();return}const observer=new IntersectionObserver(entries=>{if(entries.some(x=>x.isIntersecting)){observer.disconnect();loadTurnstileScript()}},{rootMargin:'900px 0px'});observer.observe(box)}
 
-  renderTypeConditionals();renderNewsBlocks();renderQuote();updateTypeGuidance();loadUploaders();updateAttachmentUsage();updateAssembly();syncSubmitButton();armTurnstile();setTimeout(recoverPendingSubmission,350);
+  renderTypeConditionals();renderNewsBlocks();resetQuotes();updateTypeGuidance();loadUploaders();updateAttachmentUsage();updateAssembly();syncSubmitButton();armTurnstile();setTimeout(recoverPendingSubmission,350);
 </script>
 </body>
 </html>
