@@ -55,6 +55,7 @@
     .choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.choice input,.type input,.chip-check input,.pill-radio input{position:absolute;opacity:0;pointer-events:none}
     .choice span{min-height:76px;border:1px solid var(--line);border-radius:14px;background:#fff;display:flex;flex-direction:column;justify-content:center;gap:3px;padding:12px 14px;transition:.15s}.choice strong{font-size:14px}.choice small{font-size:11px;color:var(--muted)}
     .choice input:checked+span{border-color:var(--brand);background:#f4faff;box-shadow:0 0 0 2px rgba(7,94,168,.08)}
+    .distribution-notice{margin-top:16px;padding:15px 17px;border:1px solid #e5c58c;border-left:4px solid #ad6b12;border-radius:12px;background:#fff8ea;color:#75480b;font-size:13px;text-align:left}.distribution-notice p{margin:0}.distribution-notice ol{margin:10px 0;padding-left:22px}.distribution-notice li+li{margin-top:5px}.distribution-notice .distribution-note{font-size:12px}.modal .distribution-notice{margin-top:16px;color:#75480b}.submit-card .distribution-reminder{margin-top:12px;padding-top:12px;border-top:1px solid #6b93b5;color:#fff}
     .type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.type span{display:grid;place-items:center;text-align:center;min-height:48px;padding:8px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:12px;font-weight:850;transition:.15s}.type input:checked+span{background:var(--brand);border-color:var(--brand);color:#fff}
     .pill-row{display:flex;flex-wrap:wrap;gap:8px}.pill-radio span,.chip-check span{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 11px;font-size:12px;font-weight:750;color:#465764;transition:.15s}.pill-radio input:checked+span,.chip-check input:checked+span{background:#eaf4fb;color:var(--brand-strong);border-color:#9fc7e4;box-shadow:0 0 0 2px rgba(7,94,168,.06)}
     .chip-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.chip-check span{width:100%;border-radius:11px;min-height:46px}
@@ -113,11 +114,22 @@
   <main class="wrap"><div class="workspace">
     <form id="requestForm" novalidate>
       <section class="section">
-        <div class="section-head"><div class="num">1</div><div><h2>어디에 쓸 건가요?</h2><p class="desc">필요한 배포 범위를 하나 선택해 주세요.</p><span class="use-note"><b>기사 활용</b> 접수 후 담당자와 배포 경로를 결정합니다.</span></div></div>
-        <div class="choice-grid">
-          <label class="choice"><input type="radio" name="distribution" value="external" required><span><strong>외부 언론 배포</strong><small>언론 배포용 보도자료만 필요</small></span></label>
-          <label class="choice"><input type="radio" name="distribution" value="both"><span><strong>외부 언론 + 블로그</strong><small>언론 배포와 ERICA 블로그 모두 필요</small></span></label>
-          <label class="choice"><input type="radio" name="distribution" value="blog"><span><strong>ERICA 블로그</strong><small>블로그 기사만 필요</small></span></label>
+        <div class="section-head"><div class="num">1</div><div><h2>홍보 요청 유형</h2><p class="desc">원하는 홍보 요청 유형을 하나 선택해 주세요.</p><span class="use-note"><b>기사 활용</b> 접수 후 담당자가 요청 내용을 검토합니다.</span></div></div>
+        <div class="choice-grid" role="group" aria-label="홍보 요청 유형" aria-describedby="distributionPolicy">
+          <label class="choice"><input type="radio" name="distribution" value="external" required><span><strong>대외 언론 배포 검토 요청</strong><small>언론 배포 가능 여부 검토</small></span></label>
+          <label class="choice"><input type="radio" name="distribution" value="both"><span><strong>대외 언론 배포 검토 + ERICA 블로그 요청</strong><small>언론 배포 검토와 블로그 게재 요청</small></span></label>
+          <label class="choice"><input type="radio" name="distribution" value="blog"><span><strong>ERICA 블로그 요청</strong><small>ERICA 블로그 게재 요청</small></span></label>
+        </div>
+        <div class="distribution-notice" id="distributionPolicy">
+          <p><strong>대외 언론 배포는 검토 후 선별적으로 진행됩니다.</strong> 자료를 제출하거나 대외 언론 배포를 요청하더라도 배포가 확정되는 것은 아닙니다. 미디어전략실 운영 기준에 따라 다음 사항을 고려하여 검토합니다.</p>
+          <ol>
+            <li>대학 차원의 대표성과, 대외적 의미가 있는 사안</li>
+            <li>새로운 성과·연구 결과 등 언론 보도 가치가 명확한 사안</li>
+            <li>사회적 관심도와 시의성이 높은 사안</li>
+            <li>사업·행사 등의 구체적인 성과와 파급효과가 확인되는 사안</li>
+            <li>전국·국제 단위의 규모 또는 주요 외부 기관과 연계된 사안</li>
+          </ol>
+          <p class="distribution-note">교내용 제보도 언론 주목도가 있다고 판단되면 대외 배포를 추진할 수 있습니다. 미디어전략실은 중요도·뉴스가치·시의성에 따라 선별 운영합니다.</p>
         </div>
       </section>
 
@@ -296,7 +308,7 @@
 
       <label class="hp-trap" aria-hidden="true">홈페이지<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
       <div class="security-box"><div class="security-copy"><strong>자동 제출 방지 확인</strong><span>정상 사용자는 대부분 별도 동작 없이 자동으로 확인됩니다.</span><div id="securityStatus" class="security-status">보안 확인 준비 중...</div><button type="button" id="turnstileRetry" style="display:none;margin-top:7px;border:1px solid #ccd9e2;background:#fff;border-radius:9px;padding:6px 9px;font-size:11px;font-weight:800">보안 확인 다시 시도</button></div><div id="turnstileWidget"></div></div>
-      <div class="submit-card"><div><h2>기사 재료 제출하기</h2><p id="submitSummary">기본정보를 채우면 제출할 수 있습니다.</p></div><button type="submit" class="submit-btn" id="submitBtn" disabled>제출하기</button></div>
+      <div class="submit-card"><div><h2>기사 재료 제출하기</h2><p id="submitSummary">기본정보를 채우면 제출할 수 있습니다.</p><p class="distribution-reminder">대외 언론 배포는 검토 후 선별적으로 진행됩니다. 자료를 제출하거나 대외 언론 배포를 요청하더라도 배포가 확정되는 것은 아닙니다.</p></div><button type="submit" class="submit-btn" id="submitBtn" disabled>제출하기</button></div>
       <div class="privacy">※ 입력 내용은 GitHub 사이트에 저장하지 않습니다. 사진·참고자료 파일은 전송을 위해 Google Drive 임시폴더에 보관되며, 메일 발송 성공 후 자동으로 휴지통으로 이동합니다.</div>
     </form>
 
@@ -668,7 +680,7 @@
   function showSuccessResult(res,recovered=false){
     turnstileToken='';
     submitBtn.classList.remove('sending');submitBtn.classList.add('done');submitBtn.textContent='제출 완료';
-    modal.innerHTML=`<div class="done-mark">✓</div><h3>${recovered?'이전 접수가 완료됐어':'접수가 완료됐어'}</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 한 번만 전송했어.')}</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;
+    modal.innerHTML=`<div class="done-mark">✓</div><h3>${recovered?'이전 접수가 완료됐어':'접수가 완료됐어'}</h3><p>${escapeHtml(res.message||'담당자 메일로 자료를 한 번만 전송했어.')}</p><p class="distribution-notice">대외 언론 배포는 검토 후 선별적으로 진행됩니다. 자료를 제출하거나 대외 언론 배포를 요청하더라도 배포가 확정되는 것은 아닙니다.</p><button type="button" class="modal-btn" id="doneBtn">확인</button>`;
     document.getElementById('doneBtn').onclick=()=>{overlay.classList.remove('show');form.reset();resetQuotes();uploaderPhotos=[];uploaderReferences=[];uploadBusy=false;referenceUploadBusy=false;UPLOAD_KEY=makeId('upl');rotateSubmissionKey();submitBtn.classList.remove('done');photoUploaderLoaded=false;referenceUploaderLoaded=false;photoUploaderFrame.src='about:blank';referenceUploaderFrame.src='about:blank';document.querySelectorAll('details.optional-section').forEach(d=>d.open=false);loadUploaders();updateAttachmentUsage();renderTypeConditionals();renderNewsBlocks();document.getElementById('futureFields').classList.remove('active');document.getElementById('termFields').classList.remove('active');updateTypeGuidance();updateAssembly();resetTurnstile();location.hash=''};
   }
 
